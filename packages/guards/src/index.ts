@@ -4,3 +4,8 @@ export { pii } from './pii.js';
 export { promptInjection } from './prompt-injection.js';
 export { wordCount } from './word-count.js';
 export { schemaGuard } from './schema-guard.js';
+export { toxicity } from './toxicity.js';
+export { topicDeny } from './topic-deny.js';
+export { topicAllow } from './topic-allow.js';
+export { bias } from './bias.js';
+export { language } from './language.js';
