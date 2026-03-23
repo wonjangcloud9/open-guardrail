@@ -20,3 +20,7 @@ export type { LlmCallFn } from './llm-judge.js';
 export { hallucination } from './hallucination.js';
 export { relevance } from './relevance.js';
 export { groundedness } from './groundedness.js';
+export { costGuard } from './cost-guard.js';
+export { rateLimit } from './rate-limit.js';
+export { dataLeakage } from './data-leakage.js';
+export { sentiment } from './sentiment.js';
