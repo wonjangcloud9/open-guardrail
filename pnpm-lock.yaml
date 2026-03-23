@@ -17,7 +17,7 @@ importers:
 
   packages/cli:
     dependencies:
-      '@open-guardrail/core':
+      open-guardrail-core:
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -52,7 +52,7 @@ importers:
 
   packages/guards:
     dependencies:
-      '@open-guardrail/core':
+      open-guardrail-core:
         specifier: workspace:*
         version: link:../core
       safe-regex2:
@@ -68,10 +68,10 @@ importers:
 
   packages/open-guardrail:
     dependencies:
-      '@open-guardrail/core':
+      open-guardrail-core:
         specifier: workspace:*
         version: link:../core
-      '@open-guardrail/guards':
+      open-guardrail-guards:
         specifier: workspace:*
         version: link:../guards
     devDependencies:

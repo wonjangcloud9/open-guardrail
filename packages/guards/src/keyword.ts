@@ -1,4 +1,4 @@
-import type { Guard, GuardResult, GuardContext } from '@open-guardrail/core';
+import type { Guard, GuardResult, GuardContext } from 'open-guardrail-core';
 
 interface KeywordOptions {
   denied?: string[];

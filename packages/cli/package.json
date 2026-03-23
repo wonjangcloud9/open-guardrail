@@ -1,5 +1,5 @@
 {
-  "name": "@open-guardrail/cli",
+  "name": "open-guardrail-cli",
   "version": "0.1.0",
   "description": "CLI for open-guardrail",
   "type": "module",
@@ -11,7 +11,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@open-guardrail/core": "workspace:*"
+    "open-guardrail-core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

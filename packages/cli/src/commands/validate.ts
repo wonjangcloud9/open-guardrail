@@ -1,5 +1,5 @@
 import { readFileSync, existsSync } from 'node:fs';
-import { parseConfig, validateConfig } from '@open-guardrail/core';
+import { parseConfig, validateConfig } from 'open-guardrail-core';
 
 interface ValidateResult {
   valid: boolean;

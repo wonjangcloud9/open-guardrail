@@ -1,4 +1,4 @@
-import type { Guard, GuardResult, GuardContext } from '@open-guardrail/core';
+import type { Guard, GuardResult, GuardContext } from 'open-guardrail-core';
 import safe from 'safe-regex2';
 
 interface RegexOptions {

@@ -2,7 +2,7 @@ import type {
   Guard,
   GuardResult,
   GuardContext,
-} from '@open-guardrail/core';
+} from 'open-guardrail-core';
 
 interface LanguageOptions {
   allowed: string[];

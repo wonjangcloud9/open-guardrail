@@ -8,10 +8,10 @@ export {
   GuardRegistry, OpenGuardrail,
   configSchema, type RawConfig,
   parseConfig, validateConfig, loadConfigFromString,
-} from '@open-guardrail/core';
+} from 'open-guardrail-core';
 
 // Guards
 export {
   regex, keyword, pii, promptInjection,
   wordCount, schemaGuard,
-} from '@open-guardrail/guards';
+} from 'open-guardrail-guards';

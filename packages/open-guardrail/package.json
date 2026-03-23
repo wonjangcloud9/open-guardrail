@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Open-source guardrail engine for LLM applications",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -19,8 +19,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@open-guardrail/core": "workspace:*",
-    "@open-guardrail/guards": "workspace:*"
+    "open-guardrail-core": "^0.1.0",
+    "open-guardrail-guards": "^0.1.0"
   },
   "devDependencies": {
     "tsup": "^8.4.0"
