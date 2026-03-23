@@ -15,3 +15,8 @@ export { residentId } from './resident-id.js';
 export { creditInfo } from './credit-info.js';
 export { ismsP } from './isms-p.js';
 export { pipa } from './pipa.js';
+export { llmJudge } from './llm-judge.js';
+export type { LlmCallFn } from './llm-judge.js';
+export { hallucination } from './hallucination.js';
+export { relevance } from './relevance.js';
+export { groundedness } from './groundedness.js';
