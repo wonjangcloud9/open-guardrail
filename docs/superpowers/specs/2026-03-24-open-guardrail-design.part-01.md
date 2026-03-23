@@ -22,3 +22,18 @@ npm 패키지로 배포, 브라우저/Node/Edge 풀스택 지원.
 1. **파이프라인 체이닝** — 유연한 프로그래매틱 조합
 2. **선언적 룰셋** — 코드 변경 없이 YAML/JSON 설정
 3. **이벤트 훅** — 느슨한 결합, 비동기 확장
+
+## Aggregation Rules
+
+- **fail-fast**: 첫 번째 `block` 결과 시 즉시 중단, 해당 action 반환
+- **run-all**: 모든 가드 실행 후 가장 엄격한 action 반환
+- Action 우선순위: `block` > `override` > `warn` > `allow`
+- `passed`는 최종 action이 `allow` 또는 `warn`일 때 `true`
+
+## Error Handling
+
+- 가드 예외 발생 시 기본 **fail-closed** (`block` 처리)
+- 설정으로 `onError: 'block' | 'allow' | 'warn'` 변경 가능
+- 모든 가드에 `timeoutMs` 설정 가능 (기본 5000ms)
+- 타임아웃 시 `GuardError` 타입으로 결과에 포함
+- AI 위임 가드는 네트워크 에러 시 재시도 없이 즉시 실패
