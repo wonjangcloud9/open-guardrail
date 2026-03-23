@@ -28,7 +28,7 @@ npm 패키지로 배포, 브라우저/Node/Edge 풀스택 지원.
 - **fail-fast**: 첫 번째 `block` 결과 시 즉시 중단, 해당 action 반환
 - **run-all**: 모든 가드 실행 후 가장 엄격한 action 반환
 - Action 우선순위: `block` > `override` > `warn` > `allow`
-- `passed`는 최종 action이 `allow` 또는 `warn`일 때 `true`
+- `passed`는 최종 action이 `block`이 아닐 때 `true` (`allow`, `warn`, `override` 모두 통과)
 
 ## Error Handling
 
