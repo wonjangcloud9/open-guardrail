@@ -15,6 +15,22 @@ importers:
         specifier: ^5.7.0
         version: 5.9.3
 
+  packages/cli:
+    dependencies:
+      '@open-guardrail/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.15
+      tsup:
+        specifier: ^8.4.0
+        version: 8.5.1(postcss@8.5.8)(typescript@5.9.3)(yaml@2.8.3)
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.4(@types/node@22.19.15)(yaml@2.8.3)
+
   packages/core:
     dependencies:
       yaml:
@@ -33,6 +49,35 @@ importers:
       vitest:
         specifier: ^3.1.0
         version: 3.2.4(@types/node@22.19.15)(yaml@2.8.3)
+
+  packages/guards:
+    dependencies:
+      '@open-guardrail/core':
+        specifier: workspace:*
+        version: link:../core
+      safe-regex2:
+        specifier: ^4.0.0
+        version: 4.0.1
+    devDependencies:
+      tsup:
+        specifier: ^8.4.0
+        version: 8.5.1(postcss@8.5.8)(typescript@5.9.3)(yaml@2.8.3)
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.4(@types/node@22.19.15)(yaml@2.8.3)
+
+  packages/open-guardrail:
+    dependencies:
+      '@open-guardrail/core':
+        specifier: workspace:*
+        version: link:../core
+      '@open-guardrail/guards':
+        specifier: workspace:*
+        version: link:../guards
+    devDependencies:
+      tsup:
+        specifier: ^8.4.0
+        version: 8.5.1(postcss@8.5.8)(typescript@5.9.3)(yaml@2.8.3)
 
 packages:
 
@@ -584,10 +629,17 @@ packages:
     resolution: {integrity: sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==}
     engines: {node: '>=8'}
 
+  ret@0.5.0:
+    resolution: {integrity: sha512-I1XxrZSQ+oErkRR4jYbAyEEu2I0avBvvMM5JN+6EBprOGRCs63ENqZ3vjavq8fBw2+62G5LF5XelKwuJpcvcxw==}
+    engines: {node: '>=10'}
+
   rollup@4.60.0:
     resolution: {integrity: sha512-yqjxruMGBQJ2gG4HtjZtAfXArHomazDHoFwFFmZZl0r7Pdo7qCIXKqKHZc8yeoMgzJJ+pO6pEEHa+V7uzWlrAQ==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
+
+  safe-regex2@4.0.1:
+    resolution: {integrity: sha512-goqsB+bSlOmVX+CiFX2PFc1OV88j5jvBqIM+DgqrucHnUguAUNtiNOs+aTadq2NqsLQ+TQ3UEVG3gtSFcdlkCg==}
 
   siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
@@ -1169,6 +1221,8 @@ snapshots:
 
   resolve-from@5.0.0: {}
 
+  ret@0.5.0: {}
+
   rollup@4.60.0:
     dependencies:
       '@types/estree': 1.0.8
@@ -1199,6 +1253,10 @@ snapshots:
       '@rollup/rollup-win32-x64-gnu': 4.60.0
       '@rollup/rollup-win32-x64-msvc': 4.60.0
       fsevents: 2.3.3
+
+  safe-regex2@4.0.1:
+    dependencies:
+      ret: 0.5.0
 
   siginfo@2.0.0: {}
 
