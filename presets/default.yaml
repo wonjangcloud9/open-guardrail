@@ -1,0 +1,19 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: keyword
+        action: block
+        config:
+          denied: []
+  output:
+    mode: run-all
+    guards:
+      - type: word-count
+        action: warn
+        config:
+          max: 4000
