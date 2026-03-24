@@ -13,3 +13,4 @@ export { parseConfig, validateConfig, loadConfigFromString } from './config-load
 export { GuardRegistry } from './registry.js';
 export { OpenGuardrail } from './open-guardrail.js';
 export { StreamingPipeline } from './streaming-pipeline.js';
+export { AuditLogger, type AuditEntry } from './audit-logger.js';
