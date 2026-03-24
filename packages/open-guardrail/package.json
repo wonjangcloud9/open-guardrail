@@ -16,6 +16,7 @@
   "files": ["dist"],
   "scripts": {
     "build": "tsup",
+    "test": "vitest run",
     "clean": "rm -rf dist"
   },
   "dependencies": {
@@ -23,7 +24,8 @@
     "open-guardrail-guards": "workspace:*"
   },
   "devDependencies": {
-    "tsup": "^8.4.0"
+    "tsup": "^8.4.0",
+    "vitest": "^3.1.0"
   },
   "author": "Lucas <wonjangcloud9@gmail.com>",
   "repository": {
