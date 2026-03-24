@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-guards",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "description": "25 built-in guards: security, privacy, content, format, AI delegation, Korean compliance",
   "type": "module",
   "main": "./dist/index.cjs",
