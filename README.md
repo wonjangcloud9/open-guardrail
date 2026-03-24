@@ -73,7 +73,7 @@ npx open-guardrail-cli init          # create guardrail.yaml
 npx open-guardrail-cli validate      # validate config
 ```
 
-## Built-in Guards (26)
+## Built-in Guards (28)
 
 ### Security
 | Guard | Description |
@@ -122,6 +122,12 @@ npx open-guardrail-cli validate      # validate config
 | Guard | Description |
 |-------|-------------|
 | `toolCallValidator` | Validate tool call arguments (type safety, injection prevention, tool allowlist) |
+| `codeSafety` | Detect dangerous code: eval, shell injection, SQL injection, env exposure |
+
+### Content (Advanced)
+| Guard | Description |
+|-------|-------------|
+| `copyright` | Detect copyright notices, trademarks, verbatim reproduction |
 
 ### Korea / ISMS
 | Guard | Description |
@@ -159,10 +165,11 @@ npx open-guardrail-cli validate      # validate config
 
 | Package | Description |
 |---------|-------------|
-| `open-guardrail` | All-in-one (core + 26 guards) |
+| `open-guardrail` | All-in-one (core + 28 guards) |
 | `open-guardrail-core` | Core engine only (Pipeline, StreamingPipeline, Router, AuditLogger) |
 | `open-guardrail-guards` | Built-in guards only |
 | `open-guardrail-cli` | CLI tools |
+| `open-guardrail-vercel-ai` | Vercel AI SDK middleware adapter |
 
 ## Features
 

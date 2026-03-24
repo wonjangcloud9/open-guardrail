@@ -37,3 +37,7 @@ export { piiKr, profanityKr, residentId, creditInfo, ismsP, pipa } from 'open-gu
 
 // Guards — Agent Safety
 export { toolCallValidator } from 'open-guardrail-guards';
+
+// Guards — Advanced
+export { copyright } from 'open-guardrail-guards';
+export { codeSafety } from 'open-guardrail-guards';

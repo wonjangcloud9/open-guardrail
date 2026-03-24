@@ -20,6 +20,8 @@ import {
   piiKr, profanityKr, residentId, creditInfo, ismsP, pipa,
   // Agent Safety
   toolCallValidator,
+  // Advanced
+  copyright, codeSafety,
 } from '../src/index.js';
 
 describe('Umbrella package exports', () => {
@@ -36,7 +38,7 @@ describe('Umbrella package exports', () => {
     expect(typeof createPipeline).toBe('function');
   });
 
-  it('exports all 26 guard factories', () => {
+  it('exports all 28 guard factories', () => {
     const guards = [
       regex, keyword, promptInjection,
       pii,
@@ -46,11 +48,12 @@ describe('Umbrella package exports', () => {
       costGuard, rateLimit, dataLeakage, sentiment,
       piiKr, profanityKr, residentId, creditInfo, ismsP, pipa,
       toolCallValidator,
+      copyright, codeSafety,
     ];
     for (const guard of guards) {
       expect(typeof guard).toBe('function');
     }
-    expect(guards).toHaveLength(26);
+    expect(guards).toHaveLength(28);
   });
 });
 
@@ -105,5 +108,10 @@ describe('Phase 3 exports', () => {
 
   it('exports toolCallValidator', () => {
     expect(typeof toolCallValidator).toBe('function');
+  });
+
+  it('exports copyright and codeSafety', () => {
+    expect(typeof copyright).toBe('function');
+    expect(typeof codeSafety).toBe('function');
   });
 });

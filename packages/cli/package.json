@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-cli",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "CLI for open-guardrail — init project, validate config, preset scaffolding",
   "type": "module",
   "bin": { "open-guardrail": "./dist/index.js" },
