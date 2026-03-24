@@ -1,0 +1,46 @@
+{
+  "name": "open-guardrail-vercel-ai",
+  "version": "0.7.0",
+  "description": "Vercel AI SDK middleware adapter for open-guardrail — guard LLM inputs and outputs",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "open-guardrail-core": "workspace:*"
+  },
+  "peerDependencies": {
+    "ai": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "ai": { "optional": true }
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "vitest": "^3.1.0"
+  },
+  "author": "Lucas <wonjangcloud9@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wonjangcloud9/open-guardrail",
+    "directory": "packages/adapters/vercel-ai"
+  },
+  "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
+  "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
+  "engines": { "node": ">=18" },
+  "keywords": ["guardrail", "vercel", "ai-sdk", "middleware", "llm", "safety"],
+  "license": "MIT"
+}
