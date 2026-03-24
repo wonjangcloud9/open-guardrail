@@ -6,6 +6,9 @@ Provider-agnostic text input/output middleware. Works in Node.js, browsers, and 
 
 [![npm](https://img.shields.io/npm/v/open-guardrail)](https://www.npmjs.com/package/open-guardrail)
 [![license](https://img.shields.io/github/license/wonjangcloud9/open-guardrail)](LICENSE)
+[![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
+> **Node.js >= 18** required
 
 ## Install
 
@@ -125,12 +128,33 @@ npx open-guardrail-cli validate      # validate config
 | `ismsP` | ISMS-P compliance preset |
 | `pipa` | Personal Information Protection Act compliance |
 
+## Examples
+
+| Example | Description |
+|---------|-------------|
+| [basic-usage](./examples/basic-usage/) | `pipe()` with prompt-injection, PII masking, keyword blocking |
+| [yaml-config](./examples/yaml-config/) | Config-driven guardrail with `guardrail.yaml` |
+| [custom-guard](./examples/custom-guard/) | Creating a custom guard implementing Guard interface |
+| [with-express](./examples/with-express/) | Express middleware integration |
+| [with-nextjs](./examples/with-nextjs/) | Next.js App Router API route |
+| [korean-compliance](./examples/korean-compliance/) | 한국 규제 준수 (ISMS-P, PIPA) |
+
+## Presets
+
+| Preset | Use Case |
+|--------|----------|
+| `default` | Basic protection (prompt-injection, keyword, word-count) |
+| `strict` | Full PII masking + strict blocking |
+| `korean` | Korean compliance (ISMS-P, PIPA, 주민등록번호) |
+| `security` | Injection, PII, data leakage focused |
+| `content` | Toxicity, bias, language control |
+
 ## Packages
 
 | Package | Description |
 |---------|-------------|
-| `open-guardrail` | All-in-one (core + guards) |
-| `open-guardrail-core` | Core engine only |
+| `open-guardrail` | All-in-one (core + 25 guards) |
+| `open-guardrail-core` | Core engine only (Pipeline, Guard IF, EventBus) |
 | `open-guardrail-guards` | Built-in guards only |
 | `open-guardrail-cli` | CLI tools |
 
@@ -143,6 +167,14 @@ npx open-guardrail-cli validate      # validate config
 - **Fail-fast / Run-all** — choose execution strategy per pipeline
 - **Error handling** — configurable fail-closed/open with timeouts
 - **Provider agnostic** — works with any LLM, any framework
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup and guidelines.
+
+## Security
+
+See [SECURITY.md](./SECURITY.md) for vulnerability reporting.
 
 ## License
 
