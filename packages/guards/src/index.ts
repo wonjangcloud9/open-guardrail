@@ -25,3 +25,4 @@ export { rateLimit } from './rate-limit.js';
 export { dataLeakage } from './data-leakage.js';
 export { sentiment } from './sentiment.js';
 export { toolCallValidator } from './tool-call-validator.js';
+export { copyright } from './copyright.js';
