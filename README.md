@@ -73,7 +73,7 @@ npx open-guardrail-cli init          # create guardrail.yaml
 npx open-guardrail-cli validate      # validate config
 ```
 
-## Built-in Guards (28)
+## Built-in Guards (30)
 
 ### Security
 | Guard | Description |
@@ -128,6 +128,8 @@ npx open-guardrail-cli validate      # validate config
 | Guard | Description |
 |-------|-------------|
 | `copyright` | Detect copyright notices, trademarks, verbatim reproduction |
+| `watermarkDetect` | Detect AI-generated text markers (disclosure phrases, hedging, formulaic) |
+| `multiTurnContext` | Multi-turn manipulation: gradual jailbreak, topic drift, repetitive probing |
 
 ### Korea / ISMS
 | Guard | Description |
@@ -160,12 +162,13 @@ npx open-guardrail-cli validate      # validate config
 | `security` | Injection, PII, data leakage focused |
 | `content` | Toxicity, bias, language control |
 | `ai-basic-act-kr` | 한국 AI 기본법 준수 (편향 방지, PII, 독성) |
+| `eu-ai-act` | EU AI Act compliance (bias, PII, toxicity, watermark, copyright) |
 
 ## Packages
 
 | Package | Description |
 |---------|-------------|
-| `open-guardrail` | All-in-one (core + 28 guards) |
+| `open-guardrail` | All-in-one (core + 30 guards) |
 | `open-guardrail-core` | Core engine only (Pipeline, StreamingPipeline, Router, AuditLogger) |
 | `open-guardrail-guards` | Built-in guards only |
 | `open-guardrail-cli` | CLI tools |

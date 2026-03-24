@@ -41,3 +41,5 @@ export { toolCallValidator } from 'open-guardrail-guards';
 // Guards — Advanced
 export { copyright } from 'open-guardrail-guards';
 export { codeSafety } from 'open-guardrail-guards';
+export { multiTurnContext } from 'open-guardrail-guards';
+export { watermarkDetect } from 'open-guardrail-guards';

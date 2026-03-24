@@ -21,7 +21,7 @@ import {
   // Agent Safety
   toolCallValidator,
   // Advanced
-  copyright, codeSafety,
+  copyright, codeSafety, multiTurnContext, watermarkDetect,
 } from '../src/index.js';
 
 describe('Umbrella package exports', () => {
@@ -48,12 +48,12 @@ describe('Umbrella package exports', () => {
       costGuard, rateLimit, dataLeakage, sentiment,
       piiKr, profanityKr, residentId, creditInfo, ismsP, pipa,
       toolCallValidator,
-      copyright, codeSafety,
+      copyright, codeSafety, multiTurnContext, watermarkDetect,
     ];
     for (const guard of guards) {
       expect(typeof guard).toBe('function');
     }
-    expect(guards).toHaveLength(28);
+    expect(guards).toHaveLength(30);
   });
 });
 
@@ -113,5 +113,10 @@ describe('Phase 3 exports', () => {
   it('exports copyright and codeSafety', () => {
     expect(typeof copyright).toBe('function');
     expect(typeof codeSafety).toBe('function');
+  });
+
+  it('exports multiTurnContext and watermarkDetect', () => {
+    expect(typeof multiTurnContext).toBe('function');
+    expect(typeof watermarkDetect).toBe('function');
   });
 });
