@@ -32,3 +32,14 @@
 | [part-08](./2026-03-24-phase2-production-ready.part-08.md) | Task 7: CI/CD Enhancement |
 | [part-09](./2026-03-24-phase2-production-ready.part-09.md) | Task 8: Umbrella integration tests |
 | [part-10](./2026-03-24-phase2-production-ready.part-10.md) | Task 9-10: README + version bump + tag |
+
+## Phase 3: Ecosystem (v0.7.0)
+
+| Part | Contents |
+|------|----------|
+| [part-01](./2026-03-24-phase3-ecosystem.part-01.md) | Header |
+| [part-02](./2026-03-24-phase3-ecosystem.part-02.md) | Task 1: Streaming Pipeline |
+| [part-03](./2026-03-24-phase3-ecosystem.part-03.md) | Task 2: Tool Call Validator Guard |
+| [part-04](./2026-03-24-phase3-ecosystem.part-04.md) | Task 3: Audit Logger |
+| [part-05](./2026-03-24-phase3-ecosystem.part-05.md) | Task 4: Risk-Based Router |
+| [part-06](./2026-03-24-phase3-ecosystem.part-06.md) | Task 5: AI 기본법 프리셋 + umbrella + README |
