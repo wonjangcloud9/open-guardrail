@@ -1,0 +1,35 @@
+version: "1"
+pipelines:
+  input:
+    mode: run-all
+    onError: warn
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn]
+      - type: bias
+        action: warn
+        config:
+          categories: [gender, racial, religious, age]
+      - type: toxicity
+        action: block
+      - type: multi-turn-context
+        action: warn
+  output:
+    mode: run-all
+    guards:
+      - type: bias
+        action: warn
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn]
+      - type: toxicity
+        action: block
+      - type: watermark-detect
+        action: warn
+      - type: copyright
+        action: warn
