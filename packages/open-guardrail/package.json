@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail",
   "version": "0.9.0",
-  "description": "Open-source guardrail engine for LLM apps — 25 built-in guards, pipeline chaining, YAML config",
+  "description": "Open-source guardrail engine for LLM apps — 30 guards, streaming pipeline, risk routing, audit logging, Vercel AI SDK",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

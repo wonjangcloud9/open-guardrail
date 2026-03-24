@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail-guards",
   "version": "0.9.0",
-  "description": "25 built-in guards: security, privacy, content, format, AI delegation, Korean compliance",
+  "description": "30 built-in guards for LLM safety: PII, prompt injection, toxicity, bias, copyright, code-safety, Korean ISMS-P/PIPA, EU AI Act",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
