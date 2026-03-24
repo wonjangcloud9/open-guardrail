@@ -24,3 +24,4 @@ export { costGuard } from './cost-guard.js';
 export { rateLimit } from './rate-limit.js';
 export { dataLeakage } from './data-leakage.js';
 export { sentiment } from './sentiment.js';
+export { toolCallValidator } from './tool-call-validator.js';
