@@ -1,0 +1,14 @@
+{
+  "name": "example-with-express",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "npx tsx server.ts" },
+  "dependencies": {
+    "open-guardrail": "workspace:*",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "@types/express": "^5.0.0"
+  }
+}
