@@ -44,3 +44,5 @@ export { codeSafety } from 'open-guardrail-guards';
 export { multiTurnContext } from 'open-guardrail-guards';
 export { watermarkDetect } from 'open-guardrail-guards';
 export { jsonRepair } from 'open-guardrail-guards';
+export { urlGuard } from 'open-guardrail-guards';
+export { repetitionDetect } from 'open-guardrail-guards';
