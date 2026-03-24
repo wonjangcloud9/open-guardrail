@@ -29,3 +29,4 @@ export { copyright } from './copyright.js';
 export { codeSafety } from './code-safety.js';
 export { multiTurnContext } from './multi-turn.js';
 export { watermarkDetect } from './watermark-detect.js';
+export { jsonRepair } from './json-repair.js';
