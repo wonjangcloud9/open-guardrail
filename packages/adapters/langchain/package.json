@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-langchain",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "LangChain.js integration for open-guardrail — guard LLM chains and agents",
   "type": "module",
   "main": "./dist/index.cjs",
