@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail-core",
-  "version": "0.1.0",
-  "description": "Core guardrail engine for LLM applications",
+  "version": "0.5.0",
+  "description": "Core engine: Pipeline, Guard interface, EventBus, Config Loader — provider agnostic",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -29,5 +29,15 @@
     "tsup": "^8.4.0",
     "vitest": "^3.1.0"
   },
+  "author": "Lucas <wonjangcloud9@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wonjangcloud9/open-guardrail",
+    "directory": "packages/core"
+  },
+  "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
+  "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
+  "engines": { "node": ">=18" },
+  "keywords": ["guardrail", "llm", "pipeline", "guard", "event-bus", "config", "middleware"],
   "license": "MIT"
 }

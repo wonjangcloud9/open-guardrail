@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail",
-  "version": "0.3.0",
-  "description": "Open-source guardrail engine for LLM applications",
+  "version": "0.5.0",
+  "description": "Open-source guardrail engine for LLM apps — 25 built-in guards, pipeline chaining, YAML config",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -19,16 +19,20 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "open-guardrail-core": "^0.1.0",
-    "open-guardrail-guards": "^0.3.0"
+    "open-guardrail-core": "workspace:*",
+    "open-guardrail-guards": "workspace:*"
   },
   "devDependencies": {
     "tsup": "^8.4.0"
   },
-  "keywords": ["guardrail", "llm", "ai", "safety", "moderation", "pii", "prompt-injection"],
-  "license": "MIT",
+  "author": "Lucas <wonjangcloud9@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/wonjangcloud9/open-guardrail"
-  }
+  },
+  "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
+  "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
+  "engines": { "node": ">=18" },
+  "keywords": ["guardrail", "llm", "ai", "safety", "moderation", "pii", "prompt-injection", "content-filter", "compliance", "isms-p"],
+  "license": "MIT"
 }

@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail-guards",
-  "version": "0.3.0",
-  "description": "Built-in guards for open-guardrail",
+  "version": "0.5.0",
+  "description": "25 built-in guards: security, privacy, content, format, AI delegation, Korean compliance",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -27,5 +27,15 @@
     "tsup": "^8.4.0",
     "vitest": "^3.1.0"
   },
+  "author": "Lucas <wonjangcloud9@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wonjangcloud9/open-guardrail",
+    "directory": "packages/guards"
+  },
+  "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
+  "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
+  "engines": { "node": ">=18" },
+  "keywords": ["guardrail", "pii", "toxicity", "bias", "prompt-injection", "isms-p", "pipa", "hallucination"],
   "license": "MIT"
 }
