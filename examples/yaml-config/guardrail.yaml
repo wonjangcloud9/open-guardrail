@@ -1,0 +1,18 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: keyword
+        action: block
+        config:
+          denied: [hack, exploit, jailbreak]
+  output:
+    mode: run-all
+    guards:
+      - type: word-count
+        action: warn
+        config:
+          max: 500
