@@ -3,6 +3,7 @@ import {
   // Core
   pipe, createPipeline,
   Pipeline, EventBus, GuardRegistry, OpenGuardrail, GuardError,
+  StreamingPipeline, AuditLogger, GuardRouter, createRouter,
   // Security guards
   regex, keyword, promptInjection,
   // Privacy guards
@@ -17,6 +18,8 @@ import {
   costGuard, rateLimit, dataLeakage, sentiment,
   // Korea guards
   piiKr, profanityKr, residentId, creditInfo, ismsP, pipa,
+  // Agent Safety
+  toolCallValidator,
 } from '../src/index.js';
 
 describe('Umbrella package exports', () => {
@@ -33,7 +36,7 @@ describe('Umbrella package exports', () => {
     expect(typeof createPipeline).toBe('function');
   });
 
-  it('exports all 25 guard factories', () => {
+  it('exports all 26 guard factories', () => {
     const guards = [
       regex, keyword, promptInjection,
       pii,
@@ -42,11 +45,12 @@ describe('Umbrella package exports', () => {
       llmJudge, hallucination, relevance, groundedness,
       costGuard, rateLimit, dataLeakage, sentiment,
       piiKr, profanityKr, residentId, creditInfo, ismsP, pipa,
+      toolCallValidator,
     ];
     for (const guard of guards) {
       expect(typeof guard).toBe('function');
     }
-    expect(guards).toHaveLength(25);
+    expect(guards).toHaveLength(26);
   });
 });
 
@@ -80,5 +84,26 @@ describe('End-to-end pipeline', () => {
     const result = await p.run('hello world');
     expect(result.passed).toBe(true);
     expect(result.results).toHaveLength(2);
+  });
+});
+
+describe('Phase 3 exports', () => {
+  it('exports StreamingPipeline', () => {
+    expect(StreamingPipeline).toBeDefined();
+  });
+
+  it('exports AuditLogger', () => {
+    expect(AuditLogger).toBeDefined();
+    const logger = new AuditLogger();
+    expect(typeof logger.record).toBe('function');
+  });
+
+  it('exports GuardRouter + createRouter', () => {
+    expect(GuardRouter).toBeDefined();
+    expect(typeof createRouter).toBe('function');
+  });
+
+  it('exports toolCallValidator', () => {
+    expect(typeof toolCallValidator).toBe('function');
   });
 });

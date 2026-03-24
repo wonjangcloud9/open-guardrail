@@ -1,0 +1,35 @@
+version: "1"
+pipelines:
+  input:
+    mode: run-all
+    onError: warn
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: pii-kr
+        action: mask
+        config:
+          entities: [resident-id, phone, email, passport, driver-license]
+      - type: bias
+        action: warn
+        config:
+          categories: [gender, racial, religious, age]
+      - type: toxicity
+        action: block
+      - type: language
+        action: warn
+        config:
+          allowed: [ko, en]
+  output:
+    mode: run-all
+    guards:
+      - type: bias
+        action: warn
+      - type: pii-kr
+        action: mask
+        config:
+          entities: [resident-id, phone, email]
+      - type: toxicity
+        action: block
+      - type: sentiment
+        action: warn

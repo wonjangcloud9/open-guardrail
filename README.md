@@ -73,7 +73,7 @@ npx open-guardrail-cli init          # create guardrail.yaml
 npx open-guardrail-cli validate      # validate config
 ```
 
-## Built-in Guards (25)
+## Built-in Guards (26)
 
 ### Security
 | Guard | Description |
@@ -118,6 +118,11 @@ npx open-guardrail-cli validate      # validate config
 | `dataLeakage` | System prompt and training data leak detection |
 | `sentiment` | Emotional tone control |
 
+### Agent Safety
+| Guard | Description |
+|-------|-------------|
+| `toolCallValidator` | Validate tool call arguments (type safety, injection prevention, tool allowlist) |
+
 ### Korea / ISMS
 | Guard | Description |
 |-------|-------------|
@@ -148,19 +153,24 @@ npx open-guardrail-cli validate      # validate config
 | `korean` | Korean compliance (ISMS-P, PIPA, 주민등록번호) |
 | `security` | Injection, PII, data leakage focused |
 | `content` | Toxicity, bias, language control |
+| `ai-basic-act-kr` | 한국 AI 기본법 준수 (편향 방지, PII, 독성) |
 
 ## Packages
 
 | Package | Description |
 |---------|-------------|
-| `open-guardrail` | All-in-one (core + 25 guards) |
-| `open-guardrail-core` | Core engine only (Pipeline, Guard IF, EventBus) |
+| `open-guardrail` | All-in-one (core + 26 guards) |
+| `open-guardrail-core` | Core engine only (Pipeline, StreamingPipeline, Router, AuditLogger) |
 | `open-guardrail-guards` | Built-in guards only |
 | `open-guardrail-cli` | CLI tools |
 
 ## Features
 
 - **Pipeline chaining** — compose guards with `pipe()` or `createPipeline()`
+- **Streaming validation** — chunk-level guards + full-text semantic checks via `StreamingPipeline`
+- **Risk-based routing** — route to different guard pipelines based on input risk level via `GuardRouter`
+- **Agent safety** — validate tool call arguments with `toolCallValidator` (email, uuid, SQL injection)
+- **Audit logging** — EU AI Act / 한국 AI 기본법 compliance via `AuditLogger`
 - **Declarative config** — YAML/JSON configuration, no code changes needed
 - **Event hooks** — `guard:before`, `guard:after`, `guard:blocked`, `guard:error`
 - **Dry run mode** — test guards without blocking

@@ -8,6 +8,9 @@ export {
   GuardRegistry, OpenGuardrail,
   configSchema, type RawConfig,
   parseConfig, validateConfig, loadConfigFromString,
+  StreamingPipeline,
+  AuditLogger, type AuditEntry,
+  GuardRouter, createRouter,
 } from 'open-guardrail-core';
 
 // Guards — Security
@@ -31,3 +34,6 @@ export { costGuard, rateLimit, dataLeakage, sentiment } from 'open-guardrail-gua
 
 // Guards — Korea / ISMS
 export { piiKr, profanityKr, residentId, creditInfo, ismsP, pipa } from 'open-guardrail-guards';
+
+// Guards — Agent Safety
+export { toolCallValidator } from 'open-guardrail-guards';
