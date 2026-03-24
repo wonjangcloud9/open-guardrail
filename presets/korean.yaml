@@ -1,0 +1,35 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: pii-kr
+        action: mask
+        config:
+          entities: [resident-id, phone, email, passport, driver-license, business-number]
+      - type: resident-id
+        action: mask
+      - type: keyword
+        action: block
+        config:
+          denied: []
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: pii-kr
+        action: mask
+        config:
+          entities: [resident-id, phone, email]
+      - type: credit-info
+        action: block
+      - type: profanity-kr
+        action: block
+      - type: word-count
+        action: warn
+        config:
+          max: 4000

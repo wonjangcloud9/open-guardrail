@@ -1,0 +1,29 @@
+version: "1"
+pipelines:
+  input:
+    mode: run-all
+    onError: warn
+    guards:
+      - type: toxicity
+        action: block
+        config:
+          categories: [profanity, hate, threat, harassment]
+      - type: bias
+        action: warn
+        config:
+          categories: [gender, racial, religious, age]
+      - type: language
+        action: block
+        config:
+          allowed: [ko, en]
+  output:
+    mode: run-all
+    guards:
+      - type: toxicity
+        action: block
+      - type: sentiment
+        action: warn
+      - type: word-count
+        action: warn
+        config:
+          max: 4000
