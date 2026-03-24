@@ -9,3 +9,13 @@
 | [part-05](./2026-03-24-open-guardrail-design.part-05.md) | Korea/ISMS + Future Guards |
 | [part-06](./2026-03-24-open-guardrail-design.part-06.md) | Package Structure, Tech Stack, Edge Constraints |
 | [part-07](./2026-03-24-open-guardrail-design.part-07.md) | 1-Year Roadmap, Metrics, Decision Gates |
+
+## Phase 2: Production-Ready Ecosystem
+
+| Part | Contents |
+|------|----------|
+| [ph2-part-01](./2026-03-24-phase2-production-ready.part-01.md) | Overview, Goals |
+| [ph2-part-02](./2026-03-24-phase2-production-ready.part-02.md) | npm Metadata Target State |
+| [ph2-part-03](./2026-03-24-phase2-production-ready.part-03.md) | Examples Structure |
+| [ph2-part-04](./2026-03-24-phase2-production-ready.part-04.md) | Presets, Open Source Infra |
+| [ph2-part-05](./2026-03-24-phase2-production-ready.part-05.md) | CI/CD, Version Strategy, 1-Year Roadmap |
