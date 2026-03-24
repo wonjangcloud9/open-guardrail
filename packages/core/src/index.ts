@@ -12,3 +12,4 @@ export { configSchema, type RawConfig, type RawGuardConfig, type RawPipelineConf
 export { parseConfig, validateConfig, loadConfigFromString } from './config-loader.js';
 export { GuardRegistry } from './registry.js';
 export { OpenGuardrail } from './open-guardrail.js';
+export { StreamingPipeline } from './streaming-pipeline.js';

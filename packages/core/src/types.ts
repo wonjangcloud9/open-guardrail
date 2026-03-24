@@ -44,6 +44,8 @@ export interface Guard {
   tags?: string[];
   supportedStages: PipelineStage[];
   check(text: string, ctx: GuardContext): Promise<GuardResult>;
+  checkChunk?(chunk: string, accumulated: string, ctx: GuardContext): Promise<GuardResult>;
+  supportsStreaming?: boolean;
   init?(): Promise<void>;
   dispose?(): Promise<void>;
 }
@@ -62,6 +64,7 @@ export interface PipelineResult {
     mode: PipelineMode;
     dryRun: boolean;
     timestamp: string;
+    [key: string]: unknown;
   };
 }
 
