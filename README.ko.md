@@ -75,7 +75,7 @@ npx open-guardrail-cli init          # guardrail.yaml 생성
 npx open-guardrail-cli validate      # 설정 파일 검증
 ```
 
-## 내장 가드 (33개)
+## 내장 가드 (36개)
 
 ### 보안
 | 가드 | 설명 |
@@ -135,6 +135,9 @@ npx open-guardrail-cli validate      # 설정 파일 검증
 | `jsonRepair` | LLM의 잘못된 JSON 출력 수정 |
 | `urlGuard` | URL 검증 및 필터링 (허용/차단 목록, 프로토콜 검사) |
 | `repetitionDetect` | LLM 출력의 반복 패턴 탐지 |
+| `encodingAttack` | base64/hex/unicode 인코딩 우회 인젝션 탐지 |
+| `markdownSanitize` | 위험한 마크다운/HTML 살균 (XSS 방지) |
+| `responseQuality` | 응답 품질 검증 (너무 짧음, 반복, 거부 패턴) |
 
 ### 한국 / ISMS-P
 | 가드 | 설명 |
@@ -231,7 +234,7 @@ const chain = createGuardrailChain({
 
 | 패키지 | 설명 |
 |--------|------|
-| `open-guardrail` | 올인원 (코어 + 33개 가드) |
+| `open-guardrail` | 올인원 (코어 + 36개 가드) |
 | `open-guardrail-core` | 코어 엔진 (Pipeline, StreamingPipeline, Router, AuditLogger) |
 | `open-guardrail-guards` | 내장 가드 모음 |
 | `open-guardrail-cli` | CLI 도구 |

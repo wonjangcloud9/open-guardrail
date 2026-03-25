@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] — 2026-03-26
+
+### Added — Guards (36 total, +6)
+- `jsonRepair` — repair malformed JSON output from LLMs
+- `urlGuard` — URL validation and filtering
+- `repetitionDetect` — detect repetitive output patterns
+- `encodingAttack` — detect base64/hex/unicode encoded injection attempts
+- `markdownSanitize` — sanitize dangerous markdown and HTML (XSS prevention)
+- `responseQuality` — response quality check (too short, repetitive, refusal)
+
+### Added — Adapters (+4)
+- `open-guardrail-openai` — OpenAI SDK adapter (createGuardedOpenAI)
+- `open-guardrail-anthropic` — Anthropic (Claude) SDK adapter (createGuardedAnthropic)
+- `open-guardrail-express` — Express middleware adapter
+- `open-guardrail-langchain` — LangChain.js integration adapter
+
+### Added — Plugin System
+- `GuardPlugin` / `GuardPluginMeta` types for community guard plugins
+- `GuardRegistry.use()` — register plugins with metadata
+- `GuardRegistry.plugins()`, `getMeta()`, `describe()` — plugin discovery
+- `OpenGuardrail.use()` — YAML config + plugin integration
+- Plugin usage example (`examples/plugin-usage/`)
+
+### Added — Developer Experience
+- Performance benchmark suite (`pnpm bench`) — 22 benchmarks
+- Web playground (`pnpm playground`) — browser-based guard tester
+- VitePress documentation site (`pnpm docs:dev`) — 27 pages
+- Korean README (`README.ko.md`) with compliance examples
+- GitHub Pages auto-deploy workflow for docs
+
+## [1.1.0] — 2026-03-25
+
+### Added
+- `jsonRepair`, `urlGuard`, `repetitionDetect` guards (33 total)
+- `open-guardrail-langchain` adapter
+
 ## [1.0.0] — 2026-03-24
 
 ### Added — Core Engine
