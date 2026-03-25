@@ -92,3 +92,18 @@ markdownSanitize({
 ```
 
 When `action` is `'override'`, dangerous content is automatically sanitized and the safe text is returned.
+
+## apiKeyDetect
+
+Detect leaked API keys, tokens, and secrets in LLM output.
+
+```typescript
+apiKeyDetect({
+  action: 'block' | 'warn' | 'override',
+  extraPatterns?: RegExp[],  // additional custom patterns
+})
+```
+
+**Detects:** OpenAI (`sk-`), Anthropic (`sk-ant-`), AWS (`AKIA`), GitHub (`ghp_`, `gho_`), Google (`AIza`), Stripe (`sk_live_`, `sk_test_`), Slack (`xoxb-`), JWT tokens, generic `api_key=` patterns.
+
+When `action` is `'override'`, detected keys are replaced with `[OPENAI_KEY]`, `[AWS_ACCESS_KEY]`, etc.

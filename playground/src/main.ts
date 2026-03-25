@@ -21,6 +21,8 @@ import {
   encodingAttack,
   markdownSanitize,
   responseQuality,
+  apiKeyDetect,
+  languageConsistency,
 } from 'open-guardrail-guards';
 import type { Guard } from 'open-guardrail-core';
 
@@ -50,6 +52,8 @@ const GUARDS: GuardEntry[] = [
   { id: 'encoding-attack', label: 'encodingAttack', category: 'security', factory: () => encodingAttack({ action: 'block' }) },
   { id: 'markdown-sanitize', label: 'markdownSanitize', category: 'security', factory: () => markdownSanitize({ action: 'warn' }) },
   { id: 'response-quality', label: 'responseQuality', category: 'content', factory: () => responseQuality({ action: 'warn' }) },
+  { id: 'api-key-detect', label: 'apiKeyDetect', category: 'security', factory: () => apiKeyDetect({ action: 'block' }) },
+  { id: 'lang-consistency', label: 'languageConsistency (en,ko)', category: 'content', factory: () => languageConsistency({ action: 'warn', expected: ['en', 'ko'] }) },
   { id: 'word-count', label: 'wordCount (max 500)', category: 'format', factory: () => wordCount({ max: 500, action: 'warn' }) },
   { id: 'pii-kr', label: 'piiKr (mask)', category: 'korean', factory: () => piiKr({ entities: ['resident-id', 'passport', 'driver-license', 'business-id'], action: 'mask' }) },
   { id: 'profanity-kr', label: 'profanityKr', category: 'korean', factory: () => profanityKr({ action: 'block' }) },
@@ -58,7 +62,7 @@ const GUARDS: GuardEntry[] = [
 ];
 
 const PRESETS: Record<string, string[]> = {
-  security: ['prompt-injection', 'keyword', 'regex', 'data-leakage', 'code-safety', 'encoding-attack', 'markdown-sanitize'],
+  security: ['prompt-injection', 'keyword', 'regex', 'data-leakage', 'code-safety', 'encoding-attack', 'markdown-sanitize', 'api-key-detect'],
   privacy: ['pii', 'pii-kr', 'resident-id', 'credit-info'],
   content: ['toxicity', 'bias', 'sentiment', 'copyright', 'repetition', 'url-guard'],
   korean: ['pii-kr', 'profanity-kr', 'resident-id', 'credit-info'],

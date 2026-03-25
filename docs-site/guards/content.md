@@ -80,3 +80,18 @@ responseQuality({
 - Empty or too-short responses
 - Highly repetitive sentences (>50% duplicated)
 - Common refusal patterns ("I'm sorry, but I cannot...", "As an AI language model...")
+
+## languageConsistency
+
+Verify that the LLM response language matches the expected language.
+
+```typescript
+languageConsistency({
+  action: 'block' | 'warn',
+  expected?: string[],  // e.g. ['ko', 'en']
+})
+```
+
+Supports: `ko`, `en`, `ja`, `zh`, `es`, `fr`, `de`
+
+If `expected` is not set, reads from `ctx.metadata.inputLanguage`. Useful for ensuring Korean users get Korean responses.

@@ -14,7 +14,7 @@ hero:
 
 features:
   - icon: 🛡️
-    title: 36 Built-in Guards
+    title: 38 Built-in Guards
     details: Security, privacy, content moderation, Korean compliance, agent safety — ready out of the box.
   - icon: ⚡
     title: Blazing Fast

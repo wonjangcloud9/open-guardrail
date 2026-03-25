@@ -14,6 +14,9 @@ import {
   toxicity,
   wordCount,
   piiKr,
+  encodingAttack,
+  apiKeyDetect,
+  languageConsistency,
 } from 'open-guardrail-guards';
 import * as fixtures from './fixtures.js';
 
@@ -107,6 +110,18 @@ add('wordCount — long', () => wcGuard.check(fixtures.LONG_SAFE, { pipelineType
 const krGuard = piiKr({ entities: ['resident-id', 'passport'], action: 'mask' });
 add('piiKr(mask) — clean', () => krGuard.check(fixtures.SHORT_SAFE, { pipelineType: 'input' }));
 add('piiKr(mask) — korean PII', () => krGuard.check(fixtures.KOREAN_PII, { pipelineType: 'input' }));
+
+const encGuard = encodingAttack({ action: 'block' });
+add('encodingAttack — safe', () => encGuard.check(fixtures.SHORT_SAFE, { pipelineType: 'input' }));
+add('encodingAttack — long text', () => encGuard.check(fixtures.LONG_SAFE, { pipelineType: 'input' }));
+
+const akGuard = apiKeyDetect({ action: 'block' });
+add('apiKeyDetect — safe', () => akGuard.check(fixtures.SHORT_SAFE, { pipelineType: 'output' }));
+add('apiKeyDetect — long text', () => akGuard.check(fixtures.LONG_SAFE, { pipelineType: 'output' }));
+
+const lcGuard = languageConsistency({ action: 'warn', expected: ['en'] });
+add('langConsistency — english', () => lcGuard.check(fixtures.LONG_SAFE, { pipelineType: 'output' }));
+add('langConsistency — korean', () => lcGuard.check(fixtures.KOREAN_PII, { pipelineType: 'output' }));
 
 // Pipeline benchmarks
 const lightPipeline = pipe(
