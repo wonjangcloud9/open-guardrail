@@ -23,6 +23,9 @@ All notable changes to this project will be documented in this file.
 - `open-guardrail-hono` — Hono middleware (Edge/Workers/Deno/Bun)
 - `open-guardrail-langchain` — LangChain.js integration adapter
 
+### Added — defineGuardrail
+- `defineGuardrail({ guards })` — one-line guardrail setup, returns callable function
+
 ### Added — Guard Composition
 - `when(condition, guard)` — conditional guard execution (async conditions supported)
 - `compose(name, ...guards)` — bundle multiple guards into one reusable unit

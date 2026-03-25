@@ -35,17 +35,28 @@ npm install open-guardrail
 ## 빠른 시작
 
 ```typescript
-import { pipe, keyword, pii, promptInjection } from 'open-guardrail';
+import { defineGuardrail, promptInjection, pii, keyword } from 'open-guardrail';
 
+const guard = defineGuardrail({
+  guards: [
+    promptInjection({ action: 'block' }),
+    pii({ entities: ['email', 'phone'], action: 'mask' }),
+    keyword({ denied: ['hack', 'exploit'], action: 'block' }),
+  ],
+});
+
+const result = await guard('사용자 입력 텍스트');
+if (!result.passed) console.log('차단됨:', result.action);
+// result.output에 PII 마스킹된 텍스트 포함
+```
+
+`pipe()` 단축형도 사용 가능:
+
+```typescript
 const result = await pipe(
   promptInjection({ action: 'block' }),
-  pii({ entities: ['email', 'phone'], action: 'mask' }),
-  keyword({ denied: ['hack', 'exploit'], action: 'block' }),
-).run('사용자 입력 텍스트');
-
-if (!result.passed) {
-  console.log('차단됨:', result.action);
-}
+  pii({ entities: ['email'], action: 'mask' }),
+).run('사용자 입력');
 ```
 
 ## YAML 설정

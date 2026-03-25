@@ -3,7 +3,7 @@ layout: home
 hero:
   name: open-guardrail
   text: LLM Guardrail Engine
-  tagline: Provider-agnostic, 33 built-in guards, streaming support, YAML config. Zero vendor lock-in.
+  tagline: 38 guards, 8 adapters, <0.1ms latency. Guard LLM input/output in one line of code.
   actions:
     - theme: brand
       text: Get Started

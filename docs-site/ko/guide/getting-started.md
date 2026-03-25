@@ -15,17 +15,27 @@ npm install open-guardrail-core open-guardrail-guards
 ## 빠른 시작
 
 ```typescript
-import { pipe, keyword, pii, promptInjection } from 'open-guardrail';
+import { defineGuardrail, promptInjection, pii, keyword } from 'open-guardrail';
 
+const guard = defineGuardrail({
+  guards: [
+    promptInjection({ action: 'block' }),
+    pii({ entities: ['email', 'phone'], action: 'mask' }),
+    keyword({ denied: ['hack', 'exploit'], action: 'block' }),
+  ],
+});
+
+const result = await guard('사용자 입력 텍스트');
+if (!result.passed) console.log('차단됨:', result.action);
+```
+
+`pipe()` 단축형:
+
+```typescript
 const result = await pipe(
   promptInjection({ action: 'block' }),
-  pii({ entities: ['email', 'phone'], action: 'mask' }),
-  keyword({ denied: ['hack', 'exploit'], action: 'block' }),
-).run('사용자 입력 텍스트');
-
-if (!result.passed) {
-  console.log('차단됨:', result.action);
-}
+  pii({ entities: ['email'], action: 'mask' }),
+).run('사용자 입력');
 ```
 
 ## 동작 원리

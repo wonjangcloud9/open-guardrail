@@ -2,6 +2,21 @@
 
 Quick reference for all core APIs.
 
+## defineGuardrail (recommended)
+
+```typescript
+const guard = defineGuardrail({
+  guards: [guard1, guard2],
+  mode?: 'fail-fast' | 'run-all',  // default: 'fail-fast'
+  onError?: 'block' | 'allow',     // default: 'block'
+  timeoutMs?: 5000,                 // default: 5000
+  debug?: false,                    // default: false
+});
+
+const result = await guard(text, metadata?);
+guard.pipeline;  // access underlying Pipeline for events/dispose
+```
+
 ## Pipeline
 
 ```typescript
