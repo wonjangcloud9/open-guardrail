@@ -74,5 +74,6 @@ export interface PipelineOptions {
   onError?: OnErrorAction;
   timeoutMs?: number;
   dryRun?: boolean;
+  debug?: boolean;
   guards: Guard[];
 }

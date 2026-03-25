@@ -20,6 +20,7 @@ export class Pipeline {
   private onError: OnErrorAction;
   private timeoutMs: number;
   private dryRun: boolean;
+  private debug: boolean;
   private eventBus: EventBus;
   private initialized = false;
 
@@ -30,6 +31,7 @@ export class Pipeline {
     this.onError = options.onError ?? 'block';
     this.timeoutMs = options.timeoutMs ?? 5000;
     this.dryRun = options.dryRun ?? false;
+    this.debug = options.debug ?? false;
     this.eventBus = eventBus ?? new EventBus();
   }
 
@@ -42,6 +44,11 @@ export class Pipeline {
     if (!this.initialized) {
       await this.initGuards();
       this.initialized = true;
+    }
+
+    if (this.debug) {
+      console.log(`[guardrail] pipeline start | mode=${this.mode} type=${this.type} guards=${this.guards.length} dryRun=${this.dryRun}`);
+      console.log(`[guardrail] input: "${text.length > 80 ? text.slice(0, 80) + '...' : text}"`);
     }
 
     const results: GuardResult[] = [];
@@ -60,10 +67,17 @@ export class Pipeline {
       const result = await this.executeGuard(guard, currentText, ctx);
       results.push(result);
 
+      if (this.debug) {
+        const icon = result.passed ? '✓' : '✗';
+        const msg = result.message ? ` — ${result.message}` : '';
+        console.log(`[guardrail]   ${icon} ${result.guardName}: ${result.action} (${result.latencyMs}ms)${msg}`);
+      }
+
       await this.eventBus.emit('guard:after', { guardName: guard.name, text: currentText, result });
 
       if (result.action === 'override' && result.overrideText) {
         currentText = result.overrideText;
+        if (this.debug) console.log(`[guardrail]     → text overridden`);
       }
 
       if (result.action === 'block') {
@@ -74,6 +88,11 @@ export class Pipeline {
 
     const aggregatedAction = this.aggregateAction(results);
     const passed = this.dryRun || aggregatedAction !== 'block';
+    const totalMs = Math.round(performance.now() - start);
+
+    if (this.debug) {
+      console.log(`[guardrail] result: ${passed ? 'PASSED' : 'BLOCKED'} (${aggregatedAction}) ${totalMs}ms`);
+    }
 
     return {
       passed,
@@ -81,7 +100,7 @@ export class Pipeline {
       results,
       input: text,
       output: currentText !== text ? currentText : undefined,
-      totalLatencyMs: Math.round(performance.now() - start),
+      totalLatencyMs: totalMs,
       metadata: {
         pipelineType: this.type,
         mode: this.mode,

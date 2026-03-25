@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail",
   "version": "1.1.0",
-  "description": "Open-source guardrail engine for LLM apps — 30 guards, streaming pipeline, risk routing, audit logging, Vercel AI SDK",
+  "description": "Open-source guardrail engine for LLM apps — 38 guards, 7 adapters, streaming pipeline, risk routing, plugin system",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -35,6 +35,6 @@
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "llm", "ai", "safety", "moderation", "pii", "prompt-injection", "content-filter", "compliance", "isms-p"],
+  "keywords": ["guardrail", "llm", "ai", "safety", "moderation", "pii", "prompt-injection", "content-filter", "compliance", "isms-p", "openai", "anthropic", "claude", "korean"],
   "license": "MIT"
 }
