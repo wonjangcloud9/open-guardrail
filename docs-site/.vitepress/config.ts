@@ -64,6 +64,7 @@ export default defineConfig({
             { text: 'Audit Logging', link: '/guide/audit-logging' },
             { text: 'Custom Guards', link: '/guide/custom-guards' },
             { text: 'Presets', link: '/guide/presets' },
+            { text: 'Guard Utilities', link: '/guide/guard-utils' },
             { text: 'Plugins', link: '/guide/plugins' },
           ],
         },

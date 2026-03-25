@@ -231,6 +231,23 @@ const pipeline = pipe(securityBundle, longTextToxicity, pii({ entities: ['email'
 - **Debug mode** — `debug: true` logs every guard execution to console
 - **Provider agnostic** — works with any LLM, any framework
 
+## Why open-guardrail?
+
+| Feature | open-guardrail | Guardrails AI | NeMo Guardrails |
+|---------|:-:|:-:|:-:|
+| Language | TypeScript/JS | Python | Python |
+| Built-in guards | 38 | 20+ | 10+ |
+| No external API needed | ✅ | ❌ (needs LLM) | ❌ (needs LLM) |
+| Edge/browser runtime | ✅ | ❌ | ❌ |
+| Streaming validation | ✅ | ❌ | ❌ |
+| YAML config | ✅ | ✅ | ✅ (Colang) |
+| Guard composition | ✅ `when` `compose` `not` | ❌ | ❌ |
+| Plugin system | ✅ | ❌ | ❌ |
+| Korean compliance | ✅ ISMS-P, PIPA | ❌ | ❌ |
+| SDK adapters | 7 (OpenAI, Anthropic, Express, Fastify, Hono, Vercel AI, LangChain) | 1 | 1 |
+| Latency (6-guard pipeline) | **<0.1ms** | 100ms+ | 100ms+ |
+| License | MIT | Apache 2.0 | Apache 2.0 |
+
 ## Playground
 
 Try guards interactively in your browser — no backend required:

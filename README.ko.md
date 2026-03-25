@@ -12,6 +12,20 @@ LLM 애플리케이션을 위한 오픈소스 가드레일 엔진.
 
 > **Node.js >= 18** 필요
 
+## 왜 open-guardrail?
+
+| 기능 | open-guardrail | Guardrails AI | NeMo Guardrails |
+|------|:-:|:-:|:-:|
+| 언어 | TypeScript/JS | Python | Python |
+| 내장 가드 | 38 | 20+ | 10+ |
+| 외부 API 불필요 | ✅ | ❌ (LLM 필요) | ❌ (LLM 필요) |
+| Edge/브라우저 런타임 | ✅ | ❌ | ❌ |
+| 스트리밍 검증 | ✅ | ❌ | ❌ |
+| 가드 합성 | ✅ `when` `compose` `not` | ❌ | ❌ |
+| 한국 규제 준수 | ✅ ISMS-P, PIPA | ❌ | ❌ |
+| SDK 어댑터 | 7개 | 1개 | 1개 |
+| 6가드 파이프라인 지연 | **<0.1ms** | 100ms+ | 100ms+ |
+
 ## 설치
 
 ```bash
