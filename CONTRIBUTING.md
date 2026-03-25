@@ -51,6 +51,39 @@ export function myGuard(options: MyOptions): Guard {
 }
 ```
 
+## Project Structure
+
+```
+packages/
+  core/         — Pipeline, Guard interface, EventBus, Config Loader
+  guards/       — 38 built-in guards
+  open-guardrail/ — Umbrella package (re-exports core + guards)
+  cli/          — CLI tools (init, validate)
+  adapters/     — 8 SDK adapters (OpenAI, Anthropic, Next.js, Express, ...)
+benchmarks/     — Performance benchmark suite
+playground/     — Interactive browser playground
+docs-site/      — VitePress documentation site
+examples/       — 11 usage examples
+presets/         — 7 YAML preset configurations
+```
+
+## Useful Commands
+
+| Command | Description |
+|---------|-------------|
+| `pnpm build` | Build all packages |
+| `pnpm test` | Run all tests |
+| `pnpm test:coverage` | Run tests with coverage |
+| `pnpm bench` | Run benchmarks |
+| `pnpm playground` | Start interactive playground |
+| `pnpm docs:dev` | Start docs site dev server |
+
+## Release
+
+```bash
+./scripts/release.sh 1.2.0
+```
+
 ## Code Style
 
 - TypeScript strict mode
