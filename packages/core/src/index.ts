@@ -10,7 +10,7 @@ export type { GuardEventType, GuardEventHandler } from './event-bus.js';
 export { Pipeline, createPipeline, pipe } from './pipeline.js';
 export { configSchema, type RawConfig, type RawGuardConfig, type RawPipelineConfig } from './config-schema.js';
 export { parseConfig, validateConfig, loadConfigFromString } from './config-loader.js';
-export { GuardRegistry } from './registry.js';
+export { GuardRegistry, type GuardPlugin, type GuardPluginMeta } from './registry.js';
 export { OpenGuardrail } from './open-guardrail.js';
 export { StreamingPipeline } from './streaming-pipeline.js';
 export { AuditLogger, type AuditEntry } from './audit-logger.js';

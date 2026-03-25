@@ -1,0 +1,15 @@
+{
+  "name": "example-plugin-usage",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "open-guardrail-core": "workspace:*",
+    "open-guardrail-guards": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}

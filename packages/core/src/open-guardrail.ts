@@ -2,7 +2,7 @@ import type { PipelineResult, PipelineStage, Guard } from './types.js';
 import { configSchema } from './config-schema.js';
 import type { RawConfig } from './config-schema.js';
 import { Pipeline } from './pipeline.js';
-import { GuardRegistry } from './registry.js';
+import { GuardRegistry, type GuardPlugin } from './registry.js';
 import { loadConfigFromString } from './config-loader.js';
 
 export class OpenGuardrail {
@@ -35,6 +35,12 @@ export class OpenGuardrail {
 
   registerGuard(type: string, factory: (config: Record<string, unknown>) => Guard): void {
     this.registry.register(type, factory);
+  }
+
+  /** Register a plugin with multiple guards. */
+  use(plugin: GuardPlugin): this {
+    this.registry.use(plugin);
+    return this;
   }
 
   async run(text: string, stage: PipelineStage = 'input'): Promise<PipelineResult> {
