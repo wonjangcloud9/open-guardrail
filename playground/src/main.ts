@@ -58,7 +58,7 @@ const GUARDS: GuardEntry[] = [
   { id: 'pii-kr', label: 'piiKr (mask)', category: 'korean', factory: () => piiKr({ entities: ['resident-id', 'passport', 'driver-license', 'business-id'], action: 'mask' }) },
   { id: 'profanity-kr', label: 'profanityKr', category: 'korean', factory: () => profanityKr({ action: 'block' }) },
   { id: 'resident-id', label: 'residentId (mask)', category: 'korean', factory: () => residentId({ action: 'mask' }) },
-  { id: 'credit-info', label: 'creditInfo', category: 'korean', factory: () => creditInfo({ action: 'warn' }) },
+  { id: 'credit-info', label: 'creditInfo', category: 'korean', factory: () => creditInfo({ entities: ['bank-account', 'card-number', 'credit-score'], action: 'warn' }) },
 ];
 
 const PRESETS: Record<string, string[]> = {
