@@ -5,6 +5,7 @@
   "scripts": { "start": "npx tsx server.ts" },
   "dependencies": {
     "open-guardrail": "workspace:*",
+    "open-guardrail-express": "workspace:*",
     "express": "^4.21.0"
   },
   "devDependencies": {
