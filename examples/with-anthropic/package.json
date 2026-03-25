@@ -1,0 +1,16 @@
+{
+  "name": "example-with-anthropic",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "open-guardrail": "workspace:*",
+    "open-guardrail-anthropic": "workspace:*",
+    "@anthropic-ai/sdk": "^0.36.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}

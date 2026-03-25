@@ -159,6 +159,9 @@ npx open-guardrail-cli validate      # validate config
 | [with-express](./examples/with-express/) | Express middleware integration |
 | [with-nextjs](./examples/with-nextjs/) | Next.js App Router API route |
 | [korean-compliance](./examples/korean-compliance/) | 한국 규제 준수 (ISMS-P, PIPA) |
+| [with-openai](./examples/with-openai/) | OpenAI SDK with guardrails |
+| [with-anthropic](./examples/with-anthropic/) | Anthropic (Claude) SDK with guardrails |
+| [plugin-usage](./examples/plugin-usage/) | Creating and using guard plugins |
 
 ## Presets
 

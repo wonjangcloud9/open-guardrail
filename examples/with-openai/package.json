@@ -1,0 +1,16 @@
+{
+  "name": "example-with-openai",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "open-guardrail": "workspace:*",
+    "open-guardrail-openai": "workspace:*",
+    "openai": "^4.70.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}
