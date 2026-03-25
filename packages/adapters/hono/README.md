@@ -1,5 +1,7 @@
 # open-guardrail-hono
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-hono)](https://www.npmjs.com/package/open-guardrail-hono) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 Hono middleware adapter for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail). Guard LLM input/output on edge runtimes (Cloudflare Workers, Deno, Bun, Node.js).
 
 ## Install

@@ -1,5 +1,7 @@
 # open-guardrail-core
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-core)](https://www.npmjs.com/package/open-guardrail-core) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 Core engine for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail) — the open-source guardrail engine for LLM applications.
 
 [![npm](https://img.shields.io/npm/v/open-guardrail-core)](https://www.npmjs.com/package/open-guardrail-core)

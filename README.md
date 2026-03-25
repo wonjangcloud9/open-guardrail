@@ -7,6 +7,9 @@ Provider-agnostic text input/output middleware. Works in Node.js, browsers, and 
 [![npm](https://img.shields.io/npm/v/open-guardrail)](https://www.npmjs.com/package/open-guardrail)
 [![license](https://img.shields.io/github/license/wonjangcloud9/open-guardrail)](LICENSE)
 [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+![guards](https://img.shields.io/badge/guards-38-blue)
+![adapters](https://img.shields.io/badge/adapters-8-green)
+![tests](https://img.shields.io/badge/tests-427-brightgreen)
 
 **English** | [한국어](./README.ko.md)
 

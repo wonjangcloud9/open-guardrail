@@ -1,5 +1,7 @@
 # open-guardrail
 
+[![npm](https://img.shields.io/npm/v/open-guardrail)](https://www.npmjs.com/package/open-guardrail) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 Open-source guardrail engine for LLM applications.
 
 Provider-agnostic text input/output middleware. Works in Node.js, browsers, and edge runtimes.

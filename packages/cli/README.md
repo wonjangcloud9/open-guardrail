@@ -1,5 +1,7 @@
 # open-guardrail-cli
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-cli)](https://www.npmjs.com/package/open-guardrail-cli) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 CLI for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail) — init projects and validate guardrail configs.
 
 [![npm](https://img.shields.io/npm/v/open-guardrail-cli)](https://www.npmjs.com/package/open-guardrail-cli)

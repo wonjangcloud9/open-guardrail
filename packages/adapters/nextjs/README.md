@@ -1,5 +1,7 @@
 # open-guardrail-nextjs
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-nextjs)](https://www.npmjs.com/package/open-guardrail-nextjs) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 Next.js App Router adapter for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail).
 
 ## Install

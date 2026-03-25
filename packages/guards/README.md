@@ -1,5 +1,7 @@
 # open-guardrail-guards
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-guards)](https://www.npmjs.com/package/open-guardrail-guards) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 30 built-in guards for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail) — the open-source guardrail engine for LLM applications.
 
 [![npm](https://img.shields.io/npm/v/open-guardrail-guards)](https://www.npmjs.com/package/open-guardrail-guards)

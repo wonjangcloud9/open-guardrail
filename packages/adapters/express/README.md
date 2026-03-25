@@ -1,5 +1,7 @@
 # open-guardrail-express
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-express)](https://www.npmjs.com/package/open-guardrail-express) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 Express middleware adapter for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail).
 
 ## Install

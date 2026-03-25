@@ -1,5 +1,7 @@
 # open-guardrail-langchain
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-langchain)](https://www.npmjs.com/package/open-guardrail-langchain) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 [LangChain.js](https://js.langchain.com/) integration for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail).
 
 [![npm](https://img.shields.io/npm/v/open-guardrail-langchain)](https://www.npmjs.com/package/open-guardrail-langchain)

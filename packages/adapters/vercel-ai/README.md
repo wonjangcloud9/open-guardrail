@@ -1,5 +1,7 @@
 # open-guardrail-vercel-ai
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-vercel-ai)](https://www.npmjs.com/package/open-guardrail-vercel-ai) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 [Vercel AI SDK](https://sdk.vercel.ai/) middleware adapter for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail).
 
 [![npm](https://img.shields.io/npm/v/open-guardrail-vercel-ai)](https://www.npmjs.com/package/open-guardrail-vercel-ai)

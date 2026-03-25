@@ -1,5 +1,7 @@
 # open-guardrail-anthropic
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-anthropic)](https://www.npmjs.com/package/open-guardrail-anthropic) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 Anthropic SDK adapter for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail).
 
 Guard messages inputs and outputs with zero config changes.

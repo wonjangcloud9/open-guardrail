@@ -1,5 +1,7 @@
 # open-guardrail-fastify
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-fastify)](https://www.npmjs.com/package/open-guardrail-fastify) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 Fastify plugin adapter for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail).
 
 ## Install

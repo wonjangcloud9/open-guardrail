@@ -1,5 +1,7 @@
 # open-guardrail-openai
 
+[![npm](https://img.shields.io/npm/v/open-guardrail-openai)](https://www.npmjs.com/package/open-guardrail-openai) [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+
 OpenAI SDK adapter for [open-guardrail](https://github.com/wonjangcloud9/open-guardrail).
 
 Guard chat completion inputs and outputs with zero config changes.
