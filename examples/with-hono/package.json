@@ -1,0 +1,17 @@
+{
+  "name": "example-with-hono",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "open-guardrail": "workspace:*",
+    "open-guardrail-hono": "workspace:*",
+    "hono": "^4.6.0",
+    "@hono/node-server": "^1.13.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}

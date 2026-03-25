@@ -163,6 +163,7 @@ npx open-guardrail-cli validate      # validate config
 | [korean-compliance](./examples/korean-compliance/) | 한국 규제 준수 (ISMS-P, PIPA) |
 | [with-openai](./examples/with-openai/) | OpenAI SDK with guardrails |
 | [with-anthropic](./examples/with-anthropic/) | Anthropic (Claude) SDK with guardrails |
+| [with-hono](./examples/with-hono/) | Hono middleware (Edge/Workers/Deno/Bun) |
 | [plugin-usage](./examples/plugin-usage/) | Creating and using guard plugins |
 
 ## Presets

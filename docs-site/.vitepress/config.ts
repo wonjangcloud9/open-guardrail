@@ -23,9 +23,19 @@ export default defineConfig({
         sidebar: {
           '/ko/guide/': [
             {
-              text: '시작하기',
+              text: '가이드',
               items: [
-                { text: '소개', link: '/ko/guide/getting-started' },
+                { text: '시작하기', link: '/ko/guide/getting-started' },
+                { text: '파이프라인', link: '/ko/guide/pipelines' },
+                { text: '커스텀 가드', link: '/ko/guide/custom-guards' },
+              ],
+            },
+          ],
+          '/ko/guards/': [
+            {
+              text: '가드',
+              items: [
+                { text: '한국 / ISMS-P', link: '/ko/guards/korean' },
               ],
             },
           ],

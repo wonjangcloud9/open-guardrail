@@ -4,18 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [1.2.0] — 2026-03-26
 
-### Added — Guards (36 total, +6)
+### Added — Guards (38 total, +8)
 - `jsonRepair` — repair malformed JSON output from LLMs
 - `urlGuard` — URL validation and filtering
 - `repetitionDetect` — detect repetitive output patterns
 - `encodingAttack` — detect base64/hex/unicode encoded injection attempts
 - `markdownSanitize` — sanitize dangerous markdown and HTML (XSS prevention)
 - `responseQuality` — response quality check (too short, repetitive, refusal)
+- `apiKeyDetect` — detect leaked API keys/tokens/secrets (10 providers + generic)
+- `languageConsistency` — verify response language matches expected (7 languages)
 
-### Added — Adapters (+4)
+### Added — Adapters (+6)
 - `open-guardrail-openai` — OpenAI SDK adapter (createGuardedOpenAI)
 - `open-guardrail-anthropic` — Anthropic (Claude) SDK adapter (createGuardedAnthropic)
 - `open-guardrail-express` — Express middleware adapter
+- `open-guardrail-fastify` — Fastify plugin adapter
+- `open-guardrail-hono` — Hono middleware (Edge/Workers/Deno/Bun)
 - `open-guardrail-langchain` — LangChain.js integration adapter
 
 ### Added — Plugin System

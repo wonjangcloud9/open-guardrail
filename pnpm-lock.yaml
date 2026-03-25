@@ -112,6 +112,25 @@ importers:
         specifier: ^4.0.0
         version: 4.21.0
 
+  examples/with-hono:
+    dependencies:
+      '@hono/node-server':
+        specifier: ^1.13.0
+        version: 1.19.11(hono@4.12.9)
+      hono:
+        specifier: ^4.6.0
+        version: 4.12.9
+      open-guardrail:
+        specifier: workspace:*
+        version: link:../../packages/open-guardrail
+      open-guardrail-hono:
+        specifier: workspace:*
+        version: link:../../packages/adapters/hono
+    devDependencies:
+      tsx:
+        specifier: ^4.19.0
+        version: 4.21.0
+
   examples/with-nextjs:
     dependencies:
       next:
@@ -197,6 +216,22 @@ importers:
       fastify:
         specifier: '>=4.0.0'
         version: 5.8.4
+      open-guardrail-core:
+        specifier: workspace:*
+        version: link:../../core
+    devDependencies:
+      tsup:
+        specifier: ^8.4.0
+        version: 8.5.1(postcss@8.5.8)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.3)
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.4(@types/node@22.19.15)(tsx@4.21.0)(yaml@2.8.3)
+
+  packages/adapters/hono:
+    dependencies:
+      hono:
+        specifier: '>=4.0.0'
+        version: 4.12.9
       open-guardrail-core:
         specifier: workspace:*
         version: link:../../core
@@ -970,6 +1005,12 @@ packages:
 
   '@fastify/proxy-addr@5.1.0':
     resolution: {integrity: sha512-INS+6gh91cLUjB+PVHfu1UqcB76Sqtpyp7bnL+FYojhjygvOPA9ctiD/JDKsyD9Xgu4hUhCSJBPig/w7duNajw==}
+
+  '@hono/node-server@1.19.11':
+    resolution: {integrity: sha512-dr8/3zEaB+p0D2n/IUrlPF1HZm586qgJNXK1a9fhg/PzdtkK7Ksd5l312tJX2yBuALqDYBlG20QEbayqPyxn+g==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      hono: ^4
 
   '@iconify-json/simple-icons@1.2.75':
     resolution: {integrity: sha512-KvcCUbvcBWb0sbqLIxHoY8z5/piXY08wcY9gfMhF+ph3AfzGMaSmZFkUY71HSXAljQngXkgs4bdKdekO0HQWvg==}
@@ -2078,6 +2119,10 @@ packages:
 
   hast-util-whitespace@3.0.0:
     resolution: {integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==}
+
+  hono@4.12.9:
+    resolution: {integrity: sha512-wy3T8Zm2bsEvxKZM5w21VdHDDcwVS1yUFFY6i8UobSsKfFceT7TOwhbhfKsDyx7tYQlmRM5FLpIuYvNFyjctiA==}
+    engines: {node: '>=16.9.0'}
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -3534,6 +3579,10 @@ snapshots:
       '@fastify/forwarded': 3.0.1
       ipaddr.js: 2.3.0
 
+  '@hono/node-server@1.19.11(hono@4.12.9)':
+    dependencies:
+      hono: 4.12.9
+
   '@iconify-json/simple-icons@1.2.75':
     dependencies:
       '@iconify/types': 2.0.0
@@ -4687,6 +4736,8 @@ snapshots:
   hast-util-whitespace@3.0.0:
     dependencies:
       '@types/hast': 3.0.4
+
+  hono@4.12.9: {}
 
   hookable@5.5.3: {}
 
