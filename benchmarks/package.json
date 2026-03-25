@@ -1,0 +1,16 @@
+{
+  "name": "open-guardrail-benchmarks",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bench": "tsx run.ts",
+    "bench:json": "tsx run.ts --json"
+  },
+  "dependencies": {
+    "open-guardrail-core": "workspace:*",
+    "open-guardrail-guards": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  }
+}

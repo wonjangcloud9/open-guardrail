@@ -8,6 +8,8 @@ Provider-agnostic text input/output middleware. Works in Node.js, browsers, and 
 [![license](https://img.shields.io/github/license/wonjangcloud9/open-guardrail)](LICENSE)
 [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
 
+**English** | [한국어](./README.ko.md)
+
 > **Node.js >= 18** required
 
 ## Install
@@ -73,7 +75,7 @@ npx open-guardrail-cli init          # create guardrail.yaml
 npx open-guardrail-cli validate      # validate config
 ```
 
-## Built-in Guards (30)
+## Built-in Guards (33)
 
 ### Security
 | Guard | Description |
@@ -130,6 +132,9 @@ npx open-guardrail-cli validate      # validate config
 | `copyright` | Detect copyright notices, trademarks, verbatim reproduction |
 | `watermarkDetect` | Detect AI-generated text markers (disclosure phrases, hedging, formulaic) |
 | `multiTurnContext` | Multi-turn manipulation: gradual jailbreak, topic drift, repetitive probing |
+| `jsonRepair` | Repair malformed JSON output from LLMs |
+| `urlGuard` | URL validation and filtering (allowlist/denylist, protocol checks) |
+| `repetitionDetect` | Detect repetitive patterns in LLM output |
 
 ### Korea / ISMS
 | Guard | Description |
@@ -168,11 +173,13 @@ npx open-guardrail-cli validate      # validate config
 
 | Package | Description |
 |---------|-------------|
-| `open-guardrail` | All-in-one (core + 30 guards) |
+| `open-guardrail` | All-in-one (core + 33 guards) |
 | `open-guardrail-core` | Core engine only (Pipeline, StreamingPipeline, Router, AuditLogger) |
 | `open-guardrail-guards` | Built-in guards only |
 | `open-guardrail-cli` | CLI tools |
+| `open-guardrail-openai` | OpenAI SDK adapter — guard chat completions |
 | `open-guardrail-vercel-ai` | Vercel AI SDK middleware adapter |
+| `open-guardrail-langchain` | LangChain.js integration adapter |
 
 ## Features
 
@@ -187,6 +194,37 @@ npx open-guardrail-cli validate      # validate config
 - **Fail-fast / Run-all** — choose execution strategy per pipeline
 - **Error handling** — configurable fail-closed/open with timeouts
 - **Provider agnostic** — works with any LLM, any framework
+
+## Playground
+
+Try guards interactively in your browser — no backend required:
+
+```bash
+pnpm playground
+```
+
+Select guards, paste text, and see results in real time. Supports sample inputs for prompt injection, PII, toxic content, and Korean PII.
+
+## Benchmarks
+
+Single guard and pipeline throughput on Apple M-series (Node.js 22):
+
+| Benchmark | ops/s | avg latency |
+|-----------|------:|------------:|
+| `keyword` — short text | 1,900,000 | <0.001ms |
+| `regex` — short text | 2,700,000 | <0.001ms |
+| `promptInjection` — short text | 1,300,000 | 0.001ms |
+| `pii(mask)` — PII text | 408,000 | 0.002ms |
+| `piiKr(mask)` — korean PII | 810,000 | 0.001ms |
+| `toxicity` — toxic text | 152,000 | 0.007ms |
+| **pipeline(6 guards)** — short text | 48,000 | 0.021ms |
+| **pipeline(6 guards)** — long mixed | 14,000 | 0.071ms |
+
+Run benchmarks locally:
+
+```bash
+pnpm bench
+```
 
 ## Contributing
 

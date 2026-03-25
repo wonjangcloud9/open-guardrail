@@ -5,7 +5,11 @@
     "build": "turbo build",
     "test": "turbo test",
     "lint": "turbo lint",
-    "clean": "turbo clean"
+    "clean": "turbo clean",
+    "bench": "pnpm --filter open-guardrail-benchmarks bench",
+    "playground": "pnpm --filter open-guardrail-playground dev",
+    "docs:dev": "pnpm --filter open-guardrail-docs dev",
+    "docs:build": "pnpm --filter open-guardrail-docs build"
   },
   "devDependencies": {
     "turbo": "^2.4.0",
