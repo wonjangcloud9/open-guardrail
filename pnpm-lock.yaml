@@ -115,6 +115,22 @@ importers:
         specifier: ^4.0.0
         version: 4.21.0
 
+  examples/with-fastify:
+    dependencies:
+      fastify:
+        specifier: ^5.0.0
+        version: 5.8.4
+      open-guardrail:
+        specifier: workspace:*
+        version: link:../../packages/open-guardrail
+      open-guardrail-fastify:
+        specifier: workspace:*
+        version: link:../../packages/adapters/fastify
+    devDependencies:
+      tsx:
+        specifier: ^4.19.0
+        version: 4.21.0
+
   examples/with-hono:
     dependencies:
       '@hono/node-server':

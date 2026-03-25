@@ -14,9 +14,10 @@ All notable changes to this project will be documented in this file.
 - `apiKeyDetect` — detect leaked API keys/tokens/secrets (10 providers + generic)
 - `languageConsistency` — verify response language matches expected (7 languages)
 
-### Added — Adapters (+6)
+### Added — Adapters (+7, 8 total)
 - `open-guardrail-openai` — OpenAI SDK adapter (createGuardedOpenAI)
 - `open-guardrail-anthropic` — Anthropic (Claude) SDK adapter (createGuardedAnthropic)
+- `open-guardrail-nextjs` — Next.js App Router adapter (createRouteGuard, guardApiRoute)
 - `open-guardrail-express` — Express middleware adapter
 - `open-guardrail-fastify` — Fastify plugin adapter
 - `open-guardrail-hono` — Hono middleware (Edge/Workers/Deno/Bun)

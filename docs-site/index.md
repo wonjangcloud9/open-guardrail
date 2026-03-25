@@ -20,8 +20,8 @@ features:
     title: Blazing Fast
     details: Single guard runs at 1M+ ops/s. 6-guard pipeline under 0.1ms. No external API calls needed.
   - icon: 🔌
-    title: 7 SDK Adapters
-    details: OpenAI, Anthropic, Express, Fastify, Hono, Vercel AI SDK, LangChain — or any LLM provider.
+    title: 8 SDK Adapters
+    details: OpenAI, Anthropic, Next.js, Express, Fastify, Hono, Vercel AI SDK, LangChain.
   - icon: 📄
     title: Declarative Config
     details: Define guards in YAML/JSON. No code changes needed. Hot-reload friendly.
