@@ -21,17 +21,30 @@ npm install open-guardrail
 ## Quick Start
 
 ```typescript
-import { pipe, keyword, pii, promptInjection } from 'open-guardrail';
+import { defineGuardrail, promptInjection, pii, keyword } from 'open-guardrail';
+
+const guard = defineGuardrail({
+  guards: [
+    promptInjection({ action: 'block' }),
+    pii({ entities: ['email', 'phone'], action: 'mask' }),
+    keyword({ denied: ['hack', 'exploit'], action: 'block' }),
+  ],
+});
+
+const result = await guard('user input text here');
+if (!result.passed) console.log('Blocked:', result.action);
+// result.output contains masked text when PII is detected
+```
+
+Or use the `pipe()` shorthand:
+
+```typescript
+import { pipe, promptInjection, pii } from 'open-guardrail';
 
 const result = await pipe(
   promptInjection({ action: 'block' }),
-  pii({ entities: ['email', 'phone'], action: 'mask' }),
-  keyword({ denied: ['hack', 'exploit'], action: 'block' }),
-).run('user input text here');
-
-if (!result.passed) {
-  console.log('Blocked:', result.action);
-}
+  pii({ entities: ['email'], action: 'mask' }),
+).run('user input');
 ```
 
 ## YAML Config

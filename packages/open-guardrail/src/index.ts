@@ -12,6 +12,7 @@ export {
   AuditLogger, type AuditEntry,
   GuardRouter, createRouter,
   when, compose, not, retry, fallback,
+  defineGuardrail, type DefineGuardrailOptions,
 } from 'open-guardrail-core';
 
 // Guards — Security
