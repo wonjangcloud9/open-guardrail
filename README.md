@@ -187,6 +187,7 @@ npx open-guardrail-cli validate      # validate config
 | `open-guardrail-anthropic` | Anthropic (Claude) SDK adapter |
 | `open-guardrail-express` | Express middleware adapter |
 | `open-guardrail-fastify` | Fastify plugin adapter |
+| `open-guardrail-hono` | Hono middleware (Edge/Workers/Deno/Bun) |
 | `open-guardrail-vercel-ai` | Vercel AI SDK middleware adapter |
 | `open-guardrail-langchain` | LangChain.js integration adapter |
 

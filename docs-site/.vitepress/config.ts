@@ -84,6 +84,7 @@ export default defineConfig({
             { text: 'LangChain.js', link: '/adapters/langchain' },
             { text: 'Express', link: '/adapters/express' },
             { text: 'Fastify', link: '/adapters/fastify' },
+            { text: 'Hono', link: '/adapters/hono' },
           ],
         },
       ],

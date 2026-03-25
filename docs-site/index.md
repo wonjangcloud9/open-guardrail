@@ -14,14 +14,14 @@ hero:
 
 features:
   - icon: 🛡️
-    title: 33 Built-in Guards
+    title: 36 Built-in Guards
     details: Security, privacy, content moderation, Korean compliance, agent safety — ready out of the box.
   - icon: ⚡
     title: Blazing Fast
     details: Single guard runs at 1M+ ops/s. 6-guard pipeline under 0.1ms. No external API calls needed.
   - icon: 🔌
-    title: Provider Agnostic
-    details: Works with OpenAI, Anthropic, Gemini, Vercel AI SDK, LangChain, or any LLM provider.
+    title: 7 SDK Adapters
+    details: OpenAI, Anthropic, Express, Fastify, Hono, Vercel AI SDK, LangChain — or any LLM provider.
   - icon: 📄
     title: Declarative Config
     details: Define guards in YAML/JSON. No code changes needed. Hot-reload friendly.
