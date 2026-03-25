@@ -79,8 +79,10 @@ export default defineConfig({
           text: 'SDK Adapters',
           items: [
             { text: 'OpenAI', link: '/adapters/openai' },
+            { text: 'Anthropic (Claude)', link: '/adapters/anthropic' },
             { text: 'Vercel AI SDK', link: '/adapters/vercel-ai' },
             { text: 'LangChain.js', link: '/adapters/langchain' },
+            { text: 'Express', link: '/adapters/express' },
           ],
         },
       ],

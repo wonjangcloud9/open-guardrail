@@ -236,6 +236,8 @@ const chain = createGuardrailChain({
 | `open-guardrail-guards` | 내장 가드 모음 |
 | `open-guardrail-cli` | CLI 도구 |
 | `open-guardrail-openai` | OpenAI SDK 어댑터 |
+| `open-guardrail-anthropic` | Anthropic (Claude) SDK 어댑터 |
+| `open-guardrail-express` | Express 미들웨어 어댑터 |
 | `open-guardrail-vercel-ai` | Vercel AI SDK 미들웨어 어댑터 |
 | `open-guardrail-langchain` | LangChain.js 통합 어댑터 |
 

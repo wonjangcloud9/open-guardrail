@@ -178,6 +178,8 @@ npx open-guardrail-cli validate      # validate config
 | `open-guardrail-guards` | Built-in guards only |
 | `open-guardrail-cli` | CLI tools |
 | `open-guardrail-openai` | OpenAI SDK adapter — guard chat completions |
+| `open-guardrail-anthropic` | Anthropic (Claude) SDK adapter |
+| `open-guardrail-express` | Express middleware adapter |
 | `open-guardrail-vercel-ai` | Vercel AI SDK middleware adapter |
 | `open-guardrail-langchain` | LangChain.js integration adapter |
 
