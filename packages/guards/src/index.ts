@@ -35,3 +35,5 @@ export { repetitionDetect } from './repetition-detect.js';
 export { encodingAttack } from './encoding-attack.js';
 export { markdownSanitize } from './markdown-sanitize.js';
 export { responseQuality } from './response-quality.js';
+export { apiKeyDetect } from './api-key-detect.js';
+export { languageConsistency } from './language-consistency.js';

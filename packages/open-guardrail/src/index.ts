@@ -49,3 +49,5 @@ export { repetitionDetect } from 'open-guardrail-guards';
 export { encodingAttack } from 'open-guardrail-guards';
 export { markdownSanitize } from 'open-guardrail-guards';
 export { responseQuality } from 'open-guardrail-guards';
+export { apiKeyDetect } from 'open-guardrail-guards';
+export { languageConsistency } from 'open-guardrail-guards';

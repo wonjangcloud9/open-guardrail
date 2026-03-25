@@ -75,7 +75,7 @@ npx open-guardrail-cli init          # create guardrail.yaml
 npx open-guardrail-cli validate      # validate config
 ```
 
-## Built-in Guards (36)
+## Built-in Guards (38)
 
 ### Security
 | Guard | Description |
@@ -138,6 +138,8 @@ npx open-guardrail-cli validate      # validate config
 | `encodingAttack` | Detect base64/hex/unicode encoded injection attempts |
 | `markdownSanitize` | Sanitize dangerous markdown and HTML (XSS prevention) |
 | `responseQuality` | Check response quality: too short, repetitive, or refusal |
+| `apiKeyDetect` | Detect leaked API keys, tokens, secrets (OpenAI, AWS, GitHub, Stripe, etc.) |
+| `languageConsistency` | Verify response language matches expected language |
 
 ### Korea / ISMS
 | Guard | Description |
@@ -179,7 +181,7 @@ npx open-guardrail-cli validate      # validate config
 
 | Package | Description |
 |---------|-------------|
-| `open-guardrail` | All-in-one (core + 36 guards) |
+| `open-guardrail` | All-in-one (core + 38 guards) |
 | `open-guardrail-core` | Core engine only (Pipeline, StreamingPipeline, Router, AuditLogger) |
 | `open-guardrail-guards` | Built-in guards only |
 | `open-guardrail-cli` | CLI tools |
