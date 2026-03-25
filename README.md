@@ -194,6 +194,26 @@ npx open-guardrail-cli validate      # validate config
 | `open-guardrail-vercel-ai` | Vercel AI SDK middleware adapter |
 | `open-guardrail-langchain` | LangChain.js integration adapter |
 
+## Guard Composition
+
+```typescript
+import { pipe, compose, when, not, promptInjection, keyword, pii, toxicity } from 'open-guardrail';
+
+// Bundle guards into a reusable unit
+const securityBundle = compose('security',
+  promptInjection({ action: 'block' }),
+  keyword({ denied: ['hack', 'exploit'], action: 'block' }),
+);
+
+// Conditional guard — only run toxicity check on long text
+const longTextToxicity = when(
+  (text) => text.length > 200,
+  toxicity({ action: 'block' }),
+);
+
+const pipeline = pipe(securityBundle, longTextToxicity, pii({ entities: ['email'], action: 'mask' }));
+```
+
 ## Features
 
 - **Pipeline chaining** — compose guards with `pipe()` or `createPipeline()`
@@ -206,6 +226,9 @@ npx open-guardrail-cli validate      # validate config
 - **Dry run mode** — test guards without blocking
 - **Fail-fast / Run-all** — choose execution strategy per pipeline
 - **Error handling** — configurable fail-closed/open with timeouts
+- **Guard composition** — `compose()`, `when()`, `not()` for reusable guard bundles
+- **Plugin system** — community guard packages via `registry.use(plugin)`
+- **Debug mode** — `debug: true` logs every guard execution to console
 - **Provider agnostic** — works with any LLM, any framework
 
 ## Playground
