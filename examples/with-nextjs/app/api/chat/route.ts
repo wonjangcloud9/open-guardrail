@@ -1,23 +1,40 @@
-import { NextResponse } from 'next/server';
+/**
+ * Next.js App Router API route with open-guardrail
+ *
+ * Usage:
+ *   pnpm dev
+ *   curl -X POST http://localhost:3000/api/chat \
+ *     -H 'Content-Type: application/json' \
+ *     -d '{"message":"Hello!"}'
+ */
 import { pipe, promptInjection, pii, keyword } from 'open-guardrail';
+import { guardApiRoute, guardResponse } from 'open-guardrail-nextjs';
 
-const inputGuard = pipe(
-  promptInjection({ action: 'block' }),
+const guard = guardApiRoute({
+  input: pipe(
+    promptInjection({ action: 'block' }),
+    pii({ entities: ['email', 'phone'], action: 'mask' }),
+    keyword({ denied: ['hack', 'exploit'], action: 'block' }),
+  ),
+});
+
+const outputPipeline = pipe(
   pii({ entities: ['email', 'phone'], action: 'mask' }),
-  keyword({ denied: ['hack', 'exploit'], action: 'block' }),
 );
 
 export async function POST(request: Request) {
-  const { message } = await request.json();
+  // Guard input — returns 403 Response if blocked
+  const guarded = await guard(request);
+  if (guarded instanceof Response) return guarded;
 
-  const result = await inputGuard.run(message);
-  if (!result.passed) {
-    return NextResponse.json(
-      { error: 'Input blocked', action: result.action },
-      { status: 400 },
-    );
-  }
+  const { body } = guarded;
+  const safeMessage = body.message;
 
-  const safeMessage = result.output ?? message;
-  return NextResponse.json({ reply: `Echo: ${safeMessage}` });
+  // Simulate LLM response
+  const llmResponse = `You said: ${safeMessage}. Contact support@example.com for help.`;
+
+  // Guard output
+  const safe = await guardResponse(outputPipeline, llmResponse);
+
+  return Response.json({ reply: safe.output ?? llmResponse });
 }

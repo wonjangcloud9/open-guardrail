@@ -191,6 +191,7 @@ npx open-guardrail-cli validate      # validate config
 | `open-guardrail-express` | Express middleware adapter |
 | `open-guardrail-fastify` | Fastify plugin adapter |
 | `open-guardrail-hono` | Hono middleware (Edge/Workers/Deno/Bun) |
+| `open-guardrail-nextjs` | Next.js App Router adapter |
 | `open-guardrail-vercel-ai` | Vercel AI SDK middleware adapter |
 | `open-guardrail-langchain` | LangChain.js integration adapter |
 
@@ -244,7 +245,7 @@ const pipeline = pipe(securityBundle, longTextToxicity, pii({ entities: ['email'
 | Guard composition | ✅ `when` `compose` `not` | ❌ | ❌ |
 | Plugin system | ✅ | ❌ | ❌ |
 | Korean compliance | ✅ ISMS-P, PIPA | ❌ | ❌ |
-| SDK adapters | 7 (OpenAI, Anthropic, Express, Fastify, Hono, Vercel AI, LangChain) | 1 | 1 |
+| SDK adapters | 8 (OpenAI, Anthropic, Next.js, Express, Fastify, Hono, Vercel AI, LangChain) | 1 | 1 |
 | Latency (6-guard pipeline) | **<0.1ms** | 100ms+ | 100ms+ |
 | License | MIT | Apache 2.0 | Apache 2.0 |
 

@@ -104,6 +104,9 @@ importers:
       open-guardrail:
         specifier: workspace:*
         version: link:../../packages/open-guardrail
+      open-guardrail-express:
+        specifier: workspace:*
+        version: link:../../packages/adapters/express
     devDependencies:
       '@types/express':
         specifier: ^5.0.0
@@ -139,6 +142,9 @@ importers:
       open-guardrail:
         specifier: workspace:*
         version: link:../../packages/open-guardrail
+      open-guardrail-nextjs:
+        specifier: workspace:*
+        version: link:../../packages/adapters/nextjs
       react:
         specifier: ^19.0.0
         version: 19.2.4
@@ -248,6 +254,22 @@ importers:
       '@langchain/core':
         specifier: '>=0.2.0'
         version: 1.1.35(@opentelemetry/api@1.9.0)(openai@6.32.0(zod@3.25.76))
+      open-guardrail-core:
+        specifier: workspace:*
+        version: link:../../core
+    devDependencies:
+      tsup:
+        specifier: ^8.4.0
+        version: 8.5.1(postcss@8.5.8)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.3)
+      vitest:
+        specifier: ^3.1.0
+        version: 3.2.4(@types/node@22.19.15)(tsx@4.21.0)(yaml@2.8.3)
+
+  packages/adapters/nextjs:
+    dependencies:
+      next:
+        specifier: '>=13.0.0'
+        version: 15.5.14(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       open-guardrail-core:
         specifier: workspace:*
         version: link:../../core
