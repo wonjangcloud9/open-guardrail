@@ -78,6 +78,24 @@ pipeline.on('guard:blocked', ({ guardName, result }) => { ... });
 pipeline.on('guard:error', ({ guardName, error }) => { ... });
 ```
 
+## Debug Mode
+
+Log every guard execution to console:
+
+```typescript
+const pipeline = createPipeline({
+  guards: [promptInjection({ action: 'block' }), pii({ entities: ['email'], action: 'mask' })],
+  debug: true,
+});
+
+await pipeline.run('test input');
+// [guardrail] pipeline start | mode=fail-fast type=input guards=2 dryRun=false
+// [guardrail] input: "test input"
+// [guardrail]   ✓ prompt-injection: allow (0ms)
+// [guardrail]   ✓ pii: allow (0ms)
+// [guardrail] result: PASSED (allow) 1ms
+```
+
 ## Cleanup
 
 ```typescript
