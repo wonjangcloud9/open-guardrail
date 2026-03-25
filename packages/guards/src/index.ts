@@ -32,3 +32,6 @@ export { watermarkDetect } from './watermark-detect.js';
 export { jsonRepair } from './json-repair.js';
 export { urlGuard } from './url-guard.js';
 export { repetitionDetect } from './repetition-detect.js';
+export { encodingAttack } from './encoding-attack.js';
+export { markdownSanitize } from './markdown-sanitize.js';
+export { responseQuality } from './response-quality.js';

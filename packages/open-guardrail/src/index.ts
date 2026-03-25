@@ -5,7 +5,7 @@ export {
   type GuardFactory, type PipelineOptions, type PipelineResult,
   type PipelineMode, type PipelineStage, type OnErrorAction,
   GuardError, EventBus, Pipeline, createPipeline, pipe,
-  GuardRegistry, OpenGuardrail,
+  GuardRegistry, type GuardPlugin, type GuardPluginMeta, OpenGuardrail,
   configSchema, type RawConfig,
   parseConfig, validateConfig, loadConfigFromString,
   StreamingPipeline,
@@ -46,3 +46,6 @@ export { watermarkDetect } from 'open-guardrail-guards';
 export { jsonRepair } from 'open-guardrail-guards';
 export { urlGuard } from 'open-guardrail-guards';
 export { repetitionDetect } from 'open-guardrail-guards';
+export { encodingAttack } from 'open-guardrail-guards';
+export { markdownSanitize } from 'open-guardrail-guards';
+export { responseQuality } from 'open-guardrail-guards';
