@@ -26,9 +26,12 @@ export default defineConfig({
               text: '가이드',
               items: [
                 { text: '시작하기', link: '/ko/guide/getting-started' },
+                { text: 'YAML 설정', link: '/ko/guide/yaml-config' },
                 { text: '파이프라인', link: '/ko/guide/pipelines' },
                 { text: '커스텀 가드', link: '/ko/guide/custom-guards' },
                 { text: '가드 유틸리티', link: '/ko/guide/guard-utils' },
+                { text: '프리셋', link: '/ko/guide/presets' },
+                { text: 'API 레퍼런스', link: '/ko/guide/api-reference' },
               ],
             },
           ],
