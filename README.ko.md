@@ -241,6 +241,7 @@ const chain = createGuardrailChain({
 | `open-guardrail-openai` | OpenAI SDK 어댑터 |
 | `open-guardrail-anthropic` | Anthropic (Claude) SDK 어댑터 |
 | `open-guardrail-express` | Express 미들웨어 어댑터 |
+| `open-guardrail-fastify` | Fastify 플러그인 어댑터 |
 | `open-guardrail-vercel-ai` | Vercel AI SDK 미들웨어 어댑터 |
 | `open-guardrail-langchain` | LangChain.js 통합 어댑터 |
 

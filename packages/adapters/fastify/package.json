@@ -1,7 +1,7 @@
 {
-  "name": "open-guardrail-core",
+  "name": "open-guardrail-fastify",
   "version": "1.1.0",
-  "description": "Core engine: Pipeline, Guard interface, EventBus, Config Loader — provider agnostic",
+  "description": "Fastify plugin adapter for open-guardrail — guard HTTP request/response with pipelines",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -17,16 +17,18 @@
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "yaml": "^2.7.0",
-    "zod": "^3.24.0"
+    "open-guardrail-core": "workspace:*"
+  },
+  "peerDependencies": {
+    "fastify": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "fastify": { "optional": true }
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
     "tsup": "^8.4.0",
     "vitest": "^3.1.0"
   },
@@ -34,11 +36,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/wonjangcloud9/open-guardrail",
-    "directory": "packages/core"
+    "directory": "packages/adapters/fastify"
   },
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "llm", "pipeline", "guard", "event-bus", "config", "middleware"],
+  "keywords": ["guardrail", "fastify", "middleware", "llm", "safety", "input-validation"],
   "license": "MIT"
 }

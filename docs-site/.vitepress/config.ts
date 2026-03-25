@@ -83,6 +83,7 @@ export default defineConfig({
             { text: 'Vercel AI SDK', link: '/adapters/vercel-ai' },
             { text: 'LangChain.js', link: '/adapters/langchain' },
             { text: 'Express', link: '/adapters/express' },
+            { text: 'Fastify', link: '/adapters/fastify' },
           ],
         },
       ],
