@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { when, compose, not } from '../src/guard-utils.js';
+import { describe, it, expect, vi } from 'vitest';
+import { when, compose, not, retry, fallback } from '../src/guard-utils.js';
 import type { Guard, GuardResult } from '../src/types.js';
 
 function makeGuard(name: string, action: 'allow' | 'block' | 'warn' | 'override' = 'allow', overrideText?: string): Guard {
@@ -114,5 +114,72 @@ describe('not', () => {
     const guard = not(makeGuard('test', 'allow'), 'warn');
     const r = await guard.check('hi', ctx);
     expect(r.action).toBe('warn');
+  });
+});
+
+describe('retry', () => {
+  it('returns result on first success', async () => {
+    const guard = retry(makeGuard('ok', 'allow'), { maxRetries: 2 });
+    const r = await guard.check('hi', ctx);
+    expect(r.passed).toBe(true);
+  });
+
+  it('retries on failure and succeeds', async () => {
+    let calls = 0;
+    const flaky: Guard = {
+      ...makeGuard('flaky'),
+      async check() {
+        calls++;
+        if (calls < 3) throw new Error('network error');
+        return { guardName: 'flaky', passed: true, action: 'allow', latencyMs: 0 };
+      },
+    };
+    const guard = retry(flaky, { maxRetries: 3, delayMs: 10 });
+    const r = await guard.check('hi', ctx);
+    expect(r.passed).toBe(true);
+    expect(calls).toBe(3);
+  });
+
+  it('returns exhausted result after all retries fail', async () => {
+    const failing: Guard = {
+      ...makeGuard('fail'),
+      async check() { throw new Error('always fails'); },
+    };
+    const guard = retry(failing, { maxRetries: 1, delayMs: 10 });
+    const r = await guard.check('hi', ctx);
+    expect(r.passed).toBe(false);
+    expect(r.action).toBe('block');
+    expect(r.message).toContain('2 attempts failed');
+  });
+
+  it('respects onExhausted: allow', async () => {
+    const failing: Guard = {
+      ...makeGuard('fail'),
+      async check() { throw new Error('fail'); },
+    };
+    const guard = retry(failing, { maxRetries: 0, delayMs: 0, onExhausted: 'allow' });
+    const r = await guard.check('hi', ctx);
+    expect(r.passed).toBe(true);
+    expect(r.action).toBe('allow');
+  });
+});
+
+describe('fallback', () => {
+  it('uses primary when it succeeds', async () => {
+    const guard = fallback(makeGuard('primary', 'block'), makeGuard('secondary', 'allow'));
+    const r = await guard.check('hi', ctx);
+    expect(r.action).toBe('block');
+    expect(r.guardName).toBe('primary');
+  });
+
+  it('uses secondary when primary throws', async () => {
+    const failing: Guard = {
+      ...makeGuard('primary'),
+      async check() { throw new Error('fail'); },
+    };
+    const guard = fallback(failing, makeGuard('secondary', 'warn'));
+    const r = await guard.check('hi', ctx);
+    expect(r.action).toBe('warn');
+    expect(r.guardName).toBe('secondary');
   });
 });

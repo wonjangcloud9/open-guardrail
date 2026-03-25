@@ -74,6 +74,38 @@ const mustBeKorean = not(
 );
 ```
 
+## `retry(guard, options)` — Retry on Failure
+
+Retry a guard when it throws (network errors, timeouts). Essential for LLM-based guards:
+
+```typescript
+import { retry, llmJudge } from 'open-guardrail';
+
+const reliableJudge = retry(
+  llmJudge({ prompt: 'Is this safe?', call: myLlmCall, action: 'block' }),
+  { maxRetries: 2, delayMs: 500, onExhausted: 'block' },
+);
+```
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `maxRetries` | 2 | Number of retries after first failure |
+| `delayMs` | 200 | Delay between retries (ms) |
+| `onExhausted` | `'block'` | Action when all retries fail |
+
+## `fallback(primary, secondary)` — Fallback Guard
+
+Use a local guard as fallback when an LLM-based guard fails:
+
+```typescript
+import { fallback, llmJudge, keyword } from 'open-guardrail';
+
+const safe = fallback(
+  llmJudge({ prompt: 'Is this safe?', call: myLlmCall, action: 'block' }),
+  keyword({ denied: ['hack', 'exploit'], action: 'block' }),  // local fallback
+);
+```
+
 ## Combining Utilities
 
 ```typescript

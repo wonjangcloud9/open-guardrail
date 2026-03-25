@@ -1,4 +1,4 @@
-import type { Guard, GuardContext, GuardResult } from './types.js';
+import type { Guard, GuardContext, GuardResult, OnErrorAction } from './types.js';
 
 /**
  * Run a guard only when a condition is met.
@@ -124,6 +124,77 @@ export function not(guard: Guard, action: 'block' | 'warn' = 'block'): Guard {
         message: inverted ? `Negated: original guard passed but expected block` : undefined,
         latencyMs: Math.round(performance.now() - start),
       };
+    },
+  };
+}
+
+/**
+ * Retry a guard on failure (timeout/exception). Useful for LLM-based
+ * guards that depend on external APIs.
+ *
+ * @example
+ * ```typescript
+ * const reliableJudge = retry(llmJudge({ ... }), { maxRetries: 2, delayMs: 500 });
+ * ```
+ */
+export function retry(
+  guard: Guard,
+  options: { maxRetries?: number; delayMs?: number; onExhausted?: OnErrorAction } = {},
+): Guard {
+  const maxRetries = options.maxRetries ?? 2;
+  const delayMs = options.delayMs ?? 200;
+  const onExhausted = options.onExhausted ?? 'block';
+
+  return {
+    ...guard,
+    name: `retry(${guard.name})`,
+    async check(text: string, ctx: GuardContext): Promise<GuardResult> {
+      const start = performance.now();
+      let lastError: Error | undefined;
+
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        try {
+          return await guard.check(text, ctx);
+        } catch (err) {
+          lastError = err as Error;
+          if (attempt < maxRetries && delayMs > 0) {
+            await new Promise((r) => setTimeout(r, delayMs));
+          }
+        }
+      }
+
+      return {
+        guardName: guard.name,
+        passed: onExhausted === 'allow',
+        action: onExhausted,
+        message: `All ${maxRetries + 1} attempts failed: ${lastError?.message}`,
+        latencyMs: Math.round(performance.now() - start),
+      };
+    },
+  };
+}
+
+/**
+ * Use a fallback guard when the primary guard throws.
+ *
+ * @example
+ * ```typescript
+ * const safe = fallback(
+ *   llmJudge({ ... }),              // primary: LLM-based
+ *   keyword({ denied: [...] }),      // fallback: local pattern match
+ * );
+ * ```
+ */
+export function fallback(primary: Guard, secondary: Guard): Guard {
+  return {
+    ...primary,
+    name: `fallback(${primary.name}, ${secondary.name})`,
+    async check(text: string, ctx: GuardContext): Promise<GuardResult> {
+      try {
+        return await primary.check(text, ctx);
+      } catch {
+        return secondary.check(text, ctx);
+      }
     },
   };
 }

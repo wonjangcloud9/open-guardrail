@@ -11,7 +11,7 @@ export {
   StreamingPipeline,
   AuditLogger, type AuditEntry,
   GuardRouter, createRouter,
-  when, compose, not,
+  when, compose, not, retry, fallback,
 } from 'open-guardrail-core';
 
 // Guards — Security
