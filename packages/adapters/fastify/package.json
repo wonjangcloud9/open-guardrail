@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-fastify",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Fastify plugin adapter for open-guardrail — guard HTTP request/response with pipelines",
   "type": "module",
   "main": "./dist/index.cjs",

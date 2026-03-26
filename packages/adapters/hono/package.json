@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-hono",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Hono middleware adapter for open-guardrail — guard HTTP request/response on edge runtimes",
   "type": "module",
   "main": "./dist/index.cjs",

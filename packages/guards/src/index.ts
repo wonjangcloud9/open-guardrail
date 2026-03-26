@@ -77,3 +77,7 @@ export { maxLinks } from './max-links.js';
 export { emptyResponse } from './empty-response.js';
 export { citationCheck } from './citation-check.js';
 export { languageDetect } from './language-detect.js';
+export { toneCheck } from './tone-check.js';
+export { disclaimerRequire } from './disclaimer-require.js';
+export { personalOpinion } from './personal-opinion.js';
+export { answerCompleteness } from './answer-completeness.js';
