@@ -47,3 +47,7 @@ export { sqlInjection } from './sql-injection.js';
 export { xssGuard } from './xss-guard.js';
 export { ipGuard } from './ip-guard.js';
 export { secretPattern } from './secret-pattern.js';
+export { gibberishDetect } from './gibberish-detect.js';
+export { emailValidator } from './email-validator.js';
+export { phoneFormat } from './phone-format.js';
+export { competitorMention } from './competitor-mention.js';
