@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-anthropic",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "description": "Anthropic SDK adapter for open-guardrail — guard messages input and output",
   "type": "module",
   "main": "./dist/index.cjs",
