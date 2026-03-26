@@ -118,3 +118,7 @@ export { piiMx } from './pii-mx.js';
 export { jailbreakPattern } from './jailbreak-pattern.js';
 export { dataPoisoning } from './data-poisoning.js';
 export { languageQuality } from './language-quality.js';
+export { piiSg } from './pii-sg.js';
+export { piiId } from './pii-id.js';
+export { promptLeak } from './prompt-leak.js';
+export { asciiArt } from './ascii-art.js';
