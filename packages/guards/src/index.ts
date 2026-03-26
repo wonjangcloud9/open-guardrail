@@ -43,3 +43,7 @@ export { appi } from './appi.js';
 export { piiCn } from './pii-cn.js';
 export { profanityCn } from './profanity-cn.js';
 export { pipl } from './pipl.js';
+export { sqlInjection } from './sql-injection.js';
+export { xssGuard } from './xss-guard.js';
+export { ipGuard } from './ip-guard.js';
+export { secretPattern } from './secret-pattern.js';
