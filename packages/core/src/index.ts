@@ -19,4 +19,6 @@ export { when, compose, not, retry, fallback } from './guard-utils.js';
 export { circuitBreaker } from './circuit-breaker.js';
 export { guardCache } from './guard-cache.js';
 export { createCustomGuard, createKeywordGuard, createRegexGuard } from './custom-guard-builder.js';
+export { GuardMetrics } from './metrics.js';
+export { parallel } from './parallel.js';
 export { defineGuardrail, type DefineGuardrailOptions } from './define.js';
