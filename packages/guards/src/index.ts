@@ -73,3 +73,7 @@ export { duplicateDetect } from './duplicate-detect.js';
 export { dateFormat } from './date-format.js';
 export { regexDeny } from './regex-deny.js';
 export { jsonOutput } from './json-output.js';
+export { maxLinks } from './max-links.js';
+export { emptyResponse } from './empty-response.js';
+export { citationCheck } from './citation-check.js';
+export { languageDetect } from './language-detect.js';
