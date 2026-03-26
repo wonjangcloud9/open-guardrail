@@ -1,25 +1,44 @@
 # open-guardrail
 
-Open-source guardrail engine for LLM applications.
+**67 guards. 8 languages. <0.1ms latency. Zero vendor lock-in.**
 
-Provider-agnostic text input/output middleware. Works in Node.js, browsers, and edge runtimes.
+The most comprehensive open-source guardrail engine for LLM applications. Block prompt injection, mask PII in 8 regions, detect toxicity in 4 languages — all without external API calls.
 
 [![npm](https://img.shields.io/npm/v/open-guardrail)](https://www.npmjs.com/package/open-guardrail)
+[![PyPI](https://img.shields.io/pypi/v/open-guardrail)](https://pypi.org/project/open-guardrail/)
 [![license](https://img.shields.io/github/license/wonjangcloud9/open-guardrail)](LICENSE)
 [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
 ![guards](https://img.shields.io/badge/guards-67-blue)
 ![adapters](https://img.shields.io/badge/adapters-8-green)
 ![tests](https://img.shields.io/badge/tests-653-brightgreen)
-![languages](https://img.shields.io/badge/languages-7-orange)
+![PII languages](https://img.shields.io/badge/PII_languages-8-orange)
 
-**English** | [한국어](./README.ko.md)
+**English** | [한국어](./README.ko.md) | [Documentation](https://wonjangcloud9.github.io/open-guardrail/)
 
-> **Node.js >= 18** required
+> Works in **Node.js**, **Python**, browsers, and edge runtimes. No external APIs required.
+
+## Why open-guardrail?
+
+- **67 guards** — from prompt injection to GDPR compliance, all pattern-based (no ML model needed)
+- **8 PII regions** — EN, KO, JA, ZH, TH, AR, HI, EU with checksum validation
+- **<0.1ms** — 6-guard pipeline in under 0.1ms. 50,000x cheaper than API-based alternatives
+- **Both JS and Python** — same guards, same API, same coverage
+- **14 presets** — GDPR, healthcare, finance, Korean/Japanese/Chinese compliance, full-security
+- **Zero dependencies** — no external APIs, no ML models, no vendor lock-in
+- **Custom guard builder** — create your own guards in 3 lines of code
 
 ## Install
 
+**TypeScript / JavaScript:**
+
 ```bash
 npm install open-guardrail
+```
+
+**Python:**
+
+```bash
+pip install open-guardrail
 ```
 
 ## Quick Start
@@ -40,7 +59,23 @@ if (!result.passed) console.log('Blocked:', result.action);
 // result.output contains masked text when PII is detected
 ```
 
-Or use the `pipe()` shorthand:
+**Python:**
+
+```python
+from open_guardrail import pipe, prompt_injection, pii, keyword
+
+pipeline = pipe(
+    prompt_injection(action="block"),
+    pii(entities=["email", "phone"], action="mask"),
+    keyword(denied=["hack", "exploit"], action="block"),
+)
+
+result = pipeline.run("user input text here")
+if not result.passed:
+    print(f"Blocked: {result.action} - {result.results[0].message}")
+```
+
+Or use the `pipe()` shorthand (TypeScript):
 
 ```typescript
 import { pipe, promptInjection, pii } from 'open-guardrail';
@@ -381,6 +416,18 @@ Run benchmarks locally:
 pnpm bench
 ```
 
+## Documentation
+
+Full documentation with guides, API reference, and examples:
+
+- [Getting Started Guide](https://wonjangcloud9.github.io/open-guardrail/guide/getting-started.html)
+- [Guard Reference](https://wonjangcloud9.github.io/open-guardrail/guide/guards.html)
+- [YAML Configuration](https://wonjangcloud9.github.io/open-guardrail/guide/yaml-config.html)
+- [Custom Guards](https://wonjangcloud9.github.io/open-guardrail/guide/custom-guards.html)
+- [Streaming Pipeline](https://wonjangcloud9.github.io/open-guardrail/guide/streaming.html)
+- [Audit Logging](https://wonjangcloud9.github.io/open-guardrail/guide/audit-logging.html)
+- [Korean Guide (한국어)](https://wonjangcloud9.github.io/open-guardrail/ko/)
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup and guidelines.
@@ -388,6 +435,10 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup and guidelines.
 ## Security
 
 See [SECURITY.md](./SECURITY.md) for vulnerability reporting.
+
+## Sponsors
+
+If open-guardrail is useful to your company, consider [sponsoring on GitHub](https://github.com/sponsors/wonjangcloud9) to support continued development.
 
 ## License
 

@@ -1,30 +1,43 @@
 # open-guardrail
 
-LLM 애플리케이션을 위한 오픈소스 가드레일 엔진.
+**67개 가드. 8개 언어. <0.1ms 지연. 벤더 종속 없음.**
 
-프로바이더 무관 텍스트 입출력 미들웨어. Node.js, 브라우저, Edge 런타임에서 동작합니다.
+LLM 애플리케이션을 위한 가장 포괄적인 오픈소스 가드레일 엔진. 프롬프트 인젝션 차단, 8개 지역 PII 마스킹, 4개 언어 비속어 감지 — 외부 API 호출 없이 모두 가능합니다.
 
 [![npm](https://img.shields.io/npm/v/open-guardrail)](https://www.npmjs.com/package/open-guardrail)
+[![PyPI](https://img.shields.io/pypi/v/open-guardrail)](https://pypi.org/project/open-guardrail/)
 [![license](https://img.shields.io/github/license/wonjangcloud9/open-guardrail)](LICENSE)
 [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
+![guards](https://img.shields.io/badge/가드-67-blue)
+![PII languages](https://img.shields.io/badge/PII_언어-8-orange)
 
-[English](./README.md) | **한국어**
+[English](./README.md) | **한국어** | [문서](https://wonjangcloud9.github.io/open-guardrail/)
 
-> **Node.js >= 18** 필요
+> **Node.js**, **Python**, 브라우저, Edge 런타임에서 동작. 외부 API 불필요.
 
 ## 왜 open-guardrail?
 
-| 기능 | open-guardrail | Guardrails AI | NeMo Guardrails |
-|------|:-:|:-:|:-:|
-| 언어 | TypeScript/JS | Python | Python |
-| 내장 가드 | 38 | 20+ | 10+ |
-| 외부 API 불필요 | ✅ | ❌ (LLM 필요) | ❌ (LLM 필요) |
-| Edge/브라우저 런타임 | ✅ | ❌ | ❌ |
-| 스트리밍 검증 | ✅ | ❌ | ❌ |
-| 가드 합성 | ✅ `when` `compose` `not` | ❌ | ❌ |
-| 한국 규제 준수 | ✅ ISMS-P, PIPA | ❌ | ❌ |
-| SDK 어댑터 | 8개 | 1개 | 1개 |
-| 6가드 파이프라인 지연 | **<0.1ms** | 100ms+ | 100ms+ |
+- **67개 가드** — 프롬프트 인젝션부터 GDPR 준수까지, 모두 패턴 기반 (ML 모델 불필요)
+- **8개 지역 PII** — 한국, 일본, 중국, 영어, 태국, 아랍, 인도, EU 체크섬 검증 포함
+- **<0.1ms** — 6가드 파이프라인 0.1ms 미만. API 기반 대비 50,000배 저렴
+- **JS + Python** — 동일한 가드, 동일한 API, 동일한 커버리지
+- **14개 프리셋** — GDPR, 의료, 금융, 한국/일본/중국 규제, 풀 보안
+- **제로 의존성** — 외부 API, ML 모델, 벤더 종속 없음
+- **커스텀 가드 빌더** — 3줄로 나만의 가드 생성
+
+| 기능 | open-guardrail | Guardrails AI | NeMo Guardrails | LLM Guard |
+|------|:-:|:-:|:-:|:-:|
+| 언어 | **TS/JS + Python** | Python | Python | Python |
+| 내장 가드 | **67** | 50+ | 10+ | 30+ |
+| PII 언어 | **8개 지역** | 1 | 1 | 1 |
+| 외부 API 불필요 | ✅ | ❌ | ❌ | 일부 |
+| 병렬 실행 | ✅ | ❌ | ✅ | ❌ |
+| 서킷 브레이커 | ✅ | ❌ | ❌ | ❌ |
+| 결과 캐싱 | ✅ | ❌ | ✅ | ❌ |
+| 커스텀 가드 빌더 | ✅ 3종 팩토리 | ❌ | ❌ | ❌ |
+| 한국/일본/중국 규제 | ✅ ISMS-P, PIPA, APPI, PIPL | ❌ | ❌ | ❌ |
+| SDK 어댑터 | **8개** | 1개 | 1개 | 1개 |
+| 6가드 지연 | **<0.1ms** | 100ms+ | 100ms+ | 50ms+ |
 
 ## 설치
 
