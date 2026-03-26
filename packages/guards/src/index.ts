@@ -142,3 +142,7 @@ export { piiVn } from './pii-vn.js';
 export { spamDetect } from './spam-detect.js';
 export { culturalSensitivity } from './cultural-sensitivity.js';
 export { deepfakeIndicator } from './deepfake-indicator.js';
+export { piiNg } from './pii-ng.js';
+export { illegalActivity } from './illegal-activity.js';
+export { childSafety } from './child-safety.js';
+export { academicIntegrity } from './academic-integrity.js';
