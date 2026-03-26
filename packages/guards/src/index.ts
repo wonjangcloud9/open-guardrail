@@ -102,3 +102,7 @@ export { outputFormat } from './output-format.js';
 export { piiDe } from './pii-de.js';
 export { piiFr } from './pii-fr.js';
 export { piiBr } from './pii-br.js';
+export { pathTraversal } from './path-traversal.js';
+export { violenceDetect } from './violence-detect.js';
+export { sexualContent } from './sexual-content.js';
+export { misinformation } from './misinformation.js';
