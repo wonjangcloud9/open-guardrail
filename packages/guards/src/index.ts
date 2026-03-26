@@ -126,3 +126,7 @@ export { unicodeConfusable } from './unicode-confusable.js';
 export { dataRetention } from './data-retention.js';
 export { promptLength } from './prompt-length.js';
 export { piiRu } from './pii-ru.js';
+export { emotionalManipulation } from './emotional-manipulation.js';
+export { stereotypeDetect } from './stereotype-detect.js';
+export { sourceAttribution } from './source-attribution.js';
+export { piiPl } from './pii-pl.js';
