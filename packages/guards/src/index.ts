@@ -154,3 +154,7 @@ export { piiKe } from './pii-ke.js';
 export { greenwashing } from './greenwashing.js';
 export { politicalContent } from './political-content.js';
 export { aiDisclosure } from './ai-disclosure.js';
+export { piiEg } from './pii-eg.js';
+export { brandSafety } from './brand-safety.js';
+export { religiousContent } from './religious-content.js';
+export { warrantyDisclaimer } from './warranty-disclaimer.js';
