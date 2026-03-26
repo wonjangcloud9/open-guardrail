@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "Open-source guardrail engine for LLM apps — 38 guards, 7 adapters, streaming pipeline, risk routing, plugin system",
   "type": "module",
   "main": "./dist/index.cjs",

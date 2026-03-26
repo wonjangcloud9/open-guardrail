@@ -93,3 +93,6 @@ export { contactInfo } from './contact-info.js';
 export { medicalAdvice } from './medical-advice.js';
 export { financialAdvice } from './financial-advice.js';
 export { legalAdvice } from './legal-advice.js';
+export { instructionAdherence } from './instruction-adherence.js';
+export { languageMix } from './language-mix.js';
+export { confidenceCheck } from './confidence-check.js';
