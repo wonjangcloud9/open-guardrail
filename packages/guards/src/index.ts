@@ -66,3 +66,6 @@ export { deanonymize } from './deanonymize.js';
 export { piiTh } from './pii-th.js';
 export { piiAr } from './pii-ar.js';
 export { piiIn } from './pii-in.js';
+export { piiEu } from './pii-eu.js';
+export { banSubstring } from './ban-substring.js';
+export { contentLength } from './content-length.js';
