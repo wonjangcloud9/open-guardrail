@@ -146,3 +146,7 @@ export { piiNg } from './pii-ng.js';
 export { illegalActivity } from './illegal-activity.js';
 export { childSafety } from './child-safety.js';
 export { academicIntegrity } from './academic-integrity.js';
+export { piiZa } from './pii-za.js';
+export { gamblingDetect } from './gambling-detect.js';
+export { accessibilityCheck } from './accessibility-check.js';
+export { propagandaDetect } from './propaganda-detect.js';
