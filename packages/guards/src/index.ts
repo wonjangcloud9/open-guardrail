@@ -114,3 +114,7 @@ export { piiCa } from './pii-ca.js';
 export { markdownStructure } from './markdown-structure.js';
 export { responseConsistency } from './response-consistency.js';
 export { regexAllow } from './regex-allow.js';
+export { piiMx } from './pii-mx.js';
+export { jailbreakPattern } from './jailbreak-pattern.js';
+export { dataPoisoning } from './data-poisoning.js';
+export { languageQuality } from './language-quality.js';
