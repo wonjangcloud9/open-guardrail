@@ -1,0 +1,31 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: pii-jp
+        action: mask
+        config:
+          entities: [my-number, passport, driver-license, health-insurance]
+      - type: keyword
+        action: block
+        config:
+          denied: []
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: pii-jp
+        action: mask
+        config:
+          entities: [my-number, passport]
+      - type: profanity-jp
+        action: block
+      - type: word-count
+        action: warn
+        config:
+          max: 4000
