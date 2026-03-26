@@ -40,10 +40,13 @@ export function validChoice(options: ValidChoiceOptions): Guard {
         guardName: 'valid-choice',
         passed: isValid,
         action: isValid ? 'allow' : options.action,
+        message: isValid
+          ? undefined
+          : `"${text.trim()}" is not one of the allowed choices: ${options.choices.join(', ')}`,
         latencyMs: Math.round(performance.now() - start),
         details: isValid
           ? undefined
-          : { received: text.trim(), allowedChoices: options.choices },
+          : { received: text.trim(), allowedChoices: options.choices, reason: 'Response must be one of the predefined valid choices' },
       };
     },
   };

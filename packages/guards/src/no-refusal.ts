@@ -58,8 +58,13 @@ export function noRefusal(options: NoRefusalOptions): Guard {
         guardName: 'no-refusal',
         passed: !triggered,
         action: triggered ? options.action : 'allow',
+        message: triggered
+          ? `LLM refusal detected: "${matched[0]}"`
+          : undefined,
         latencyMs: Math.round(performance.now() - start),
-        details: triggered ? { matched } : undefined,
+        details: triggered
+          ? { matched, reason: 'The LLM response contains refusal patterns instead of answering the question' }
+          : undefined,
       };
     },
   };

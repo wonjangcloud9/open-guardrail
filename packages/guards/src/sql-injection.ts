@@ -80,9 +80,12 @@ export function sqlInjection(options: SqlInjectionOptions): Guard {
         guardName: 'sql-injection',
         passed: !triggered,
         action: triggered ? options.action : 'allow',
+        message: triggered
+          ? `SQL injection detected: ${unique.slice(0, 3).join(', ')}${unique.length > 3 ? ` (+${unique.length - 3} more)` : ''}`
+          : undefined,
         latencyMs: Math.round(performance.now() - start),
         details: triggered
-          ? { matched: unique, sensitivity }
+          ? { matched: unique, sensitivity, reason: 'Text contains SQL injection patterns that could be used to manipulate database queries' }
           : undefined,
       };
     },

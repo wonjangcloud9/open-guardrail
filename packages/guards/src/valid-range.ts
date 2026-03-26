@@ -50,8 +50,11 @@ export function validRange(options: ValidRangeOptions): Guard {
         guardName: 'valid-range',
         passed: !triggered,
         action: triggered ? options.action : 'allow',
+        message: triggered
+          ? `${outOfRange.length} number(s) out of range: ${outOfRange.map((o) => `${o.value} (${o.reason})`).join(', ')}`
+          : undefined,
         latencyMs: Math.round(performance.now() - start),
-        details: triggered ? { outOfRange } : undefined,
+        details: triggered ? { outOfRange, reason: 'One or more numbers in the text fall outside the allowed range' } : undefined,
       };
     },
   };

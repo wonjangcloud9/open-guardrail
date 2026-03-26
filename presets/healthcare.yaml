@@ -1,0 +1,43 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, ssn, medicare]
+      - type: pii-kr
+        action: mask
+        config:
+          entities: [resident-id, health-insurance]
+      - type: pii-jp
+        action: mask
+        config:
+          entities: [my-number, health-insurance]
+      - type: secret-pattern
+        action: block
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, ssn, medicare]
+      - type: ban-substring
+        action: block
+        config:
+          substrings: []
+      - type: deanonymize
+        action: warn
+      - type: response-quality
+        action: warn
+      - type: readability
+        action: warn
+        config:
+          minScore: 50

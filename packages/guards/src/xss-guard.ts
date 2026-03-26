@@ -87,8 +87,9 @@ export function xssGuard(options: XssGuardOptions): Guard {
         guardName: 'xss-guard',
         passed: false,
         action: options.action,
+        message: `XSS patterns detected: ${unique.join(', ')}`,
         latencyMs: Math.round(performance.now() - start),
-        details: { matched: unique },
+        details: { matched: unique, reason: 'Text contains cross-site scripting patterns that could execute malicious code' },
       };
     },
   };

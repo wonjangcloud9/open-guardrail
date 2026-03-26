@@ -97,8 +97,9 @@ export function invisibleText(options: InvisibleTextOptions): Guard {
         guardName: 'invisible-text',
         passed: false,
         action: options.action,
+        message: `${count} invisible character(s) found: ${types.join(', ')}`,
         latencyMs: Math.round(performance.now() - start),
-        details: { invisibleCount: count, types },
+        details: { invisibleCount: count, types, reason: 'Invisible unicode characters can be used to hide prompt injection attacks' },
       };
     },
   };

@@ -109,6 +109,9 @@ export function gibberishDetect(options: GibberishDetectOptions): Guard {
         passed: !triggered,
         action: triggered ? options.action : 'allow',
         score,
+        message: triggered
+          ? `Gibberish detected (score: ${Math.round(score * 100)}%)`
+          : undefined,
         latencyMs: Math.round(performance.now() - start),
         details: triggered
           ? {
@@ -116,6 +119,7 @@ export function gibberishDetect(options: GibberishDetectOptions): Guard {
               repeatedCharRatio: repeatedCharRatio(text),
               maxConsecutiveConsonants: maxConsecutiveConsonants(text),
               specialCharRatio: specialCharRatio(text),
+              reason: 'Input appears to be random, nonsensical, or spam-like text',
             }
           : undefined,
       };

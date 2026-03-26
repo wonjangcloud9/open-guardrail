@@ -121,9 +121,11 @@ export function secretPattern(options: SecretPatternOptions): Guard {
         guardName: 'secret-pattern',
         passed: false,
         action: options.action,
+        message: `Secret detected: ${matches.map((m) => m.type).join(', ')}`,
         latencyMs: Math.round(performance.now() - start),
         details: {
           detected: matches.map(({ type }) => ({ type })),
+          reason: 'Text contains credentials, API keys, or connection strings that should not be exposed',
         },
       };
     },

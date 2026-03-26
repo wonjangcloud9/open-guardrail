@@ -1,0 +1,53 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: pii
+        action: mask
+        config:
+          entities: [credit-card, ssn, itin]
+      - type: pii-kr
+        action: mask
+        config:
+          entities: [resident-id, business-id]
+      - type: credit-info
+        action: mask
+      - type: pii-eu
+        action: mask
+        config:
+          entities: [iban, vat]
+      - type: secret-pattern
+        action: block
+      - type: sql-injection
+        action: block
+        config:
+          sensitivity: high
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: pii
+        action: mask
+        config:
+          entities: [credit-card, ssn]
+      - type: credit-info
+        action: mask
+      - type: pii-eu
+        action: mask
+        config:
+          entities: [iban]
+      - type: api-key-detect
+        action: block
+      - type: secret-pattern
+        action: mask
+      - type: deanonymize
+        action: warn
+      - type: valid-range
+        action: warn
+        config:
+          min: 0

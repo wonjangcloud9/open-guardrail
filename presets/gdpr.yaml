@@ -1,0 +1,39 @@
+version: "1"
+pipelines:
+  input:
+    mode: run-all
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn, passport, driver-license]
+      - type: pii-eu
+        action: mask
+        config:
+          entities: [iban, vat, nino-uk, bsn-nl, nif-es, ssn-it, pesel-pl]
+      - type: ip-guard
+        action: mask
+      - type: email-validator
+        action: mask
+      - type: phone-format
+        action: mask
+      - type: secret-pattern
+        action: mask
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn, passport]
+      - type: pii-eu
+        action: mask
+        config:
+          entities: [iban, vat, nino-uk, bsn-nl, nif-es, ssn-it, pesel-pl]
+      - type: deanonymize
+        action: warn
+      - type: copyright
+        action: warn
