@@ -122,3 +122,7 @@ export { piiSg } from './pii-sg.js';
 export { piiId } from './pii-id.js';
 export { promptLeak } from './prompt-leak.js';
 export { asciiArt } from './ascii-art.js';
+export { unicodeConfusable } from './unicode-confusable.js';
+export { dataRetention } from './data-retention.js';
+export { promptLength } from './prompt-length.js';
+export { piiRu } from './pii-ru.js';
