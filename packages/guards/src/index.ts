@@ -85,3 +85,7 @@ export { numberFormat } from './number-format.js';
 export { urlExtract } from './url-extract.js';
 export { hashtagDetect } from './hashtag-detect.js';
 export { mentionDetect } from './mention-detect.js';
+export { addressDetect } from './address-detect.js';
+export { ageGate } from './age-gate.js';
+export { selfHarmDetect } from './self-harm-detect.js';
+export { profanityEn } from './profanity-en.js';
