@@ -130,3 +130,7 @@ export { emotionalManipulation } from './emotional-manipulation.js';
 export { stereotypeDetect } from './stereotype-detect.js';
 export { sourceAttribution } from './source-attribution.js';
 export { piiPl } from './pii-pl.js';
+export { piiEs } from './pii-es.js';
+export { piiIt } from './pii-it.js';
+export { geographicBias } from './geographic-bias.js';
+export { payloadSize } from './payload-size.js';
