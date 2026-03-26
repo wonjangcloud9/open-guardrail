@@ -7,9 +7,10 @@ Provider-agnostic text input/output middleware. Works in Node.js, browsers, and 
 [![npm](https://img.shields.io/npm/v/open-guardrail)](https://www.npmjs.com/package/open-guardrail)
 [![license](https://img.shields.io/github/license/wonjangcloud9/open-guardrail)](LICENSE)
 [![CI](https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg)](https://github.com/wonjangcloud9/open-guardrail/actions)
-![guards](https://img.shields.io/badge/guards-38-blue)
+![guards](https://img.shields.io/badge/guards-67-blue)
 ![adapters](https://img.shields.io/badge/adapters-8-green)
-![tests](https://img.shields.io/badge/tests-427-brightgreen)
+![tests](https://img.shields.io/badge/tests-653-brightgreen)
+![languages](https://img.shields.io/badge/languages-7-orange)
 
 **English** | [한국어](./README.ko.md)
 
@@ -87,85 +88,112 @@ const result = await engine.run(text);
 ## CLI
 
 ```bash
-npx open-guardrail-cli init          # create guardrail.yaml
-npx open-guardrail-cli validate      # validate config
+npx open-guardrail-cli init              # create guardrail.yaml
+npx open-guardrail-cli validate          # validate config
+npx open-guardrail-cli list              # list all 67 guards
+npx open-guardrail-cli list security     # filter by category
+npx open-guardrail-cli list --language=ko  # filter by language
+npx open-guardrail-cli test              # test against sample inputs
+npx open-guardrail-cli test guardrail.yaml tests.json  # custom test file
 ```
 
-## Built-in Guards (38)
+## Built-in Guards (67)
 
-### Security
+### Security (18)
 | Guard | Description |
 |-------|-------------|
 | `promptInjection` | Detect jailbreak and prompt injection attempts |
-| `regex` | Custom pattern matching (ReDoS safe) |
+| `sqlInjection` | SQL injection detection (3 sensitivity levels) |
+| `xssGuard` | Cross-site scripting detection + sanitize mode |
+| `codeSafety` | Dangerous code patterns (eval, shell, SQL injection) |
+| `encodingAttack` | Base64/hex/unicode encoded injection detection |
+| `invisibleText` | Zero-width/bidi/BOM invisible character detection |
+| `dataLeakage` | System prompt and training data leak detection |
+| `canaryToken` | Detect system prompt leakage via embedded tokens |
+| `markdownSanitize` | Dangerous markdown/HTML sanitization |
+| `multiTurnContext` | Multi-turn manipulation and jailbreak detection |
+| `urlGuard` | URL validation, phishing, private IP detection |
+| `ipGuard` | IP address detection with allow/deny lists + masking |
+| `apiKeyDetect` | Leaked API keys (OpenAI, AWS, GitHub, Stripe, etc.) |
+| `secretPattern` | Credentials, connection strings, private keys, webhooks |
 | `keyword` | Deny/allow keyword lists |
+| `regex` | Custom pattern matching (ReDoS safe) |
+| `rateLimit` | Sliding window rate limiter |
+| `toolCallValidator` | Agent tool call argument validation |
 
-### Privacy
+### Privacy (12)
+| Guard | Description | Language |
+|-------|-------------|----------|
+| `pii` | Email, phone, SSN, passport, ITIN, Medicare | EN |
+| `piiKr` | 주민등록번호, 여권, 면허, 사업자등록번호, 건강보험, 외국인등록 | KO |
+| `piiJp` | マイナンバー (checksum), パスポート, 運転免許, 法人番号, 口座, 健康保険 | JA |
+| `piiCn` | 身份证 (checksum+region), 护照, 银行卡, 社保号, 手机号 | ZH |
+| `piiTh` | บัตรประชาชน (checksum), หนังสือเดินทาง, เบอร์โทร, บัญชีธนาคาร | TH |
+| `piiAr` | الهوية, جواز السفر, الهاتف, IBAN | AR |
+| `piiIn` | Aadhaar, PAN, passport, phone, IFSC | HI |
+| `piiEu` | IBAN, VAT (10 countries), UK NINO, NL BSN, ES NIF, IT Codice Fiscale, PL PESEL | EU |
+| `residentId` | Korean resident ID checksum + masking | KO |
+| `creditInfo` | Korean financial info (계좌, 카드, 신용등급) | KO |
+| `phoneFormat` | International phone detection (US/KR/JP/CN/UK) | * |
+| `deanonymize` | Detect leaked PII mask labels in output | * |
+
+### Content (14)
 | Guard | Description |
 |-------|-------------|
-| `pii` | Detect and mask PII (email, phone, card, SSN) |
-
-### Content
-| Guard | Description |
-|-------|-------------|
-| `toxicity` | Profanity, hate speech, threats, harassment detection |
-| `topicDeny` | Block specific topics (politics, violence, etc.) |
-| `topicAllow` | Only allow specified topics |
+| `toxicity` | Profanity, hate speech, threats, harassment |
+| `profanityKr` | Korean profanity (초성, 변형 포함) |
+| `profanityJp` | Japanese profanity (ひらがな/カタカナ/漢字 + variants) |
+| `profanityCn` | Chinese profanity (pinyin abbreviations + variants) |
 | `bias` | Gender, racial, religious, age bias detection |
-| `language` | Restrict to allowed languages |
+| `sentiment` | Emotional tone analysis |
+| `noRefusal` | Detect LLM refusal responses |
+| `banCode` | Detect/block code blocks (7 languages) |
+| `banSubstring` | Ban specific substrings |
+| `competitorMention` | Detect competitor brand mentions |
+| `emailValidator` | Email validation + disposable domain detection |
+| `gibberishDetect` | Detect nonsensical/random input |
+| `readability` | Flesch Reading Ease score validation |
+| `readingTime` | Estimate and limit reading time |
 
-### Format
+### Locale / Regulatory (6)
 | Guard | Description |
 |-------|-------------|
-| `wordCount` | Min/max word/character limits |
-| `schemaGuard` | JSON schema output validation |
+| `language` | Language detection and filtering (11+ languages) |
+| `languageConsistency` | Verify response language matches expected |
+| `ismsP` | ISMS-P compliance (Korean infosec certification) |
+| `pipa` | PIPA compliance (Korean Personal Information Protection) |
+| `appi` | APPI compliance (Japanese Personal Information Protection) |
+| `pipl` | PIPL compliance (Chinese Personal Information Protection) |
 
-### AI Delegation
+### Format (9)
 | Guard | Description |
 |-------|-------------|
-| `llmJudge` | Delegate any judgment to external LLM |
-| `hallucination` | Fact-check against source documents via LLM |
-| `relevance` | Verify response relevance to question via LLM |
-| `groundedness` | Verify RAG response grounding via LLM |
+| `wordCount` | Word/character count limits |
+| `contentLength` | Validate by chars/words/sentences |
+| `tokenLimit` | Token count estimation (3 methods) |
+| `schemaGuard` | JSON Schema output validation |
+| `jsonRepair` | Repair malformed JSON from LLMs |
+| `repetitionDetect` | Detect repetitive LLM output |
+| `validRange` | Validate numbers within min/max bounds |
+| `validChoice` | Validate text is from allowed choices |
+| `singleLine` | Validate output is a single line |
+| `caseValidation` | Validate upper/lower/title/sentence case |
 
-### Operational
+### AI Delegation (4)
+| Guard | Description |
+|-------|-------------|
+| `llmJudge` | Custom LLM evaluation |
+| `hallucination` | Source verification for hallucinated content |
+| `relevance` | Response relevance checking via LLM |
+| `groundedness` | RAG groundedness evaluation |
+
+### Operational (4)
 | Guard | Description |
 |-------|-------------|
 | `costGuard` | Token usage and cost limits |
-| `rateLimit` | Per-key request rate limiting |
-| `dataLeakage` | System prompt and training data leak detection |
-| `sentiment` | Emotional tone control |
-
-### Agent Safety
-| Guard | Description |
-|-------|-------------|
-| `toolCallValidator` | Validate tool call arguments (type safety, injection prevention, tool allowlist) |
-| `codeSafety` | Detect dangerous code: eval, shell injection, SQL injection, env exposure |
-
-### Content (Advanced)
-| Guard | Description |
-|-------|-------------|
-| `copyright` | Detect copyright notices, trademarks, verbatim reproduction |
-| `watermarkDetect` | Detect AI-generated text markers (disclosure phrases, hedging, formulaic) |
-| `multiTurnContext` | Multi-turn manipulation: gradual jailbreak, topic drift, repetitive probing |
-| `jsonRepair` | Repair malformed JSON output from LLMs |
-| `urlGuard` | URL validation and filtering (allowlist/denylist, protocol checks) |
-| `repetitionDetect` | Detect repetitive patterns in LLM output |
-| `encodingAttack` | Detect base64/hex/unicode encoded injection attempts |
-| `markdownSanitize` | Sanitize dangerous markdown and HTML (XSS prevention) |
-| `responseQuality` | Check response quality: too short, repetitive, or refusal |
-| `apiKeyDetect` | Detect leaked API keys, tokens, secrets (OpenAI, AWS, GitHub, Stripe, etc.) |
-| `languageConsistency` | Verify response language matches expected language |
-
-### Korea / ISMS
-| Guard | Description |
-|-------|-------------|
-| `piiKr` | Korean PII (주민등록번호, 여권, 면허, 사업자등록번호 등) |
-| `profanityKr` | Korean profanity (초성, 변형 포함) |
-| `residentId` | Resident ID checksum validation + masking |
-| `creditInfo` | Financial info protection (계좌, 카드, 신용등급) |
-| `ismsP` | ISMS-P compliance preset |
-| `pipa` | Personal Information Protection Act compliance |
+| `copyright` | Copyright and trademark detection |
+| `watermarkDetect` | AI-generated text markers |
+| `responseQuality` | Response quality validation |
 
 ## Examples
 
@@ -183,14 +211,18 @@ npx open-guardrail-cli validate      # validate config
 | [with-hono](./examples/with-hono/) | Hono middleware (Edge/Workers/Deno/Bun) |
 | [plugin-usage](./examples/plugin-usage/) | Creating and using guard plugins |
 
-## Presets
+## Presets (11)
 
 | Preset | Use Case |
 |--------|----------|
 | `default` | Basic protection (prompt-injection, keyword, word-count) |
 | `strict` | Full PII masking + strict blocking |
 | `korean` | Korean compliance (ISMS-P, PIPA, 주민등록번호) |
+| `japanese` | Japanese compliance (APPI, マイナンバー, profanity) |
+| `chinese` | Chinese compliance (PIPL, 身份证, profanity) |
 | `security` | Injection, PII, data leakage focused |
+| `full-security` | Comprehensive attack prevention (SQL/XSS/encoding/leakage/secrets) |
+| `privacy-first` | Multi-language PII masking (EN/KR/JP/CN), secrets, emails, IPs |
 | `content` | Toxicity, bias, language control |
 | `ai-basic-act-kr` | 한국 AI 기본법 준수 (편향 방지, PII, 독성) |
 | `eu-ai-act` | EU AI Act compliance (bias, PII, toxicity, watermark, copyright) |
@@ -199,7 +231,7 @@ npx open-guardrail-cli validate      # validate config
 
 | Package | Description |
 |---------|-------------|
-| `open-guardrail` | All-in-one (core + 38 guards) |
+| `open-guardrail` | All-in-one (core + 67 guards) |
 | `open-guardrail-core` | Core engine only (Pipeline, StreamingPipeline, Router, AuditLogger) |
 | `open-guardrail-guards` | Built-in guards only |
 | `open-guardrail-cli` | CLI tools |
@@ -232,6 +264,51 @@ const longTextToxicity = when(
 const pipeline = pipe(securityBundle, longTextToxicity, pii({ entities: ['email'], action: 'mask' }));
 ```
 
+### Advanced Utilities
+
+```typescript
+import { retry, fallback, circuitBreaker, guardCache, parallel } from 'open-guardrail';
+
+// Retry flaky LLM guards
+const reliableJudge = retry(llmJudge({ ... }), { maxRetries: 2 });
+
+// Fallback to local guard when LLM fails
+const safe = fallback(llmJudge({ ... }), keyword({ denied: [...] }));
+
+// Skip guard after 3 failures, auto-recover
+const resilient = circuitBreaker(llmJudge({ ... }), { failureThreshold: 3 });
+
+// Cache results for identical inputs
+const cached = guardCache(llmJudge({ ... }), { ttlMs: 60_000 });
+
+// Run guards in parallel for speed
+const fast = parallel([promptInjection({ ... }), toxicity({ ... })], { mode: 'race-block' });
+```
+
+### Custom Guard Builder
+
+```typescript
+import { createCustomGuard, createKeywordGuard, createRegexGuard } from 'open-guardrail';
+
+// Minimal custom guard
+const noEmoji = createCustomGuard({ name: 'no-emoji' }, (text) => ({
+  guardName: 'no-emoji',
+  passed: !/\p{Emoji}/u.test(text),
+  action: /\p{Emoji}/u.test(text) ? 'block' : 'allow',
+  latencyMs: 0,
+}));
+
+// Keyword guard factory
+const brandSafety = createKeywordGuard({
+  name: 'brand-safety', action: 'block', denied: ['competitor-x'],
+});
+
+// Regex guard with masking
+const orderMask = createRegexGuard({
+  name: 'order-mask', action: 'mask', patterns: [/ORD-\d{6}/g], maskLabel: '[ORDER]',
+});
+```
+
 ## Features
 
 - **Pipeline chaining** — compose guards with `pipe()` or `createPipeline()`
@@ -251,20 +328,27 @@ const pipeline = pipe(securityBundle, longTextToxicity, pii({ entities: ['email'
 
 ## Why open-guardrail?
 
-| Feature | open-guardrail | Guardrails AI | NeMo Guardrails |
-|---------|:-:|:-:|:-:|
-| Language | TypeScript/JS | Python | Python |
-| Built-in guards | 38 | 20+ | 10+ |
-| No external API needed | ✅ | ❌ (needs LLM) | ❌ (needs LLM) |
-| Edge/browser runtime | ✅ | ❌ | ❌ |
-| Streaming validation | ✅ | ❌ | ❌ |
-| YAML config | ✅ | ✅ | ✅ (Colang) |
-| Guard composition | ✅ `when` `compose` `not` | ❌ | ❌ |
-| Plugin system | ✅ | ❌ | ❌ |
-| Korean compliance | ✅ ISMS-P, PIPA | ❌ | ❌ |
-| SDK adapters | 8 (OpenAI, Anthropic, Next.js, Express, Fastify, Hono, Vercel AI, LangChain) | 1 | 1 |
-| Latency (6-guard pipeline) | **<0.1ms** | 100ms+ | 100ms+ |
-| License | MIT | Apache 2.0 | Apache 2.0 |
+| Feature | open-guardrail | Guardrails AI | NeMo Guardrails | LLM Guard |
+|---------|:-:|:-:|:-:|:-:|
+| Language | TypeScript/JS | Python | Python | Python |
+| Built-in guards | **67** | 50+ | 10+ | 30+ |
+| PII languages | **7** (EN/KO/JA/ZH/TH/AR/HI+EU) | 1 | 1 | 1 |
+| No external API needed | ✅ | ❌ | ❌ | Partial |
+| Edge/browser runtime | ✅ | ❌ | ❌ | ❌ |
+| Streaming validation | ✅ | ❌ | ❌ | ❌ |
+| Parallel execution | ✅ `parallel()` | ❌ | ✅ | ❌ |
+| Circuit breaker | ✅ | ❌ | ❌ | ❌ |
+| Result caching | ✅ `guardCache()` | ❌ | ✅ LFU | ❌ |
+| Guard composition | ✅ `compose` `when` `not` `retry` `fallback` | ❌ | ❌ | ❌ |
+| Custom guard builder | ✅ 3 factory functions | ❌ | ❌ | ❌ |
+| Metrics collector | ✅ `GuardMetrics` | ❌ | ❌ | ❌ |
+| Plugin system | ✅ | ❌ | ❌ | ❌ |
+| YAML config | ✅ | ✅ | ✅ (Colang) | ❌ |
+| CLI tools | ✅ init/validate/list/test | ❌ | ❌ | ❌ |
+| Asian compliance | ✅ ISMS-P, PIPA, APPI, PIPL | ❌ | ❌ | ❌ |
+| SDK adapters | **8** | 1 | 1 | 1 |
+| Latency (6-guard) | **<0.1ms** | 100ms+ | 100ms+ | 50ms+ |
+| License | MIT | Apache 2.0 | Apache 2.0 | MIT |
 
 ## Playground
 
