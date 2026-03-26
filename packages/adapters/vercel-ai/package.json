@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-vercel-ai",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Vercel AI SDK middleware adapter for open-guardrail — guard LLM inputs and outputs",
   "type": "module",
   "main": "./dist/index.cjs",

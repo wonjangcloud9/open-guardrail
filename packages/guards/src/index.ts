@@ -81,3 +81,7 @@ export { toneCheck } from './tone-check.js';
 export { disclaimerRequire } from './disclaimer-require.js';
 export { personalOpinion } from './personal-opinion.js';
 export { answerCompleteness } from './answer-completeness.js';
+export { numberFormat } from './number-format.js';
+export { urlExtract } from './url-extract.js';
+export { hashtagDetect } from './hashtag-detect.js';
+export { mentionDetect } from './mention-detect.js';
