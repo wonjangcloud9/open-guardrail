@@ -134,3 +134,7 @@ export { piiEs } from './pii-es.js';
 export { piiIt } from './pii-it.js';
 export { geographicBias } from './geographic-bias.js';
 export { payloadSize } from './payload-size.js';
+export { cryptoAddress } from './crypto-address.js';
+export { socialEngineering } from './social-engineering.js';
+export { consentDetect } from './consent-detect.js';
+export { piiTr } from './pii-tr.js';
