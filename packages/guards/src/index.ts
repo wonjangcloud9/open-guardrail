@@ -51,3 +51,8 @@ export { gibberishDetect } from './gibberish-detect.js';
 export { emailValidator } from './email-validator.js';
 export { phoneFormat } from './phone-format.js';
 export { competitorMention } from './competitor-mention.js';
+export { invisibleText } from './invisible-text.js';
+export { noRefusal } from './no-refusal.js';
+export { banCode } from './ban-code.js';
+export { validRange } from './valid-range.js';
+export { validChoice } from './valid-choice.js';
