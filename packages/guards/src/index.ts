@@ -63,3 +63,6 @@ export { tokenLimit } from './token-limit.js';
 export { singleLine } from './single-line.js';
 export { caseValidation } from './case-validation.js';
 export { deanonymize } from './deanonymize.js';
+export { piiTh } from './pii-th.js';
+export { piiAr } from './pii-ar.js';
+export { piiIn } from './pii-in.js';
