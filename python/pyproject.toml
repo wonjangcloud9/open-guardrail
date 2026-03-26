@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "open-guardrail"
+version = "0.1.0"
+description = "Open-source guardrail engine for LLM applications"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [{ name = "Lucas", email = "wonjangcloud9@gmail.com" }]
+keywords = ["llm", "guardrail", "safety", "pii", "prompt-injection", "ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Security",
+]
+
+[project.urls]
+Homepage = "https://github.com/wonjangcloud9/open-guardrail"
+Documentation = "https://wonjangcloud9.github.io/open-guardrail/"
+Repository = "https://github.com/wonjangcloud9/open-guardrail"
+
+[tool.hatch.build.targets.wheel]
+packages = ["open_guardrail"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+select = ["F", "E", "I", "N"]
+
+[tool.ruff.isort]
+profile = "black"
