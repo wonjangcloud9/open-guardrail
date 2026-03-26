@@ -69,3 +69,7 @@ export { piiIn } from './pii-in.js';
 export { piiEu } from './pii-eu.js';
 export { banSubstring } from './ban-substring.js';
 export { contentLength } from './content-length.js';
+export { duplicateDetect } from './duplicate-detect.js';
+export { dateFormat } from './date-format.js';
+export { regexDeny } from './regex-deny.js';
+export { jsonOutput } from './json-output.js';

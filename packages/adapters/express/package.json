@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-express",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Express middleware adapter for open-guardrail — guard HTTP request/response with pipelines",
   "type": "module",
   "main": "./dist/index.cjs",
