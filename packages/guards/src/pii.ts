@@ -1,6 +1,14 @@
 import type { Guard, GuardResult, GuardContext } from 'open-guardrail-core';
 
-type PiiEntity = 'email' | 'phone' | 'credit-card' | 'ssn';
+type PiiEntity =
+  | 'email'
+  | 'phone'
+  | 'credit-card'
+  | 'ssn'
+  | 'passport'
+  | 'driver-license'
+  | 'itin'
+  | 'medicare';
 type PiiAction = 'block' | 'warn' | 'mask';
 
 interface PiiOptions {
@@ -20,6 +28,10 @@ const PATTERNS: Record<PiiEntity, RegExp> = {
   phone: /(?:\+?\d{1,3}[-.\s]?)?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{4}/g,
   'credit-card': /\b\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}\b/g,
   ssn: /\b\d{3}-\d{2}-\d{4}\b/g,
+  passport: /\b[A-Z]{1,2}\d{6,9}\b/g,
+  'driver-license': /\b[A-Z]\d{3}-\d{4}-\d{4}\b/g,
+  itin: /\b9\d{2}-[7-9]\d-\d{4}\b/g,
+  medicare: /\b\d[A-Z][A-Z0-9]\d[- ]?[A-Z][A-Z0-9]\d[- ]?[A-Z]{2}\d{2}\b/g,
 };
 
 const MASK_LABELS: Record<PiiEntity, string> = {
@@ -27,6 +39,10 @@ const MASK_LABELS: Record<PiiEntity, string> = {
   phone: '[PHONE]',
   'credit-card': '[CREDIT_CARD]',
   ssn: '[SSN]',
+  passport: '[PASSPORT]',
+  'driver-license': '[DRIVER_LICENSE]',
+  itin: '[ITIN]',
+  medicare: '[MEDICARE]',
 };
 
 function detectPii(text: string, entities: PiiEntity[]): PiiMatch[] {
