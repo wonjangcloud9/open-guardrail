@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-core",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Core engine: Pipeline, Guard interface, EventBus, Config Loader — provider agnostic",
   "type": "module",
   "main": "./dist/index.cjs",

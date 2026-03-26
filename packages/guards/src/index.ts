@@ -56,3 +56,6 @@ export { noRefusal } from './no-refusal.js';
 export { banCode } from './ban-code.js';
 export { validRange } from './valid-range.js';
 export { validChoice } from './valid-choice.js';
+export { readability } from './readability.js';
+export { readingTime } from './reading-time.js';
+export { canaryToken } from './canary-token.js';
