@@ -150,3 +150,7 @@ export { piiZa } from './pii-za.js';
 export { gamblingDetect } from './gambling-detect.js';
 export { accessibilityCheck } from './accessibility-check.js';
 export { propagandaDetect } from './propaganda-detect.js';
+export { piiKe } from './pii-ke.js';
+export { greenwashing } from './greenwashing.js';
+export { politicalContent } from './political-content.js';
+export { aiDisclosure } from './ai-disclosure.js';

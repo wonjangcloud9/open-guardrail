@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-guards",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "38 built-in guards for LLM safety: PII, prompt injection, toxicity, bias, API key detection, encoding attack, Korean ISMS-P/PIPA, EU AI Act",
   "type": "module",
   "main": "./dist/index.cjs",
