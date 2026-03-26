@@ -59,3 +59,7 @@ export { validChoice } from './valid-choice.js';
 export { readability } from './readability.js';
 export { readingTime } from './reading-time.js';
 export { canaryToken } from './canary-token.js';
+export { tokenLimit } from './token-limit.js';
+export { singleLine } from './single-line.js';
+export { caseValidation } from './case-validation.js';
+export { deanonymize } from './deanonymize.js';
