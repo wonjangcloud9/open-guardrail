@@ -1,0 +1,47 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 5000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: sql-injection
+        action: block
+        config:
+          sensitivity: high
+      - type: xss-guard
+        action: block
+      - type: encoding-attack
+        action: block
+      - type: multi-turn-context
+        action: block
+      - type: keyword
+        action: block
+        config:
+          denied: []
+      - type: gibberish-detect
+        action: block
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: data-leakage
+        action: block
+      - type: code-safety
+        action: block
+      - type: api-key-detect
+        action: block
+      - type: secret-pattern
+        action: mask
+      - type: url-guard
+        action: warn
+      - type: ip-guard
+        action: mask
+      - type: markdown-sanitize
+        action: block
+      - type: word-count
+        action: warn
+        config:
+          max: 8000

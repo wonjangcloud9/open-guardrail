@@ -1,0 +1,55 @@
+version: "1"
+pipelines:
+  input:
+    mode: run-all
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn, passport, driver-license, itin, medicare]
+      - type: pii-kr
+        action: mask
+        config:
+          entities: [resident-id, passport, driver-license, business-id, health-insurance, foreigner-id]
+      - type: pii-jp
+        action: mask
+        config:
+          entities: [my-number, passport, driver-license, corporate-number, health-insurance]
+      - type: pii-cn
+        action: mask
+        config:
+          entities: [id-card, passport, bank-card, phone]
+      - type: phone-format
+        action: mask
+      - type: email-validator
+        action: mask
+      - type: ip-guard
+        action: mask
+      - type: secret-pattern
+        action: mask
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn, passport]
+      - type: pii-kr
+        action: mask
+        config:
+          entities: [resident-id, passport]
+      - type: pii-jp
+        action: mask
+        config:
+          entities: [my-number, passport]
+      - type: pii-cn
+        action: mask
+        config:
+          entities: [id-card, passport, phone]
+      - type: api-key-detect
+        action: block
+      - type: secret-pattern
+        action: mask
