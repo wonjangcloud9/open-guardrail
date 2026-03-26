@@ -138,3 +138,7 @@ export { cryptoAddress } from './crypto-address.js';
 export { socialEngineering } from './social-engineering.js';
 export { consentDetect } from './consent-detect.js';
 export { piiTr } from './pii-tr.js';
+export { piiVn } from './pii-vn.js';
+export { spamDetect } from './spam-detect.js';
+export { culturalSensitivity } from './cultural-sensitivity.js';
+export { deepfakeIndicator } from './deepfake-indicator.js';
