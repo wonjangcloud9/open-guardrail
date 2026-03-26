@@ -16,4 +16,6 @@ export { StreamingPipeline } from './streaming-pipeline.js';
 export { AuditLogger, type AuditEntry } from './audit-logger.js';
 export { GuardRouter, createRouter } from './router.js';
 export { when, compose, not, retry, fallback } from './guard-utils.js';
+export { circuitBreaker } from './circuit-breaker.js';
+export { guardCache } from './guard-cache.js';
 export { defineGuardrail, type DefineGuardrailOptions } from './define.js';

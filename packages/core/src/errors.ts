@@ -12,19 +12,43 @@ export class GuardError extends Error implements GuardErrorInfo {
   }
 
   static timeout(guardName: string, ms: number): GuardError {
-    return new GuardError('TIMEOUT', `Guard "${guardName}" timed out after ${ms}ms`);
+    return new GuardError(
+      'TIMEOUT',
+      `Guard "${guardName}" timed out after ${ms}ms. ` +
+      `Hints: (1) increase timeoutMs, (2) wrap with retry(), (3) wrap with circuitBreaker() for resilience`,
+    );
   }
 
   static fromException(guardName: string, cause: Error): GuardError {
-    return new GuardError('EXCEPTION', `Guard "${guardName}" threw: ${cause.message}`, cause);
+    return new GuardError(
+      'EXCEPTION',
+      `Guard "${guardName}" threw: ${cause.message}. ` +
+      `Hints: (1) wrap with fallback() for graceful degradation, (2) wrap with retry() for transient errors`,
+      cause,
+    );
   }
 
   static network(guardName: string, detail: string): GuardError {
-    return new GuardError('NETWORK', `Guard "${guardName}" network error: ${detail}`);
+    return new GuardError(
+      'NETWORK',
+      `Guard "${guardName}" network error: ${detail}. ` +
+      `Hints: (1) check API key/endpoint, (2) wrap with retry({ maxRetries: 3 }), (3) wrap with circuitBreaker()`,
+    );
   }
 
   static invalidConfig(guardName: string, detail: string): GuardError {
-    return new GuardError('INVALID_CONFIG', `Guard "${guardName}" config error: ${detail}`);
+    return new GuardError(
+      'INVALID_CONFIG',
+      `Guard "${guardName}" config error: ${detail}. ` +
+      `Check the guard's TypeScript interface for valid options`,
+    );
+  }
+
+  static pipelineNotFound(stage: string, available: string[]): GuardError {
+    return new GuardError(
+      'INVALID_CONFIG',
+      `Pipeline "${stage}" is not configured. Available: [${available.join(', ')}]`,
+    );
   }
 
   toJSON(): GuardErrorInfo {
