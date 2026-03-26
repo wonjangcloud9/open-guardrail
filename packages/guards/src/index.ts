@@ -106,3 +106,7 @@ export { pathTraversal } from './path-traversal.js';
 export { violenceDetect } from './violence-detect.js';
 export { sexualContent } from './sexual-content.js';
 export { misinformation } from './misinformation.js';
+export { ssrfDetect } from './ssrf-detect.js';
+export { commandInjection } from './command-injection.js';
+export { hateSpeech } from './hate-speech.js';
+export { piiAu } from './pii-au.js';
