@@ -89,3 +89,7 @@ export { addressDetect } from './address-detect.js';
 export { ageGate } from './age-gate.js';
 export { selfHarmDetect } from './self-harm-detect.js';
 export { profanityEn } from './profanity-en.js';
+export { contactInfo } from './contact-info.js';
+export { medicalAdvice } from './medical-advice.js';
+export { financialAdvice } from './financial-advice.js';
+export { legalAdvice } from './legal-advice.js';

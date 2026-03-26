@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-nextjs",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Next.js App Router adapter for open-guardrail — guard API routes with pipelines",
   "type": "module",
   "main": "./dist/index.cjs",
