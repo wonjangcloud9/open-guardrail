@@ -176,3 +176,5 @@ export { contextRelevance } from './context-relevance.js';
 export { instructionBoundary } from './instruction-boundary.js';
 export { responseFormatEnforce } from './response-format-enforce.js';
 export { safetyClassifier } from './safety-classifier.js';
+export { hipaaDetect } from './hipaa-detect.js';
+export { consentWithdrawal } from './consent-withdrawal.js';

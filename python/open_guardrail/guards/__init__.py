@@ -58,6 +58,14 @@ from open_guardrail.guards.topic_allow import topic_allow
 from open_guardrail.guards.language_detect import language_detect
 from open_guardrail.guards.tone_check import tone_check
 from open_guardrail.guards.disclaimer_require import disclaimer_require
+from open_guardrail.guards.safety_classifier import safety_classifier
+from open_guardrail.guards.structured_output import structured_output
+from open_guardrail.guards.context_relevance import context_relevance
+from open_guardrail.guards.instruction_boundary import instruction_boundary
+from open_guardrail.guards.input_sanitize import input_sanitize
+from open_guardrail.guards.response_format_enforce import response_format_enforce
+from open_guardrail.guards.output_determinism import output_determinism
+from open_guardrail.guards.token_efficiency import token_efficiency
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -76,4 +84,7 @@ __all__ = [
     "language", "profanity_en", "contact_info", "empty_response",
     "duplicate_detect", "topic_deny", "topic_allow",
     "language_detect", "tone_check", "disclaimer_require",
+    "safety_classifier", "structured_output", "context_relevance",
+    "instruction_boundary", "input_sanitize", "response_format_enforce",
+    "output_determinism", "token_efficiency",
 ]

@@ -1,0 +1,45 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: pii-kr
+        action: mask
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn]
+      - type: consent-withdrawal
+        action: warn
+      - type: keyword
+        action: block
+        config:
+          denied: []
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: hipaa-detect
+        action: mask
+      - type: pii-kr
+        action: mask
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn]
+      - type: disclaimer-require
+        action: warn
+        config:
+          disclaimers:
+            - "의료 전문가와 상담"
+            - "전문의 상담을 권장"
+            - "not medical advice"
+            - "consult a doctor"
+      - type: medical-advice
+        action: warn
+      - type: data-leakage
+        action: block
