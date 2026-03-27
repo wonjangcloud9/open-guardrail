@@ -147,6 +147,26 @@ from open_guardrail.guards.stereotype_detect import stereotype_detect
 from open_guardrail.guards.source_attribution import source_attribution
 from open_guardrail.guards.age_gate import age_gate
 from open_guardrail.guards.markdown_structure import markdown_structure
+from open_guardrail.guards.ascii_art import ascii_art
+from open_guardrail.guards.unicode_confusable import unicode_confusable
+from open_guardrail.guards.data_poisoning import data_poisoning
+from open_guardrail.guards.prompt_leak import prompt_leak
+from open_guardrail.guards.roleplay_detect import roleplay_detect
+from open_guardrail.guards.multi_turn_context import multi_turn_context
+from open_guardrail.guards.response_length_ratio import response_length_ratio
+from open_guardrail.guards.numeric_accuracy import numeric_accuracy
+from open_guardrail.guards.citation_format import citation_format
+from open_guardrail.guards.schema_drift import schema_drift
+from open_guardrail.guards.api_response_validate import api_response_validate
+from open_guardrail.guards.language_complexity import language_complexity
+from open_guardrail.guards.token_limit_advanced import token_limit_advanced
+from open_guardrail.guards.content_fingerprint import content_fingerprint
+from open_guardrail.guards.safety_score_aggregate import safety_score_aggregate
+from open_guardrail.guards.conversation_memory_leak import conversation_memory_leak
+from open_guardrail.guards.tool_output_sanitize import tool_output_sanitize
+from open_guardrail.guards.embedding_inject import embedding_inject
+from open_guardrail.guards.rate_adaptive import rate_adaptive
+from open_guardrail.guards.compliance_audit_log import compliance_audit_log
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -192,4 +212,11 @@ __all__ = [
     "watermark_detect", "data_retention", "prompt_length", "payload_size",
     "geographic_bias", "emotional_manipulation", "stereotype_detect",
     "source_attribution", "age_gate", "markdown_structure",
+    "ascii_art", "unicode_confusable", "data_poisoning", "prompt_leak",
+    "roleplay_detect", "multi_turn_context", "response_length_ratio",
+    "numeric_accuracy", "citation_format", "schema_drift",
+    "api_response_validate", "language_complexity", "token_limit_advanced",
+    "content_fingerprint", "safety_score_aggregate",
+    "conversation_memory_leak", "tool_output_sanitize",
+    "embedding_inject", "rate_adaptive", "compliance_audit_log",
 ]
