@@ -15,6 +15,9 @@ from open_guardrail.guards import (
     json_output, content_length, token_limit,
     pii_de, pii_fr, pii_br, pii_eu, pii_th,
     pii_ar, pii_in, pii_au, pii_es, pii_it,
+    language, profanity_en, contact_info, empty_response,
+    duplicate_detect, topic_deny, topic_allow,
+    language_detect, tone_check, disclaimer_require,
 )
 
 
@@ -654,4 +657,124 @@ class TestPiiIt:
     def test_allows_clean(self):
         g = pii_it(action="block")
         r = g.check("Roma è bellissima")
+        assert r.passed
+
+
+class TestLanguage:
+    def test_blocks_wrong_language(self):
+        g = language(allowed=["en"], action="block")
+        r = g.check("안녕하세요 오늘 날씨가 좋습니다")
+        assert not r.passed
+
+    def test_allows_correct_language(self):
+        g = language(allowed=["en"], action="block")
+        r = g.check("The weather is nice today and it has been wonderful")
+        assert r.passed
+
+
+class TestProfanityEn:
+    def test_detects_profanity(self):
+        g = profanity_en(action="block")
+        r = g.check("What the fuck is this shit")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = profanity_en(action="block")
+        r = g.check("Have a wonderful day")
+        assert r.passed
+
+
+class TestContactInfo:
+    def test_detects_email(self):
+        g = contact_info(action="block", detect=["email"])
+        r = g.check("Contact me at user@example.com")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = contact_info(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestEmptyResponse:
+    def test_detects_empty(self):
+        g = empty_response(action="block")
+        r = g.check("   ")
+        assert not r.passed
+
+    def test_allows_content(self):
+        g = empty_response(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestDuplicateDetect:
+    def test_detects_duplicates(self):
+        g = duplicate_detect(action="warn", threshold=0.3)
+        r = g.check("This is a repeated sentence. This is a repeated sentence. This is a repeated sentence.")
+        assert not r.passed
+
+    def test_allows_unique(self):
+        g = duplicate_detect(action="warn")
+        r = g.check("First sentence here. Second sentence there. Third one over here.")
+        assert r.passed
+
+
+class TestTopicDeny:
+    def test_blocks_denied_topic(self):
+        g = topic_deny(topics=["violence"], action="block")
+        r = g.check("The assault resulted in weapon injuries")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = topic_deny(topics=["violence"], action="block")
+        r = g.check("The weather is nice today")
+        assert r.passed
+
+
+class TestTopicAllow:
+    def test_allows_topic(self):
+        g = topic_allow(topics=["technology"], action="block")
+        r = g.check("The software uses a new algorithm for database queries")
+        assert r.passed
+
+    def test_blocks_off_topic(self):
+        g = topic_allow(topics=["technology"], action="block")
+        r = g.check("The sunset was beautiful over the ocean")
+        assert not r.passed
+
+
+class TestLanguageDetect:
+    def test_detects_forbidden(self):
+        g = language_detect(action="block", forbidden=["ko"])
+        r = g.check("안녕하세요 반갑습니다")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = language_detect(action="block", forbidden=["ko"])
+        r = g.check("Hello world this is a test")
+        assert r.passed
+
+
+class TestToneCheck:
+    def test_detects_wrong_tone(self):
+        g = tone_check(action="warn", expected="formal")
+        r = g.check("Hey dude, gonna wanna check this out lol btw yeah cool")
+        assert not r.passed
+
+    def test_allows_correct_tone(self):
+        g = tone_check(action="warn", expected="professional")
+        r = g.check("We recommend based on our analysis that you please note the following")
+        assert r.passed
+
+
+class TestDisclaimerRequire:
+    def test_blocks_without_disclaimer(self):
+        g = disclaimer_require(action="warn")
+        r = g.check("Take two aspirin and call me in the morning")
+        assert not r.passed
+
+    def test_allows_with_disclaimer(self):
+        g = disclaimer_require(action="warn")
+        r = g.check("This is not medical advice. Please consult a doctor for proper treatment.")
         assert r.passed

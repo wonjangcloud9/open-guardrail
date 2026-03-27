@@ -48,6 +48,16 @@ from open_guardrail.guards.pii_in import pii_in
 from open_guardrail.guards.pii_au import pii_au
 from open_guardrail.guards.pii_es import pii_es
 from open_guardrail.guards.pii_it import pii_it
+from open_guardrail.guards.language import language
+from open_guardrail.guards.profanity_en import profanity_en
+from open_guardrail.guards.contact_info import contact_info
+from open_guardrail.guards.empty_response import empty_response
+from open_guardrail.guards.duplicate_detect import duplicate_detect
+from open_guardrail.guards.topic_deny import topic_deny
+from open_guardrail.guards.topic_allow import topic_allow
+from open_guardrail.guards.language_detect import language_detect
+from open_guardrail.guards.tone_check import tone_check
+from open_guardrail.guards.disclaimer_require import disclaimer_require
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -63,4 +73,7 @@ __all__ = [
     "json_output", "content_length", "token_limit",
     "pii_de", "pii_fr", "pii_br", "pii_eu", "pii_th",
     "pii_ar", "pii_in", "pii_au", "pii_es", "pii_it",
+    "language", "profanity_en", "contact_info", "empty_response",
+    "duplicate_detect", "topic_deny", "topic_allow",
+    "language_detect", "tone_check", "disclaimer_require",
 ]
