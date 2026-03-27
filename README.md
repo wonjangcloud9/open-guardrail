@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">open-guardrail</h1>
-  <p align="center"><strong>Guardrail engine for LLM apps. 79 guards. Zero API calls. <0.1ms.</strong></p>
+  <p align="center"><strong>Guardrail engine for LLM apps. 165 guards. Zero API calls. <0.1ms.</strong></p>
 </p>
 
 <p align="center">
@@ -8,8 +8,8 @@
   <a href="https://pypi.org/project/open-guardrail/"><img src="https://img.shields.io/pypi/v/open-guardrail" alt="PyPI"></a>
   <a href="https://github.com/wonjangcloud9/open-guardrail/actions"><img src="https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/wonjangcloud9/open-guardrail" alt="License"></a>
-  <img src="https://img.shields.io/badge/guards-79-blue" alt="guards">
-  <img src="https://img.shields.io/badge/PII_regions-8-orange" alt="PII">
+  <img src="https://img.shields.io/badge/guards-165-blue" alt="guards">
+  <img src="https://img.shields.io/badge/PII_regions-26-orange" alt="PII">
 </p>
 
 <p align="center">
@@ -48,8 +48,8 @@ pip install open-guardrail    # Python
 
 |  | open-guardrail | Guardrails AI | NeMo Guardrails | LLM Guard |
 |--|:-:|:-:|:-:|:-:|
-| **Built-in guards** | **79** | 50+ | 10+ | 30+ |
-| **PII regions** | **8** (EN/KO/JA/ZH/TH/AR/HI/EU) | 1 | 1 | 1 |
+| **Built-in guards** | **165** | 50+ | 10+ | 30+ |
+| **PII regions** | **26** (EN/KO/JA/ZH/TH/AR/HI/EU + 18 more) | 1 | 1 | 1 |
 | **Language** | **TS/JS + Python** | Python | Python | Python |
 | **Latency** | **<0.1ms** | 100ms+ | 100ms+ | 50ms+ |
 | **External API** | Not needed | Required | Required | Partial |
@@ -111,35 +111,39 @@ pipelines:
           entities: [email, phone]
 ```
 
-## 79 Built-in Guards
+## 165 Built-in Guards
 
-### Security (19)
+### Security (28)
 
-`promptInjection` `sqlInjection` `xssGuard` `codeSafety` `encodingAttack` `invisibleText` `dataLeakage` `canaryToken` `markdownSanitize` `multiTurnContext` `urlGuard` `ipGuard` `apiKeyDetect` `secretPattern` `keyword` `regex` `regexDeny` `rateLimit` `toolCallValidator`
+`promptInjection` `sqlInjection` `xssGuard` `codeSafety` `encodingAttack` `invisibleText` `dataLeakage` `canaryToken` `markdownSanitize` `multiTurnContext` `urlGuard` `ipGuard` `apiKeyDetect` `secretPattern` `keyword` `regex` `regexDeny` `regexAllow` `toolCallValidator` `pathTraversal` `ssrfDetect` `commandInjection` `jailbreakPattern` `dataPoisoning` `promptLeak` `socialEngineering` `unicodeConfusable` `asciiArt`
 
-### Privacy (12) — 8 PII regions
+### Privacy (33) — 26 PII regions
 
-`pii` (EN) `piiKr` (KO) `piiJp` (JA) `piiCn` (ZH) `piiTh` (TH) `piiAr` (AR) `piiIn` (HI) `piiEu` (EU) `residentId` `creditInfo` `phoneFormat` `deanonymize`
+`pii` (EN) `piiKr` (KO) `piiJp` (JA) `piiCn` (ZH) `piiTh` (TH) `piiAr` (AR) `piiIn` (HI) `piiEu` (EU) `piiDe` (DE) `piiFr` (FR) `piiBr` (BR) `piiAu` (AU) `piiCa` (CA) `piiMx` (MX) `piiSg` (SG) `piiId` (ID) `piiRu` (RU) `piiPl` (PL) `piiEs` (ES) `piiIt` (IT) `piiTr` (TR) `piiVn` (VN) `piiNg` (NG) `piiZa` (ZA) `piiKe` (KE) `piiEg` (EG) `residentId` `creditInfo` `phoneFormat` `deanonymize` `contactInfo` `cryptoAddress` `consentDetect`
 
-### Content (18)
+### Content Safety (30)
 
-`toxicity` `profanityKr` `profanityJp` `profanityCn` `bias` `sentiment` `noRefusal` `banCode` `banSubstring` `competitorMention` `emailValidator` `gibberishDetect` `readability` `readingTime` `duplicateDetect` `citationCheck` `toneCheck` `personalOpinion`
+`toxicity` `profanityEn` `profanityKr` `profanityJp` `profanityCn` `bias` `sentiment` `noRefusal` `banCode` `banSubstring` `competitorMention` `gibberishDetect` `readability` `readingTime` `duplicateDetect` `citationCheck` `toneCheck` `personalOpinion` `topicDeny` `topicAllow` `hateSpeech` `violenceDetect` `sexualContent` `selfHarmDetect` `emotionalManipulation` `stereotypeDetect` `brandSafety` `religiousContent` `culturalSensitivity` `sourceAttribution`
 
-### Locale & Compliance (8)
+### Compliance (19)
 
-`language` `languageConsistency` `languageDetect` `ismsP` (ISMS-P) `pipa` (PIPA) `appi` (APPI) `pipl` (PIPL) `disclaimerRequire`
+`language` `languageConsistency` `languageDetect` `languageMix` `languageQuality` `ismsP` (ISMS-P) `pipa` (PIPA) `appi` (APPI) `pipl` (PIPL) `disclaimerRequire` `dataRetention` `aiDisclosure` `warrantyDisclaimer` `academicIntegrity` `medicalAdvice` `financialAdvice` `legalAdvice` `accessibilityCheck` `ageGate`
 
-### Format (11)
+### Detection (13)
 
-`wordCount` `contentLength` `tokenLimit` `schemaGuard` `jsonRepair` `jsonOutput` `repetitionDetect` `validRange` `validChoice` `singleLine` `caseValidation` `dateFormat`
+`spamDetect` `deepfakeIndicator` `propagandaDetect` `greenwashing` `politicalContent` `gamblingDetect` `illegalActivity` `childSafety` `misinformation` `roleplayDetect` `geographicBias` `copyright` `watermarkDetect`
+
+### Format (17)
+
+`wordCount` `contentLength` `tokenLimit` `schemaGuard` `jsonRepair` `jsonOutput` `repetitionDetect` `validRange` `validChoice` `singleLine` `caseValidation` `dateFormat` `numberFormat` `outputFormat` `markdownStructure` `promptLength` `payloadSize`
 
 ### AI Delegation (4)
 
 `llmJudge` `hallucination` `relevance` `groundedness`
 
-### Operational (7)
+### Operational (15)
 
-`costGuard` `copyright` `watermarkDetect` `responseQuality` `maxLinks` `emptyResponse` `answerCompleteness`
+`costGuard` `rateLimit` `responseQuality` `maxLinks` `emptyResponse` `answerCompleteness` `emailValidator` `responseConsistency` `confidenceCheck` `timeSensitive` `instructionAdherence` `urlExtract` `hashtagDetect` `mentionDetect` `addressDetect`
 
 ## Guard Composition
 
@@ -179,7 +183,7 @@ const maskOrder = createRegexGuard({ name: 'order', action: 'mask', patterns: [/
 
 ```bash
 npx open-guardrail-cli init              # scaffold guardrail.yaml
-npx open-guardrail-cli list              # browse 79 guards
+npx open-guardrail-cli list              # browse 165 guards
 npx open-guardrail-cli list --language=ko  # filter by language
 npx open-guardrail-cli test              # test your config
 ```

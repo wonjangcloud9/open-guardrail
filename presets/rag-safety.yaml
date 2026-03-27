@@ -1,0 +1,40 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: rag-poisoning
+        action: block
+      - type: prompt-injection
+        action: block
+      - type: context-window-overflow
+        action: warn
+        config:
+          maxTokens: 128000
+          warnThreshold: 0.9
+      - type: encoding-attack
+        action: block
+      - type: invisible-text
+        action: block
+      - type: data-poisoning
+        action: block
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: hallucination
+        action: warn
+      - type: groundedness
+        action: warn
+      - type: relevance
+        action: warn
+      - type: citation-check
+        action: warn
+      - type: source-attribution
+        action: warn
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn]
