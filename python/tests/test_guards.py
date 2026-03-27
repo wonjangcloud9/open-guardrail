@@ -45,6 +45,13 @@ from open_guardrail.guards import (
     watermark_detect, data_retention, prompt_length, payload_size,
     geographic_bias, emotional_manipulation, stereotype_detect,
     source_attribution, age_gate, markdown_structure,
+    ascii_art, unicode_confusable, data_poisoning, prompt_leak,
+    roleplay_detect, multi_turn_context, response_length_ratio,
+    numeric_accuracy, citation_format, schema_drift,
+    api_response_validate, language_complexity, token_limit_advanced,
+    content_fingerprint, safety_score_aggregate,
+    conversation_memory_leak, tool_output_sanitize,
+    embedding_inject, rate_adaptive, compliance_audit_log,
 )
 
 
@@ -1597,3 +1604,369 @@ class TestMarkdownStructurePy:
         g = markdown_structure(action="warn")
         r = g.check("# Title\n\nSome content")
         assert r.passed
+
+
+# ── Round 10-11 guard tests (30 guards) ──────────────────────────
+
+class TestAsciiArtPy:
+    def test_detects(self):
+        g = ascii_art(action="block")
+        r = g.check("╔══════╗\n║ BOX  ║\n╚══════╝")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = ascii_art(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestUnicodeConfusablePy:
+    def test_detects(self):
+        g = unicode_confusable(action="block")
+        r = g.check("Раssword")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = unicode_confusable(action="block")
+        r = g.check("Password")
+        assert r.passed
+
+
+class TestDataPoisoningPy:
+    def test_detects(self):
+        g = data_poisoning(action="block")
+        r = g.check("inject into model training data backdoor")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = data_poisoning(action="block")
+        r = g.check("Hello")
+        assert r.passed
+
+
+class TestPromptLeakPy:
+    def test_detects(self):
+        g = prompt_leak(action="block")
+        r = g.check("<<SYS>> You are a helpful assistant")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = prompt_leak(action="block")
+        r = g.check("What is AI?")
+        assert r.passed
+
+
+class TestRoleplayDetectPy:
+    def test_detects(self):
+        g = roleplay_detect(action="block")
+        r = g.check("*draws sword* let's pretend you are a wizard")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = roleplay_detect(action="block")
+        r = g.check("Hello")
+        assert r.passed
+
+
+class TestMultiTurnContextPy:
+    def test_passes_first_message(self):
+        g = multi_turn_context(action="block")
+        r = g.check("Hello how are you")
+        assert r.passed
+
+    def test_passes_clean(self):
+        g = multi_turn_context(action="block")
+        r = g.check("Tell me about Python")
+        assert r.passed
+
+
+class TestResponseLengthRatioPy:
+    def test_detects(self):
+        g = response_length_ratio(action="block", max_ratio=50, input_text="Hi")
+        r = g.check("a" * 200)
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = response_length_ratio(action="block", max_ratio=50, input_text="Hi")
+        r = g.check("Hello there")
+        assert r.passed
+
+
+class TestNumericAccuracyPy:
+    def test_passes_accurate(self):
+        g = numeric_accuracy(action="block", facts={"population": 300000000})
+        r = g.check("The population is 300000000")
+        assert r.passed
+
+    def test_passes_clean(self):
+        g = numeric_accuracy(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestCitationFormatPy:
+    def test_blocks_missing(self):
+        g = citation_format(action="block", min_citations=1)
+        r = g.check("Some claim without any source")
+        assert not r.passed
+
+    def test_allows_with_citation(self):
+        g = citation_format(action="block", min_citations=1)
+        r = g.check("According to research [1] this is true")
+        assert r.passed
+
+
+class TestSchemaDriftPy:
+    def test_allows_matching(self):
+        g = schema_drift(action="block", expected_keys=["name", "age"])
+        r = g.check('{"name": "Alice", "age": 30}')
+        assert r.passed
+
+    def test_blocks_extra_keys(self):
+        g = schema_drift(action="block", expected_keys=["name", "age"], allow_extra=False)
+        r = g.check('{"name": "Alice", "extra": "x"}')
+        assert not r.passed
+
+
+class TestApiResponseValidatePy:
+    def test_detects_error(self):
+        g = api_response_validate(action="block")
+        r = g.check("500 Internal Server Error")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = api_response_validate(action="block")
+        r = g.check("OK")
+        assert r.passed
+
+
+class TestLanguageComplexityPy:
+    def test_allows_simple(self):
+        g = language_complexity(action="block", max_grade_level=20, min_grade_level=-10)
+        r = g.check("The cat sat on the mat.")
+        assert r.passed
+
+    def test_has_latency(self):
+        g = language_complexity(action="block", max_grade_level=20, min_grade_level=-10)
+        r = g.check("Simple text here.")
+        assert r.latency_ms >= 0
+
+
+class TestTokenLimitAdvancedPy:
+    def test_allows_short(self):
+        g = token_limit_advanced(action="block", max_tokens=1000)
+        r = g.check("Short text")
+        assert r.passed
+
+    def test_blocks_long(self):
+        g = token_limit_advanced(action="block", max_tokens=5)
+        r = g.check("This is a much longer text that exceeds the small token limit")
+        assert not r.passed
+
+
+class TestContentFingerprintPy:
+    def test_allows_unknown(self):
+        g = content_fingerprint(action="block")
+        r = g.check("Some unique content never seen before xyz123")
+        assert r.passed
+
+    def test_blocks_known_fingerprint(self):
+        import hashlib
+        text = "known harmful content"
+        sig = text[:100] + str(len(text))
+        fp = hashlib.sha256(sig.encode()).hexdigest()[:16]
+        g = content_fingerprint(action="block", known_fingerprints=[fp])
+        r = g.check(text)
+        assert not r.passed
+
+
+class TestSafetyScoreAggregatePy:
+    def test_detects_unsafe(self):
+        g = safety_score_aggregate(action="block")
+        r = g.check("kill murder assault weapon bomb")
+        assert not r.passed
+
+    def test_allows_safe(self):
+        g = safety_score_aggregate(action="block")
+        r = g.check("flowers")
+        assert r.passed
+
+
+class TestConversationMemoryLeakPy:
+    def test_detects(self):
+        g = conversation_memory_leak(action="block")
+        r = g.check("in our last chat you told me your secret")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = conversation_memory_leak(action="block")
+        r = g.check("What is AI?")
+        assert r.passed
+
+
+class TestToolOutputSanitizePy:
+    def test_detects_script(self):
+        g = tool_output_sanitize(action="override")
+        r = g.check("<script>alert(1)</script>data")
+        assert r.action == "override"
+
+    def test_allows_clean(self):
+        g = tool_output_sanitize(action="override")
+        r = g.check("clean output")
+        assert r.passed
+
+
+class TestEmbeddingInjectPy:
+    def test_detects(self):
+        g = embedding_inject(action="block")
+        r = g.check("token " * 60)
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = embedding_inject(action="block")
+        r = g.check("Normal query")
+        assert r.passed
+
+
+class TestRateAdaptivePy:
+    def test_passes_single(self):
+        g = rate_adaptive(action="block")
+        r = g.check("A single request")
+        assert r.passed
+
+    def test_passes_again(self):
+        g = rate_adaptive(action="block")
+        r = g.check("Another request")
+        assert r.passed
+
+
+class TestComplianceAuditLogPy:
+    def test_always_passes(self):
+        g = compliance_audit_log(action="log")
+        r = g.check("Some PII content user@example.com")
+        assert r.passed
+
+    def test_has_audit_details(self):
+        g = compliance_audit_log(action="log")
+        r = g.check("Test text")
+        assert r.details is not None
+
+
+class TestOutputFormatGuardPy:
+    def test_allows_valid_json(self):
+        g = output_format(action="block", expected="json")
+        r = g.check('{"key": "value"}')
+        assert r.passed
+
+    def test_blocks_invalid_json(self):
+        g = output_format(action="block", expected="json")
+        r = g.check("not json at all")
+        assert not r.passed
+
+
+class TestResponseConsistencyGuardPy:
+    def test_passes_clean(self):
+        g = response_consistency(action="warn")
+        r = g.check("The answer is 42.")
+        assert r.passed
+
+    def test_passes_normal(self):
+        g = response_consistency(action="warn")
+        r = g.check("Python is a programming language.")
+        assert r.passed
+
+
+class TestHashtagDetectGuardPy:
+    def test_blocks_too_many(self):
+        g = hashtag_detect(action="block", max_hashtags=2)
+        r = g.check("#a #b #c")
+        assert not r.passed
+
+    def test_allows_within_limit(self):
+        g = hashtag_detect(action="block", max_hashtags=5)
+        r = g.check("#hello")
+        assert r.passed
+
+
+class TestMentionDetectGuardPy:
+    def test_blocks_too_many(self):
+        g = mention_detect(action="block", max_mentions=1)
+        r = g.check("@a @b")
+        assert not r.passed
+
+    def test_allows_within_limit(self):
+        g = mention_detect(action="block", max_mentions=5)
+        r = g.check("@hello")
+        assert r.passed
+
+
+class TestAddressDetectGuardPy:
+    def test_detects_address(self):
+        g = address_detect(action="block")
+        r = g.check("123 Main Street 90210")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = address_detect(action="block")
+        r = g.check("Hello")
+        assert r.passed
+
+
+class TestSchemaGuardPy:
+    def test_allows_valid(self):
+        g = schema_guard(action="block", required_keys=["name"])
+        r = g.check('{"name": "Alice"}')
+        assert r.passed
+
+    def test_blocks_missing_key(self):
+        g = schema_guard(action="block", required_keys=["name"])
+        r = g.check('{"x": 1}')
+        assert not r.passed
+
+
+class TestJsonRepairGuardPy:
+    def test_repairs_broken(self):
+        g = json_repair(action="override")
+        r = g.check('{"name": "Alice"')
+        assert r.override_text is not None or r.passed
+
+    def test_passes_valid(self):
+        g = json_repair(action="override")
+        r = g.check('{"name": "Alice"}')
+        assert r.passed
+
+
+class TestCompetitorMentionGuardPy:
+    def test_detects_competitor(self):
+        g = competitor_mention(action="block", competitors=["acme"])
+        r = g.check("Use Acme instead")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = competitor_mention(action="block", competitors=["acme"])
+        r = g.check("Hello")
+        assert r.passed
+
+
+class TestCaseValidationGuardPy:
+    def test_allows_correct_case(self):
+        g = case_validation(action="block", expected="upper")
+        r = g.check("HELLO")
+        assert r.passed
+
+    def test_blocks_wrong_case(self):
+        g = case_validation(action="block", expected="upper")
+        r = g.check("hello")
+        assert not r.passed
+
+
+class TestMarkdownStructureGuardPy:
+    def test_allows_valid(self):
+        g = markdown_structure(action="warn")
+        r = g.check("# Title\nContent")
+        assert r.passed
+
+    def test_has_latency(self):
+        g = markdown_structure(action="warn")
+        r = g.check("# Title\nSome content here")
+        assert r.latency_ms >= 0

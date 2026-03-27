@@ -167,6 +167,11 @@ from open_guardrail.guards.tool_output_sanitize import tool_output_sanitize
 from open_guardrail.guards.embedding_inject import embedding_inject
 from open_guardrail.guards.rate_adaptive import rate_adaptive
 from open_guardrail.guards.compliance_audit_log import compliance_audit_log
+from open_guardrail.guards.semantic_dedup import semantic_dedup
+from open_guardrail.guards.response_caching_safe import response_caching_safe
+from open_guardrail.guards.config_leak_detect import config_leak_detect
+from open_guardrail.guards.intent_classification import intent_classification
+from open_guardrail.guards.output_length_guard import output_length_guard
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -219,4 +224,6 @@ __all__ = [
     "content_fingerprint", "safety_score_aggregate",
     "conversation_memory_leak", "tool_output_sanitize",
     "embedding_inject", "rate_adaptive", "compliance_audit_log",
+    "semantic_dedup", "response_caching_safe", "config_leak_detect",
+    "intent_classification", "output_length_guard",
 ]

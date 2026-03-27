@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">open-guardrail</h1>
-  <p align="center"><strong>Guardrail engine for LLM apps. 210 guards. Zero API calls. <0.1ms.</strong></p>
+  <p align="center"><strong>Guardrail engine for LLM apps. 215 guards. Zero API calls. <0.1ms.</strong></p>
 </p>
 
 <p align="center">
@@ -8,7 +8,7 @@
   <a href="https://pypi.org/project/open-guardrail/"><img src="https://img.shields.io/pypi/v/open-guardrail" alt="PyPI"></a>
   <a href="https://github.com/wonjangcloud9/open-guardrail/actions"><img src="https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/wonjangcloud9/open-guardrail" alt="License"></a>
-  <img src="https://img.shields.io/badge/guards-210-blue" alt="guards">
+  <img src="https://img.shields.io/badge/guards-215-blue" alt="guards">
   <img src="https://img.shields.io/badge/PII_regions-26-orange" alt="PII">
 </p>
 
@@ -48,7 +48,7 @@ pip install open-guardrail    # Python
 
 |  | open-guardrail | Guardrails AI | NeMo Guardrails | LLM Guard |
 |--|:-:|:-:|:-:|:-:|
-| **Built-in guards** | **210** | 50+ | 10+ | 30+ |
+| **Built-in guards** | **215** | 50+ | 10+ | 30+ |
 | **PII regions** | **26** (EN/KO/JA/ZH/TH/AR/HI/EU + 18 more) | 1 | 1 | 1 |
 | **Language** | **TS/JS + Python** | Python | Python | Python |
 | **Latency** | **<0.1ms** | 100ms+ | 100ms+ | 50ms+ |
@@ -111,7 +111,7 @@ pipelines:
           entities: [email, phone]
 ```
 
-## 210 Built-in Guards
+## 215 Built-in Guards
 
 ### Security (28)
 
@@ -152,7 +152,7 @@ pipelines:
 const security = compose('security', promptInjection(), sqlInjection(), xssGuard());
 
 // Conditional
-const longOnly = when((text) => text.length > 210, toxicity());
+const longOnly = when((text) => text.length > 215, toxicity());
 
 // Resilience
 const safe = fallback(llmJudge({ ... }), keyword({ denied: [...] }));
@@ -183,7 +183,7 @@ const maskOrder = createRegexGuard({ name: 'order', action: 'mask', patterns: [/
 
 ```bash
 npx open-guardrail-cli init              # scaffold guardrail.yaml
-npx open-guardrail-cli list              # browse 210 guards
+npx open-guardrail-cli list              # browse 215 guards
 npx open-guardrail-cli list --language=ko  # filter by language
 npx open-guardrail-cli test              # test your config
 ```

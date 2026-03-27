@@ -209,3 +209,8 @@ export { responseAttribution } from './response-attribution.js';
 export { secretScanning } from './secret-scanning.js';
 export { contentFingerprint } from './content-fingerprint.js';
 export { safetyScoreAggregate } from './safety-score-aggregate.js';
+export { semanticDedup } from './semantic-dedup.js';
+export { responseCachingSafe } from './response-caching-safe.js';
+export { configLeakDetect } from './config-leak-detect.js';
+export { intentClassification } from './intent-classification.js';
+export { outputLengthGuard } from './output-length-guard.js';
