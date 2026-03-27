@@ -78,6 +78,21 @@ from open_guardrail.guards.single_line import single_line
 from open_guardrail.guards.date_format import date_format
 from open_guardrail.guards.number_format import number_format
 from open_guardrail.guards.max_links import max_links
+from open_guardrail.guards.hipaa_detect import hipaa_detect
+from open_guardrail.guards.consent_withdrawal import consent_withdrawal
+from open_guardrail.guards.chain_of_thought_leak import chain_of_thought_leak
+from open_guardrail.guards.data_minimization import data_minimization
+from open_guardrail.guards.pii_redact_consistency import pii_redact_consistency
+from open_guardrail.guards.function_call_schema import function_call_schema
+from open_guardrail.guards.medical_advice import medical_advice
+from open_guardrail.guards.financial_advice import financial_advice
+from open_guardrail.guards.legal_advice import legal_advice
+from open_guardrail.guards.violence_detect import violence_detect
+from open_guardrail.guards.sexual_content import sexual_content
+from open_guardrail.guards.self_harm_detect import self_harm_detect
+from open_guardrail.guards.misinformation import misinformation
+from open_guardrail.guards.copyright_detect import copyright_detect
+from open_guardrail.guards.social_engineering import social_engineering
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -102,4 +117,9 @@ __all__ = [
     "pii_ru", "pii_pl", "pii_tr", "pii_vn",
     "url_guard", "repetition_detect", "crypto_address", "email_validator",
     "single_line", "date_format", "number_format", "max_links",
+    "hipaa_detect", "consent_withdrawal", "chain_of_thought_leak",
+    "data_minimization", "pii_redact_consistency", "function_call_schema",
+    "medical_advice", "financial_advice", "legal_advice",
+    "violence_detect", "sexual_content", "self_harm_detect",
+    "misinformation", "copyright_detect", "social_engineering",
 ]

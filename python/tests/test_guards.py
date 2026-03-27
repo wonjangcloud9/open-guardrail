@@ -24,6 +24,11 @@ from open_guardrail.guards import (
     pii_ru, pii_pl, pii_tr, pii_vn,
     url_guard, repetition_detect, crypto_address, email_validator,
     single_line, date_format, number_format, max_links,
+    hipaa_detect, consent_withdrawal, chain_of_thought_leak,
+    data_minimization, pii_redact_consistency, function_call_schema,
+    medical_advice, financial_advice, legal_advice,
+    violence_detect, sexual_content, self_harm_detect,
+    misinformation, copyright_detect, social_engineering,
 )
 
 
@@ -1008,4 +1013,160 @@ class TestMaxLinks:
     def test_allows_few(self):
         g = max_links(action="warn", max_count=5)
         r = g.check("Visit https://example.com")
+        assert r.passed
+
+
+class TestHipaaDetect:
+    def test_detects_mrn(self):
+        g = hipaa_detect(action="block")
+        r = g.check("Patient medical record #123456 diagnosed with flu")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = hipaa_detect(action="block")
+        r = g.check("The weather is nice")
+        assert r.passed
+
+
+class TestConsentWithdrawal:
+    def test_detects_withdrawal(self):
+        g = consent_withdrawal(action="warn")
+        r = g.check("Please delete my data immediately")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = consent_withdrawal(action="warn")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestChainOfThoughtLeak:
+    def test_detects_thinking(self):
+        g = chain_of_thought_leak(action="block")
+        r = g.check("<thinking>Let me analyze this</thinking>")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = chain_of_thought_leak(action="block")
+        r = g.check("The answer is 42")
+        assert r.passed
+
+
+class TestDataMinimizationPy:
+    def test_detects_internal_id(self):
+        g = data_minimization(action="warn")
+        r = g.check("internal_id: abc123")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = data_minimization(action="warn")
+        r = g.check("The weather is nice")
+        assert r.passed
+
+
+class TestMedicalAdvice:
+    def test_detects_advice(self):
+        g = medical_advice(action="warn")
+        r = g.check("The diagnosis is flu and you should see a doctor")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = medical_advice(action="warn")
+        r = g.check("The sky is blue")
+        assert r.passed
+
+
+class TestFinancialAdvice:
+    def test_detects_advice(self):
+        g = financial_advice(action="warn")
+        r = g.check("You should invest in this stock for guaranteed returns")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = financial_advice(action="warn")
+        r = g.check("The sky is blue")
+        assert r.passed
+
+
+class TestLegalAdvice:
+    def test_detects_advice(self):
+        g = legal_advice(action="warn")
+        r = g.check("You should file a lawsuit against them")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = legal_advice(action="warn")
+        r = g.check("The sky is blue")
+        assert r.passed
+
+
+class TestViolenceDetect:
+    def test_detects_violence(self):
+        g = violence_detect(action="block")
+        r = g.check("He grabbed a weapon and attacked")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = violence_detect(action="block")
+        r = g.check("The flowers are beautiful")
+        assert r.passed
+
+
+class TestSexualContent:
+    def test_detects_content(self):
+        g = sexual_content(action="block")
+        r = g.check("This contains explicit sexual content")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = sexual_content(action="block")
+        r = g.check("The flowers are beautiful")
+        assert r.passed
+
+
+class TestSelfHarmDetect:
+    def test_detects_self_harm(self):
+        g = self_harm_detect(action="block")
+        r = g.check("I want to end my life")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = self_harm_detect(action="block")
+        r = g.check("Life is beautiful")
+        assert r.passed
+
+
+class TestMisinformation:
+    def test_detects_misinfo(self):
+        g = misinformation(action="warn")
+        r = g.check("Doctors don't want you to know this secret cure")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = misinformation(action="warn")
+        r = g.check("Research shows mixed results")
+        assert r.passed
+
+
+class TestCopyrightDetect:
+    def test_detects_copyright(self):
+        g = copyright_detect(action="warn")
+        r = g.check("© 2024 All rights reserved. Copyrighted material.")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = copyright_detect(action="warn")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestSocialEngineering:
+    def test_detects_phishing(self):
+        g = social_engineering(action="block")
+        r = g.check("Urgently verify your account now, click here immediately")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = social_engineering(action="block")
+        r = g.check("Hello world")
         assert r.passed
