@@ -30,6 +30,11 @@ from open_guardrail.guards import (
     violence_detect, sexual_content, self_harm_detect,
     misinformation, copyright_detect, social_engineering,
     code_safety, ssrf_detect, pii_id, pii_sg,
+    pii_ca, pii_mx, pii_ng, pii_za, pii_ke, pii_eg,
+    resident_id, credit_info, phone_format, ip_guard,
+    cost_guard, rate_limit, response_quality, answer_completeness,
+    confidence_check, time_sensitive, language_consistency,
+    language_mix, language_quality, personal_opinion,
 )
 
 
@@ -1218,4 +1223,194 @@ class TestPiiSgPy:
     def test_allows_clean(self):
         g = pii_sg(action="block")
         r = g.check("Singapore is great")
+        assert r.passed
+
+
+class TestPiiCa:
+    def test_detects_sin(self):
+        g = pii_ca(action="block", entities=["sin"])
+        r = g.check("SIN: 123-456-789")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_ca(action="block")
+        r = g.check("Ottawa is the capital")
+        assert r.passed
+
+
+class TestPiiMx:
+    def test_allows_clean(self):
+        g = pii_mx(action="block")
+        r = g.check("Mexico City is beautiful")
+        assert r.passed
+
+
+class TestPiiNg:
+    def test_allows_clean(self):
+        g = pii_ng(action="block")
+        r = g.check("Lagos is a great city")
+        assert r.passed
+
+
+class TestPiiZa:
+    def test_allows_clean(self):
+        g = pii_za(action="block")
+        r = g.check("Cape Town is beautiful")
+        assert r.passed
+
+
+class TestPiiKe:
+    def test_allows_clean(self):
+        g = pii_ke(action="block")
+        r = g.check("Nairobi is growing fast")
+        assert r.passed
+
+
+class TestPiiEg:
+    def test_allows_clean(self):
+        g = pii_eg(action="block")
+        r = g.check("Cairo has the pyramids")
+        assert r.passed
+
+
+class TestResidentId:
+    def test_detects_ssn(self):
+        g = resident_id(action="block")
+        r = g.check("SSN: 123-45-6789")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = resident_id(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestCreditInfo:
+    def test_detects_visa(self):
+        g = credit_info(action="block")
+        r = g.check("Card: 4111111111111111")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = credit_info(action="block")
+        r = g.check("No card info here")
+        assert r.passed
+
+
+class TestPhoneFormat:
+    def test_detects_phone(self):
+        g = phone_format(action="block")
+        r = g.check("Call 555-123-4567")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = phone_format(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestIpGuard:
+    def test_detects_private(self):
+        g = ip_guard(action="block")
+        r = g.check("Server at 192.168.1.1")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = ip_guard(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestCostGuard:
+    def test_passes_short(self):
+        g = cost_guard(action="block", max_cost_usd=1.0)
+        r = g.check("Short text")
+        assert r.passed
+
+
+class TestRateLimit:
+    def test_passes_normal(self):
+        g = rate_limit(action="block", max_requests=10)
+        r = g.check("request")
+        assert r.passed
+
+
+class TestResponseQuality:
+    def test_detects_short(self):
+        g = response_quality(action="warn")
+        r = g.check("Hi")
+        assert not r.passed
+
+    def test_passes_good(self):
+        g = response_quality(action="warn")
+        r = g.check("This is a well-formed response with enough content.")
+        assert r.passed
+
+
+class TestAnswerCompleteness:
+    def test_detects_incomplete(self):
+        g = answer_completeness(action="warn")
+        r = g.check("The answer is... to be continued")
+        assert not r.passed
+
+    def test_passes_complete(self):
+        g = answer_completeness(action="warn")
+        r = g.check("The capital of France is Paris.")
+        assert r.passed
+
+
+class TestConfidenceCheck:
+    def test_detects_hedging(self):
+        g = confidence_check(action="warn", max_hedge_ratio=0.1)
+        r = g.check("I'm not sure but maybe possibly I think it might be")
+        assert not r.passed
+
+    def test_passes_confident(self):
+        g = confidence_check(action="warn")
+        r = g.check("The capital of France is Paris.")
+        assert r.passed
+
+
+class TestTimeSensitive:
+    def test_detects_time(self):
+        g = time_sensitive(action="warn")
+        r = g.check("As of today the latest data shows the current situation")
+        assert not r.passed
+
+    def test_passes_timeless(self):
+        g = time_sensitive(action="warn")
+        r = g.check("Water boils at 100 degrees Celsius.")
+        assert r.passed
+
+
+class TestLanguageConsistency:
+    def test_allows_single(self):
+        g = language_consistency(action="warn")
+        r = g.check("This is English text only")
+        assert r.passed
+
+
+class TestLanguageMix:
+    def test_allows_clean(self):
+        g = language_mix(action="warn")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestLanguageQuality:
+    def test_passes_good(self):
+        g = language_quality(action="warn")
+        r = g.check("This is a well written sentence with proper words.")
+        assert r.passed
+
+
+class TestPersonalOpinion:
+    def test_detects_opinion(self):
+        g = personal_opinion(action="warn")
+        r = g.check("I think this is the best approach in my opinion")
+        assert not r.passed
+
+    def test_allows_factual(self):
+        g = personal_opinion(action="warn")
+        r = g.check("The Earth orbits the Sun.")
         assert r.passed
