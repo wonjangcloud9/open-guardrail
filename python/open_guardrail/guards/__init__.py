@@ -38,6 +38,16 @@ from open_guardrail.guards.hate_speech import hate_speech
 from open_guardrail.guards.json_output import json_output
 from open_guardrail.guards.content_length import content_length
 from open_guardrail.guards.token_limit import token_limit
+from open_guardrail.guards.pii_de import pii_de
+from open_guardrail.guards.pii_fr import pii_fr
+from open_guardrail.guards.pii_br import pii_br
+from open_guardrail.guards.pii_eu import pii_eu
+from open_guardrail.guards.pii_th import pii_th
+from open_guardrail.guards.pii_ar import pii_ar
+from open_guardrail.guards.pii_in import pii_in
+from open_guardrail.guards.pii_au import pii_au
+from open_guardrail.guards.pii_es import pii_es
+from open_guardrail.guards.pii_it import pii_it
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -51,4 +61,6 @@ __all__ = [
     "agent_loop_detect", "tool_abuse", "escalation_detect",
     "rag_poisoning", "bias", "sentiment", "hate_speech",
     "json_output", "content_length", "token_limit",
+    "pii_de", "pii_fr", "pii_br", "pii_eu", "pii_th",
+    "pii_ar", "pii_in", "pii_au", "pii_es", "pii_it",
 ]

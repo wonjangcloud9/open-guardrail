@@ -13,6 +13,8 @@ from open_guardrail.guards import (
     agent_loop_detect, tool_abuse, escalation_detect,
     rag_poisoning, bias, sentiment, hate_speech,
     json_output, content_length, token_limit,
+    pii_de, pii_fr, pii_br, pii_eu, pii_th,
+    pii_ar, pii_in, pii_au, pii_es, pii_it,
 )
 
 
@@ -533,3 +535,123 @@ class TestTokenLimit:
         g = token_limit(action="block", max_tokens=5, chars_per_token=1)
         r = g.check("This exceeds the limit")
         assert not r.passed
+
+
+class TestPiiDe:
+    def test_detects_iban(self):
+        g = pii_de(action="block", entities=["iban-de"])
+        r = g.check("My IBAN is DE89370400440532013000")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_de(action="block")
+        r = g.check("Berlin is the capital of Germany")
+        assert r.passed
+
+
+class TestPiiFr:
+    def test_detects_iban(self):
+        g = pii_fr(action="block", entities=["iban-fr"])
+        r = g.check("IBAN: FR7630006000011234567890189")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_fr(action="block")
+        r = g.check("Paris est magnifique")
+        assert r.passed
+
+
+class TestPiiBr:
+    def test_detects_cpf(self):
+        g = pii_br(action="block", entities=["cpf"])
+        r = g.check("CPF: 123.456.789-09")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_br(action="block")
+        r = g.check("São Paulo is a great city")
+        assert r.passed
+
+
+class TestPiiEu:
+    def test_detects_email(self):
+        g = pii_eu(action="block", entities=["email"])
+        r = g.check("Email: user@example.com")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_eu(action="block")
+        r = g.check("The EU has 27 member states")
+        assert r.passed
+
+
+class TestPiiTh:
+    def test_detects_passport(self):
+        g = pii_th(action="block", entities=["passport-th"])
+        r = g.check("Passport: AA1234567")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_th(action="block")
+        r = g.check("Bangkok is beautiful")
+        assert r.passed
+
+
+class TestPiiAr:
+    def test_detects_email(self):
+        g = pii_ar(action="block", entities=["email"])
+        r = g.check("Email: user@example.sa")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_ar(action="block")
+        r = g.check("Welcome to Dubai")
+        assert r.passed
+
+
+class TestPiiIn:
+    def test_detects_pan(self):
+        g = pii_in(action="block", entities=["pan"])
+        r = g.check("PAN: ABCDE1234F")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_in(action="block")
+        r = g.check("Mumbai is a great city")
+        assert r.passed
+
+
+class TestPiiAu:
+    def test_detects_passport(self):
+        g = pii_au(action="block", entities=["passport-au"])
+        r = g.check("Passport: PA1234567")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_au(action="block")
+        r = g.check("Sydney has nice weather")
+        assert r.passed
+
+
+class TestPiiEs:
+    def test_detects_dni(self):
+        g = pii_es(action="block", entities=["dni"])
+        r = g.check("DNI: 12345678Z")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_es(action="block")
+        r = g.check("Madrid es hermosa")
+        assert r.passed
+
+
+class TestPiiIt:
+    def test_detects_codice_fiscale(self):
+        g = pii_it(action="block", entities=["codice-fiscale"])
+        r = g.check("CF: RSSMRA85T10A562S")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_it(action="block")
+        r = g.check("Roma è bellissima")
+        assert r.passed
