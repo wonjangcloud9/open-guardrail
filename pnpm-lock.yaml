@@ -83,6 +83,16 @@ importers:
         specifier: ^4.19.0
         version: 4.21.0
 
+  examples/with-agent-safety:
+    dependencies:
+      open-guardrail:
+        specifier: workspace:*
+        version: link:../../packages/open-guardrail
+    devDependencies:
+      tsx:
+        specifier: ^4.0.0
+        version: 4.21.0
+
   examples/with-anthropic:
     dependencies:
       '@anthropic-ai/sdk':
@@ -192,6 +202,16 @@ importers:
     devDependencies:
       tsx:
         specifier: ^4.19.0
+        version: 4.21.0
+
+  examples/with-rag-safety:
+    dependencies:
+      open-guardrail:
+        specifier: workspace:*
+        version: link:../../packages/open-guardrail
+    devDependencies:
+      tsx:
+        specifier: ^4.0.0
         version: 4.21.0
 
   examples/yaml-config:
