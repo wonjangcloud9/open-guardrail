@@ -1,0 +1,56 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: escalation-detect
+        action: block
+      - type: rag-poisoning
+        action: block
+      - type: jailbreak-pattern
+        action: block
+      - type: answer-refusal-override
+        action: warn
+      - type: adversarial-suffix
+        action: warn
+      - type: boundary-test
+        action: block
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: tool-call-validator
+        action: block
+        config:
+          rules: []
+      - type: tool-abuse
+        action: block
+        config:
+          maxCallsInWindow: 30
+          maxSameToolCalls: 15
+      - type: agent-loop-detect
+        action: block
+        config:
+          maxRepetitions: 3
+      - type: recursion-depth
+        action: block
+        config:
+          maxDepth: 8
+      - type: multi-agent-safety
+        action: warn
+        config:
+          maxAgentTurns: 15
+      - type: function-call-schema
+        action: warn
+      - type: chain-of-thought-leak
+        action: warn
+      - type: model-fingerprint
+        action: warn
+      - type: code-execution-detect
+        action: block
+      - type: data-minimization
+        action: warn

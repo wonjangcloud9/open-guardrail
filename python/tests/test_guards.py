@@ -29,6 +29,7 @@ from open_guardrail.guards import (
     medical_advice, financial_advice, legal_advice,
     violence_detect, sexual_content, self_harm_detect,
     misinformation, copyright_detect, social_engineering,
+    code_safety, ssrf_detect, pii_id, pii_sg,
 )
 
 
@@ -1169,4 +1170,52 @@ class TestSocialEngineering:
     def test_allows_clean(self):
         g = social_engineering(action="block")
         r = g.check("Hello world")
+        assert r.passed
+
+
+class TestCodeSafety:
+    def test_detects_eval(self):
+        g = code_safety(action="warn")
+        r = g.check("Use eval('code') to run it")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = code_safety(action="warn")
+        r = g.check("Print hello world")
+        assert r.passed
+
+
+class TestSsrfDetect:
+    def test_detects_localhost(self):
+        g = ssrf_detect(action="block")
+        r = g.check("Fetch http://localhost:8080/admin")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = ssrf_detect(action="block")
+        r = g.check("Visit https://example.com")
+        assert r.passed
+
+
+class TestPiiIdPy:
+    def test_detects_passport(self):
+        g = pii_id(action="block", entities=["passport-id"])
+        r = g.check("Passport: A1234567")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_id(action="block")
+        r = g.check("Jakarta is beautiful")
+        assert r.passed
+
+
+class TestPiiSgPy:
+    def test_detects_nric(self):
+        g = pii_sg(action="block", entities=["nric"])
+        r = g.check("NRIC: S1234567A")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_sg(action="block")
+        r = g.check("Singapore is great")
         assert r.passed
