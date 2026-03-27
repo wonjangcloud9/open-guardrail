@@ -21,6 +21,9 @@ from open_guardrail.guards import (
     safety_classifier, structured_output, context_relevance,
     instruction_boundary, input_sanitize, response_format_enforce,
     output_determinism, token_efficiency,
+    pii_ru, pii_pl, pii_tr, pii_vn,
+    url_guard, repetition_detect, crypto_address, email_validator,
+    single_line, date_format, number_format, max_links,
 )
 
 
@@ -877,3 +880,132 @@ class TestTokenEfficiencyPy:
         g = token_efficiency(action="warn", min_density=0.8)
         r = g.check("basically actually literally obviously clearly certainly definitely honestly really very quite just like")
         assert not r.passed
+
+
+class TestPiiRu:
+    def test_detects_snils(self):
+        g = pii_ru(action="block", entities=["snils"])
+        r = g.check("СНИЛС: 123-456-789 01")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_ru(action="block")
+        r = g.check("Москва красивый город")
+        assert r.passed
+
+
+class TestPiiPl:
+    def test_detects_dowod(self):
+        g = pii_pl(action="block", entities=["dowod"])
+        r = g.check("Dowód: ABC123456")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_pl(action="block")
+        r = g.check("Warszawa jest piękna")
+        assert r.passed
+
+
+class TestPiiTr:
+    def test_detects_passport(self):
+        g = pii_tr(action="block", entities=["passport-tr"])
+        r = g.check("Pasaport: A12345678")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_tr(action="block")
+        r = g.check("İstanbul güzel bir şehir")
+        assert r.passed
+
+
+class TestPiiVn:
+    def test_detects_passport(self):
+        g = pii_vn(action="block", entities=["passport-vn"])
+        r = g.check("Hộ chiếu: B1234567")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = pii_vn(action="block")
+        r = g.check("Hà Nội đẹp lắm")
+        assert r.passed
+
+
+class TestUrlGuard:
+    def test_blocks_denied_domain(self):
+        g = url_guard(action="block", denied_domains=["evil.com"])
+        r = g.check("Visit https://evil.com/malware")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = url_guard(action="block", denied_domains=["evil.com"])
+        r = g.check("No URLs here")
+        assert r.passed
+
+
+class TestRepetitionDetect:
+    def test_allows_normal(self):
+        g = repetition_detect(action="warn")
+        r = g.check("The quick brown fox jumps over the lazy dog")
+        assert r.passed
+
+
+class TestCryptoAddress:
+    def test_detects_ethereum(self):
+        g = crypto_address(action="block")
+        r = g.check("Send to 0x742d35Cc6634C0532925a3b844Bc9e7595f2bD28")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = crypto_address(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestEmailValidator:
+    def test_blocks_denied(self):
+        g = email_validator(action="block", denied_domains=["spam.com"])
+        r = g.check("Email: user@spam.com")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = email_validator(action="block", denied_domains=["spam.com"])
+        r = g.check("No email here")
+        assert r.passed
+
+
+class TestSingleLine:
+    def test_passes_single(self):
+        g = single_line(action="block")
+        r = g.check("Just one line")
+        assert r.passed
+
+    def test_blocks_multi(self):
+        g = single_line(action="block")
+        r = g.check("Line one\nLine two")
+        assert not r.passed
+
+
+class TestDateFormatPy:
+    def test_allows_iso(self):
+        g = date_format(action="warn", expected="iso")
+        r = g.check("Date: 2026-03-27")
+        assert r.passed
+
+
+class TestNumberFormatPy:
+    def test_allows_correct(self):
+        g = number_format(action="warn", decimal_separator=".")
+        r = g.check("Price: 19.99")
+        assert r.passed
+
+
+class TestMaxLinks:
+    def test_blocks_too_many(self):
+        g = max_links(action="warn", max_count=2)
+        r = g.check("Visit https://a.com https://b.com https://c.com")
+        assert not r.passed
+
+    def test_allows_few(self):
+        g = max_links(action="warn", max_count=5)
+        r = g.check("Visit https://example.com")
+        assert r.passed
