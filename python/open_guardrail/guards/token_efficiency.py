@@ -1,4 +1,5 @@
 """Detects low information density and filler words."""
+from __future__ import annotations
 
 import time
 from typing import List, Optional

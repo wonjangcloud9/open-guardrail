@@ -1,4 +1,5 @@
 """Guard session integrity and detect abuse."""
+from __future__ import annotations
 
 import re
 import time

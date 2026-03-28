@@ -1,4 +1,5 @@
 """Detect token smuggling via alternate encodings."""
+from __future__ import annotations
 
 import re
 import time

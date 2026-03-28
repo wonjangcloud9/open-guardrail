@@ -1,4 +1,5 @@
 """Mexican PII detection and masking guard."""
+from __future__ import annotations
 
 import re
 import time

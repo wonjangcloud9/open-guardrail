@@ -1,4 +1,5 @@
 """Detects common misinformation patterns in text."""
+from __future__ import annotations
 
 import re
 import time

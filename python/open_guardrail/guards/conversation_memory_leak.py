@@ -1,4 +1,5 @@
 """Detect leaked conversation context."""
+from __future__ import annotations
 
 import time
 

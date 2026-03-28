@@ -1,4 +1,5 @@
 """Korean AI Basic Act compliance guard (2026.1.22 시행)."""
+from __future__ import annotations
 
 import re
 import time

@@ -1,4 +1,5 @@
 """Detect age-restricted content markers."""
+from __future__ import annotations
 
 import re
 import time

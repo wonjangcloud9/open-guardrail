@@ -1,4 +1,5 @@
 """Detect overly complex prompts that may be adversarial."""
+from __future__ import annotations
 
 import re
 import time

@@ -1,4 +1,5 @@
 """Detect timezone-related issues in text."""
+from __future__ import annotations
 
 import re
 import time

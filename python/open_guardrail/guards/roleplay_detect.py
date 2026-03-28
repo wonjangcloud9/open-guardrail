@@ -1,4 +1,5 @@
 """Detect roleplay and persona manipulation."""
+from __future__ import annotations
 
 import re
 import time

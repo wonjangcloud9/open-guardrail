@@ -1,4 +1,5 @@
 """Flesch-Kincaid grade level guard."""
+from __future__ import annotations
 
 import re
 import time

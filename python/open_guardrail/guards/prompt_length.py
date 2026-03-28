@@ -1,4 +1,5 @@
 """Check prompt character length bounds."""
+from __future__ import annotations
 
 import time
 

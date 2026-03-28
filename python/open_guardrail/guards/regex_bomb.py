@@ -1,4 +1,5 @@
 """Detect ReDoS (Regular Expression Denial of Service) patterns."""
+from __future__ import annotations
 
 import re
 import time

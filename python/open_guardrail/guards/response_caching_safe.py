@@ -1,4 +1,5 @@
 """Detect responses unsafe for caching."""
+from __future__ import annotations
 
 import re
 import time

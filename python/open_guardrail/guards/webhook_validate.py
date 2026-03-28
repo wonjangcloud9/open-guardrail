@@ -1,4 +1,5 @@
 """Validate webhook requests for integrity."""
+from __future__ import annotations
 
 import re
 import time

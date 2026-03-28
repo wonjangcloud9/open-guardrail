@@ -1,4 +1,5 @@
 """Detects mixed language usage with allowed pairs."""
+from __future__ import annotations
 
 import time
 from typing import Dict, List, Optional

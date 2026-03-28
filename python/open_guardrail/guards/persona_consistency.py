@@ -1,4 +1,5 @@
 """Detect AI breaking character or persona."""
+from __future__ import annotations
 
 import re
 import time

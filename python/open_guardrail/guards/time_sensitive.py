@@ -1,4 +1,5 @@
 """Detects time-sensitive claims in text."""
+from __future__ import annotations
 
 import re
 import time

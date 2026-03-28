@@ -1,4 +1,5 @@
 """IP address detection and blocking guard."""
+from __future__ import annotations
 
 import re
 import time

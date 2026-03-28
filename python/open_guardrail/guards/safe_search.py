@@ -1,4 +1,5 @@
 """Safe search guard for AI-powered search."""
+from __future__ import annotations
 
 import re
 import time

@@ -1,4 +1,5 @@
 """Semantic deduplication guard using trigram similarity."""
+from __future__ import annotations
 
 import time
 from typing import List, Optional, Set

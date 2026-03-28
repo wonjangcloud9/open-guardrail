@@ -1,4 +1,5 @@
 """Validate numbers are within allowed range."""
+from __future__ import annotations
 
 import re
 import time

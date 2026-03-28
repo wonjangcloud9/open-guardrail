@@ -1,4 +1,5 @@
 """Detect if output was likely truncated or incomplete."""
+from __future__ import annotations
 
 import re
 import time

@@ -1,4 +1,5 @@
 """Validate response structure for balanced brackets and formatting."""
+from __future__ import annotations
 
 import re
 import time

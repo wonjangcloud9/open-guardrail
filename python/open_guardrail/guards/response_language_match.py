@@ -1,4 +1,5 @@
 """Check response language matches input language."""
+from __future__ import annotations
 
 import re
 import time

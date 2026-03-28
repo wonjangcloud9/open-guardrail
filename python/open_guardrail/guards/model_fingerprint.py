@@ -1,4 +1,5 @@
 """Detects AI model fingerprint phrases."""
+from __future__ import annotations
 
 import re
 import time

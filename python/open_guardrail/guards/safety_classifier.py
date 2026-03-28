@@ -1,4 +1,5 @@
 """Multi-category safety classifier for harmful content."""
+from __future__ import annotations
 
 import re
 import time

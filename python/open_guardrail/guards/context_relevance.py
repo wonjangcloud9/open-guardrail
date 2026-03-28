@@ -1,4 +1,5 @@
 """Checks if response is relevant to the query."""
+from __future__ import annotations
 
 import re
 import time

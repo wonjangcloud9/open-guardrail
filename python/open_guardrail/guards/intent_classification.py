@@ -1,4 +1,5 @@
 """Classify user intent and restrict."""
+from __future__ import annotations
 
 import re
 import time

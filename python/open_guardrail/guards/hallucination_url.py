@@ -1,4 +1,5 @@
 """Detect hallucinated URLs in LLM output."""
+from __future__ import annotations
 
 import math
 import re

@@ -1,4 +1,5 @@
 """Detect data poisoning / model manipulation attempts."""
+from __future__ import annotations
 
 import time
 

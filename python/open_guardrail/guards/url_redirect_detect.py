@@ -1,4 +1,5 @@
 """Detect URL redirect attacks including open redirects and SSRF."""
+from __future__ import annotations
 
 import re
 import time

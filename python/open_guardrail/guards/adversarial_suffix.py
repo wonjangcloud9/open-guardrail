@@ -1,4 +1,5 @@
 """Detects adversarial suffix attacks via entropy analysis."""
+from __future__ import annotations
 
 import math
 import time

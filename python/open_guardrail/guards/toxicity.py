@@ -1,4 +1,5 @@
 """Keyword-based toxicity detection guard."""
+from __future__ import annotations
 
 import re
 import time

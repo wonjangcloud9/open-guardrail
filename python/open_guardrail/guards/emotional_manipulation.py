@@ -1,4 +1,5 @@
 """Detect emotional manipulation patterns."""
+from __future__ import annotations
 
 import re
 import time

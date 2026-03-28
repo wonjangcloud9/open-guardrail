@@ -1,4 +1,5 @@
 """Detect context window abuse: padding, many-shot, dilution."""
+from __future__ import annotations
 
 import re
 import time

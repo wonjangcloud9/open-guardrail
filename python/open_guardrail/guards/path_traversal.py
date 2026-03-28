@@ -1,4 +1,5 @@
 """Detects path traversal attack patterns."""
+from __future__ import annotations
 
 import re
 import time

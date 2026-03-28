@@ -1,4 +1,5 @@
 """Validates function-call JSON against a schema of required params and types."""
+from __future__ import annotations
 
 import json
 import re

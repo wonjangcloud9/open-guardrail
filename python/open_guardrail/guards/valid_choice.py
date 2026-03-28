@@ -1,4 +1,5 @@
 """Validate text is one of allowed choices."""
+from __future__ import annotations
 
 import time
 from typing import List

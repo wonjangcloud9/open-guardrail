@@ -1,4 +1,5 @@
 """Validates structured JSON output against field rules."""
+from __future__ import annotations
 
 import json
 import time

@@ -1,4 +1,5 @@
 """Phone number format detection guard."""
+from __future__ import annotations
 
 import re
 import time

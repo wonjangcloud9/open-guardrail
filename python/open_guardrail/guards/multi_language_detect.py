@@ -1,4 +1,5 @@
 """Detect which language scripts are present."""
+from __future__ import annotations
 
 import re
 import time

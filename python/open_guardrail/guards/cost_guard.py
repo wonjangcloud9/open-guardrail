@@ -1,4 +1,5 @@
 """Estimates token cost and blocks if over budget."""
+from __future__ import annotations
 
 import time
 from typing import Optional

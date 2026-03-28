@@ -1,4 +1,5 @@
 """Detects HIPAA PHI such as MRN, diagnosis codes, medications, and lab results."""
+from __future__ import annotations
 
 import re
 import time

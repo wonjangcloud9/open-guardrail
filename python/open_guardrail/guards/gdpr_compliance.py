@@ -1,4 +1,5 @@
 """GDPR compliance guard for data protection violations."""
+from __future__ import annotations
 
 import re
 import time

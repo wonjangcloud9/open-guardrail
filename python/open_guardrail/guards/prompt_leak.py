@@ -1,4 +1,5 @@
 """Detect leaked system prompt patterns."""
+from __future__ import annotations
 
 import time
 

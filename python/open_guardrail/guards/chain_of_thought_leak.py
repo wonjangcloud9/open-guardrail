@@ -1,4 +1,5 @@
 """Detects chain-of-thought reasoning leaks in output."""
+from __future__ import annotations
 
 import re
 import time

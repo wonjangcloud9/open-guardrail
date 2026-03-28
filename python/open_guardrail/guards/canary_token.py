@@ -1,4 +1,5 @@
 """Detect system prompt leakage via canary tokens."""
+from __future__ import annotations
 
 import time
 

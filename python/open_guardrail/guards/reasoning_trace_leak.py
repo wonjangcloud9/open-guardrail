@@ -1,4 +1,5 @@
 """Detect LLM reasoning traces leaking into output."""
+from __future__ import annotations
 
 import re
 import time

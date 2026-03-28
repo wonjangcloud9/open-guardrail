@@ -1,4 +1,5 @@
 """Detect sensitive content in meeting transcripts."""
+from __future__ import annotations
 
 import re
 import time

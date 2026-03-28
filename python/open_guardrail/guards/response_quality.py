@@ -1,4 +1,5 @@
 """Checks response quality heuristics."""
+from __future__ import annotations
 
 import re
 import time

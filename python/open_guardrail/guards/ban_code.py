@@ -1,4 +1,5 @@
 """Detect and block code blocks in text."""
+from __future__ import annotations
 
 import re
 import time

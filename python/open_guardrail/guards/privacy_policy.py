@@ -1,4 +1,5 @@
 """Privacy policy compliance checking."""
+from __future__ import annotations
 
 import re
 import time

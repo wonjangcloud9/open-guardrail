@@ -1,4 +1,5 @@
 """Detects consent withdrawal and data deletion requests."""
+from __future__ import annotations
 
 import re
 import time

@@ -1,4 +1,5 @@
 """Validate API version references and detect deprecated versions."""
+from __future__ import annotations
 
 import re
 import time

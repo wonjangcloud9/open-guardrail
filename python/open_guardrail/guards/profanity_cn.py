@@ -1,4 +1,5 @@
 """Chinese profanity detection with pinyin variants."""
+from __future__ import annotations
 
 import re
 import time

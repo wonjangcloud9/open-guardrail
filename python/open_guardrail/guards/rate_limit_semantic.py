@@ -1,4 +1,5 @@
 """Semantic rate limiting using trigram similarity."""
+from __future__ import annotations
 
 import re
 import time

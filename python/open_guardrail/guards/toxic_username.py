@@ -1,4 +1,5 @@
 """Detects toxic or offensive usernames."""
+from __future__ import annotations
 
 import re
 import time

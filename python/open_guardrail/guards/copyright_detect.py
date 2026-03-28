@@ -1,4 +1,5 @@
 """Detects copyright-related content in text."""
+from __future__ import annotations
 
 import re
 import time

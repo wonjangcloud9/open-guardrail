@@ -1,4 +1,5 @@
 """Detect or require source attribution."""
+from __future__ import annotations
 
 import re
 import time

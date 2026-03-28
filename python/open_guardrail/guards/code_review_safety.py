@@ -1,4 +1,5 @@
 """Detect unsafe patterns in code review."""
+from __future__ import annotations
 
 import re
 import time

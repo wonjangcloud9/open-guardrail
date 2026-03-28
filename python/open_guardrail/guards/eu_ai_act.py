@@ -1,4 +1,5 @@
 """EU AI Act compliance guard for risk classification."""
+from __future__ import annotations
 
 import re
 import time

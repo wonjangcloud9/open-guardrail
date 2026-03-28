@@ -1,4 +1,5 @@
 """Checks that redaction markers and raw PII do not coexist."""
+from __future__ import annotations
 
 import re
 import time

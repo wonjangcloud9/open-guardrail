@@ -1,4 +1,5 @@
 """Detect denial-of-service patterns."""
+from __future__ import annotations
 
 import re
 import time

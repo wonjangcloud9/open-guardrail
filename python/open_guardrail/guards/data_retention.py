@@ -1,4 +1,5 @@
 """Detect data retention policy language."""
+from __future__ import annotations
 
 import re
 import time

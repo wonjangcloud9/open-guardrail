@@ -1,4 +1,5 @@
 """Detect PII in sensitive sharing contexts."""
+from __future__ import annotations
 
 import re
 import time

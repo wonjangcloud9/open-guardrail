@@ -1,4 +1,5 @@
 """Detect supply chain attack patterns in code snippets."""
+from __future__ import annotations
 
 import re
 import time

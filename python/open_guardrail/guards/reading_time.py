@@ -1,4 +1,5 @@
 """Estimate and limit reading time."""
+from __future__ import annotations
 
 import time
 from typing import Optional

@@ -1,4 +1,5 @@
 """Track multi-turn conversation context."""
+from __future__ import annotations
 
 import time
 

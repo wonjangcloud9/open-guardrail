@@ -1,4 +1,5 @@
 """Detects encoding-based attacks (base64, hex, unicode escapes)."""
+from __future__ import annotations
 
 import re
 import time
