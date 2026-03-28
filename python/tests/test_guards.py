@@ -73,6 +73,12 @@ from open_guardrail.guards import (
     profanity_vi, profanity_id, profanity_th,
     fact_check_signal, tone_professional, data_classification,
     response_length_limit, link_safety, audit_trail, sensitive_topic,
+    profanity_sv, profanity_da, profanity_fi,
+    prompt_complexity, output_truncation, citation_verify,
+    math_safety, language_ko, language_ja, language_zh,
+    auth_token_detect, env_var_leak, regex_bomb,
+    xml_injection, ldap_injection, nosql_injection,
+    template_injection, response_freshness, unicode_safety, cve_detect,
 )
 
 
@@ -2861,4 +2867,220 @@ class TestSensitiveTopic:
     def test_clean(self):
         g = sensitive_topic(action="warn")
         r = g.check("The weather is nice today")
+        assert r.passed
+
+
+class TestProfanitySv:
+    def test_detects(self):
+        g = profanity_sv(action="block")
+        r = g.check("Du är jävla idiot")
+        assert not r.passed
+    def test_clean(self):
+        g = profanity_sv(action="block")
+        r = g.check("God morgon, hur mår du?")
+        assert r.passed
+
+
+class TestProfanityDa:
+    def test_detects(self):
+        g = profanity_da(action="block")
+        r = g.check("Din lort af en idiot")
+        assert not r.passed
+    def test_clean(self):
+        g = profanity_da(action="block")
+        r = g.check("Godmorgen, hvordan har du det?")
+        assert r.passed
+
+
+class TestProfanityFi:
+    def test_detects(self):
+        g = profanity_fi(action="block")
+        r = g.check("Voi vittu perkele")
+        assert not r.passed
+    def test_clean(self):
+        g = profanity_fi(action="block")
+        r = g.check("Hyvää huomenta, mitä kuuluu?")
+        assert r.passed
+
+
+class TestPromptComplexity:
+    def test_detects(self):
+        g = prompt_complexity(action="warn")
+        r = g.check("(((((" * 50 + ")))))" * 50)
+        assert not r.passed
+    def test_clean(self):
+        g = prompt_complexity(action="warn")
+        r = g.check("What is the weather today?")
+        assert r.passed
+
+
+class TestOutputTruncation:
+    def test_detects(self):
+        g = output_truncation(action="warn")
+        r = g.check("The answer is")
+        assert not r.passed
+    def test_clean(self):
+        g = output_truncation(action="warn")
+        r = g.check("The answer is 42.")
+        assert r.passed
+
+
+class TestCitationVerify:
+    def test_allows_clean(self):
+        g = citation_verify(action="warn")
+        r = g.check("No citations needed here.")
+        assert r.passed
+
+
+class TestMathSafety:
+    def test_detects_div_zero(self):
+        g = math_safety(action="warn")
+        r = g.check("Calculate x / 0 for the result")
+        assert not r.passed
+    def test_clean(self):
+        g = math_safety(action="warn")
+        r = g.check("The sum is 2 + 3 = 5")
+        assert r.passed
+
+
+class TestLanguageKo:
+    def test_detects_korean(self):
+        g = language_ko(action="warn")
+        r = g.check("안녕하세요 반갑습니다")
+        assert r.passed  # Korean detected, passes
+    def test_blocks_non_korean(self):
+        g = language_ko(action="warn")
+        r = g.check("Hello world")
+        assert not r.passed  # Not Korean, fails
+
+
+class TestLanguageJa:
+    def test_detects(self):
+        g = language_ja(action="warn")
+        r = g.check("こんにちは世界")
+        assert r.passed
+    def test_blocks_non_ja(self):
+        g = language_ja(action="warn")
+        r = g.check("Hello world")
+        assert not r.passed
+
+
+class TestLanguageZh:
+    def test_detects(self):
+        g = language_zh(action="warn")
+        r = g.check("你好世界欢迎光临")
+        assert r.passed
+    def test_blocks_non_zh(self):
+        g = language_zh(action="warn")
+        r = g.check("Hello world")
+        assert not r.passed
+
+
+class TestAuthTokenDetect:
+    def test_detects_jwt(self):
+        g = auth_token_detect(action="block")
+        r = g.check("Token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4ifQ.abc123")
+        assert not r.passed
+    def test_clean(self):
+        g = auth_token_detect(action="block")
+        r = g.check("Please authenticate to continue")
+        assert r.passed
+
+
+class TestEnvVarLeak:
+    def test_detects(self):
+        g = env_var_leak(action="block")
+        r = g.check("DATABASE_URL=postgres://user:pass@host/db")
+        assert not r.passed
+    def test_clean(self):
+        g = env_var_leak(action="block")
+        r = g.check("The database is running normally")
+        assert r.passed
+
+
+class TestRegexBomb:
+    def test_detects(self):
+        g = regex_bomb(action="block")
+        r = g.check("Use pattern (a+)+ to match")
+        assert not r.passed
+    def test_clean(self):
+        g = regex_bomb(action="block")
+        r = g.check("Use simple regex [a-z]+")
+        assert r.passed
+
+
+class TestXmlInjection:
+    def test_detects(self):
+        g = xml_injection(action="block")
+        r = g.check('<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>')
+        assert not r.passed
+    def test_clean(self):
+        g = xml_injection(action="block")
+        r = g.check("<user><name>John</name></user>")
+        assert r.passed
+
+
+class TestLdapInjection:
+    def test_detects(self):
+        g = ldap_injection(action="block")
+        r = g.check("Search: )(&(uid=*)(userPassword=*))")
+        assert not r.passed
+    def test_clean(self):
+        g = ldap_injection(action="block")
+        r = g.check("Search for user John")
+        assert r.passed
+
+
+class TestNosqlInjection:
+    def test_detects(self):
+        g = nosql_injection(action="block")
+        r = g.check('{"username": {"$ne": null}}')
+        assert not r.passed
+    def test_clean(self):
+        g = nosql_injection(action="block")
+        r = g.check("Find user by name John")
+        assert r.passed
+
+
+class TestTemplateInjection:
+    def test_detects(self):
+        g = template_injection(action="block")
+        r = g.check("Hello {{7*7}}")
+        assert not r.passed
+    def test_clean(self):
+        g = template_injection(action="block")
+        r = g.check("Hello World")
+        assert r.passed
+
+
+class TestResponseFreshness:
+    def test_detects_stale(self):
+        g = response_freshness(action="warn")
+        r = g.check("As of 2019, the president is...")
+        assert not r.passed
+    def test_clean(self):
+        g = response_freshness(action="warn")
+        r = g.check("The latest information shows growth")
+        assert r.passed
+
+
+class TestUnicodeSafety:
+    def test_detects_bidi(self):
+        g = unicode_safety(action="block")
+        r = g.check("Hello \u202a\u202b world")
+        assert not r.passed
+    def test_clean(self):
+        g = unicode_safety(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestCveDetect:
+    def test_detects(self):
+        g = cve_detect(action="warn")
+        r = g.check("Affected by CVE-2024-12345")
+        assert not r.passed
+    def test_clean(self):
+        g = cve_detect(action="warn")
+        r = g.check("The system is fully patched")
         assert r.passed

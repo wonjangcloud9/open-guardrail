@@ -1,6 +1,6 @@
 # Guards Overview
 
-open-guardrail ships with **270 built-in guards** across 10 categories — the most comprehensive guardrail library available.
+open-guardrail ships with **300 built-in guards** across 10 categories — the most comprehensive guardrail library available.
 
 Every guard follows the same pattern:
 

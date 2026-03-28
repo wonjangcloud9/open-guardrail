@@ -237,6 +237,26 @@ from open_guardrail.guards.response_length_limit import response_length_limit
 from open_guardrail.guards.link_safety import link_safety
 from open_guardrail.guards.audit_trail import audit_trail
 from open_guardrail.guards.sensitive_topic import sensitive_topic
+from open_guardrail.guards.auth_token_detect import auth_token_detect
+from open_guardrail.guards.env_var_leak import env_var_leak
+from open_guardrail.guards.regex_bomb import regex_bomb
+from open_guardrail.guards.xml_injection import xml_injection
+from open_guardrail.guards.ldap_injection import ldap_injection
+from open_guardrail.guards.nosql_injection import nosql_injection
+from open_guardrail.guards.template_injection import template_injection
+from open_guardrail.guards.response_freshness import response_freshness
+from open_guardrail.guards.unicode_safety import unicode_safety
+from open_guardrail.guards.cve_detect import cve_detect
+from open_guardrail.guards.profanity_sv import profanity_sv
+from open_guardrail.guards.profanity_da import profanity_da
+from open_guardrail.guards.profanity_fi import profanity_fi
+from open_guardrail.guards.prompt_complexity import prompt_complexity
+from open_guardrail.guards.output_truncation import output_truncation
+from open_guardrail.guards.citation_verify import citation_verify
+from open_guardrail.guards.math_safety import math_safety
+from open_guardrail.guards.language_ko import language_ko
+from open_guardrail.guards.language_ja import language_ja
+from open_guardrail.guards.language_zh import language_zh
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -317,4 +337,11 @@ __all__ = [
     "fact_check_signal", "tone_professional",
     "data_classification", "response_length_limit",
     "link_safety", "audit_trail", "sensitive_topic",
+    "auth_token_detect", "env_var_leak", "regex_bomb",
+    "xml_injection", "ldap_injection", "nosql_injection",
+    "template_injection", "response_freshness",
+    "unicode_safety", "cve_detect",
+    "profanity_sv", "profanity_da", "profanity_fi",
+    "prompt_complexity", "output_truncation", "citation_verify",
+    "math_safety", "language_ko", "language_ja", "language_zh",
 ]
