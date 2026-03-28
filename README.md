@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">open-guardrail</h1>
-  <p align="center"><strong>Guardrail engine for LLM apps. 229 guards. Zero API calls. <0.1ms.</strong></p>
+  <p align="center"><strong>Guardrail engine for LLM apps. 241 guards. Zero API calls. <0.1ms.</strong></p>
 </p>
 
 <p align="center">
@@ -10,7 +10,7 @@
   <a href="https://github.com/wonjangcloud9/open-guardrail/stargazers"><img src="https://img.shields.io/github/stars/wonjangcloud9/open-guardrail?style=social" alt="GitHub stars"></a>
   <a href="https://github.com/wonjangcloud9/open-guardrail/actions"><img src="https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/wonjangcloud9/open-guardrail" alt="License"></a>
-  <img src="https://img.shields.io/badge/guards-229-blue" alt="guards">
+  <img src="https://img.shields.io/badge/guards-241-blue" alt="guards">
   <img src="https://img.shields.io/badge/PII_regions-26-orange" alt="PII">
 </p>
 
@@ -50,7 +50,7 @@ pip install open-guardrail    # Python
 
 |  | open-guardrail | Guardrails AI | NeMo Guardrails | LLM Guard |
 |--|:-:|:-:|:-:|:-:|
-| **Built-in guards** | **229** | 50+ | 10+ | 30+ |
+| **Built-in guards** | **241** | 50+ | 10+ | 30+ |
 | **PII regions** | **26** (EN/KO/JA/ZH/TH/AR/HI/EU + 18 more) | 1 | 1 | 1 |
 | **Language** | **TS/JS + Python** | Python | Python | Python |
 | **Latency** | **<0.1ms** | 100ms+ | 100ms+ | 50ms+ |
@@ -113,11 +113,11 @@ pipelines:
           entities: [email, phone]
 ```
 
-## 229 Built-in Guards
+## 241 Built-in Guards
 
-### Security (39)
+### Security (41)
 
-`promptInjection` `indirectInjection` `sqlInjection` `xssGuard` `codeSafety` `encodingAttack` `invisibleText` `dataLeakage` `dataExfiltration` `canaryToken` `markdownSanitize` `multiTurnContext` `urlGuard` `ipGuard` `apiKeyDetect` `secretPattern` `keyword` `regex` `regexDeny` `regexAllow` `toolCallValidator` `pathTraversal` `ssrfDetect` `commandInjection` `jailbreakPattern` `dataPoisoning` `promptLeak` `socialEngineering` `unicodeConfusable` `asciiArt` `semanticFirewall` `multimodalSafety` `ragSafety` `tokenSmuggling` `promptChaining` `outputFilterBypass` `modelDenial` `agentPermission` `privacyPolicy`
+`promptInjection` `indirectInjection` `sqlInjection` `xssGuard` `codeSafety` `encodingAttack` `invisibleText` `dataLeakage` `dataExfiltration` `canaryToken` `markdownSanitize` `multiTurnContext` `urlGuard` `ipGuard` `apiKeyDetect` `secretPattern` `keyword` `regex` `regexDeny` `regexAllow` `toolCallValidator` `pathTraversal` `ssrfDetect` `commandInjection` `jailbreakPattern` `dataPoisoning` `promptLeak` `socialEngineering` `unicodeConfusable` `asciiArt` `semanticFirewall` `multimodalSafety` `ragSafety` `tokenSmuggling` `promptChaining` `outputFilterBypass` `modelDenial` `agentPermission` `supplyChainDetect` `instructionHierarchy` `contextWindowAbuse`
 
 ### Privacy (33) — 26 PII regions
 
@@ -139,9 +139,9 @@ pipelines:
 
 `wordCount` `contentLength` `tokenLimit` `schemaGuard` `jsonRepair` `jsonOutput` `repetitionDetect` `validRange` `validChoice` `singleLine` `caseValidation` `dateFormat` `numberFormat` `outputFormat` `markdownStructure` `promptLength` `payloadSize`
 
-### AI Delegation (4)
+### AI Delegation (10)
 
-`llmJudge` `hallucination` `relevance` `groundedness`
+`llmJudge` `hallucination` `relevance` `groundedness` `reasoningTraceLeak` `hallucinationUrl` `personaConsistency` `confidenceScore` `contentWatermark` `rateLimitSemantic`
 
 ### Agent Safety (12)
 
@@ -177,9 +177,29 @@ const brandSafety = createKeywordGuard({ name: 'brand', action: 'block', denied:
 const maskOrder = createRegexGuard({ name: 'order', action: 'mask', patterns: [/ORD-\d+/g], maskLabel: '[ORDER]' });
 ```
 
-## 19 Presets
+## Agent Safety (NEW)
 
-`default` `strict` `korean` `japanese` `chinese` `security` `full-security` `privacy-first` `content` `gdpr` `healthcare` `healthcare-kr` `finance` `enterprise` `ai-basic-act-kr` `eu-ai-act` `agent-safety` `rag-safety` `multi-agent`
+```typescript
+import {
+  agentLoopDetect, toolAbuse, agentPermission,
+  indirectInjection, tokenSmuggling, dataExfiltration,
+  compose
+} from 'open-guardrail';
+
+// Protect your AI agent in 1 line
+const agentGuard = compose('agent-safety',
+  agentLoopDetect({ action: 'block', maxRepetitions: 3 }),
+  toolAbuse({ action: 'block', maxCallsInWindow: 20, windowMs: 60000 }),
+  agentPermission({ action: 'block', deniedActions: ['sudo', 'rm -rf', 'DROP TABLE'] }),
+  indirectInjection({ action: 'block' }),
+  tokenSmuggling({ action: 'block' }),
+  dataExfiltration({ action: 'block' }),
+);
+```
+
+## 20 Presets
+
+`default` `strict` `korean` `japanese` `chinese` `security` `full-security` `privacy-first` `content` `gdpr` `healthcare` `healthcare-kr` `finance` `enterprise` `ai-basic-act-kr` `eu-ai-act` `agent-safety` `rag-safety` `multi-agent` `compliance-full`
 
 ## 8 SDK Adapters
 

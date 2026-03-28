@@ -192,6 +192,12 @@ from open_guardrail.guards.ferpa_detect import ferpa_detect
 from open_guardrail.guards.content_watermark import content_watermark
 from open_guardrail.guards.supply_chain_detect import supply_chain_detect
 from open_guardrail.guards.rate_limit_semantic import rate_limit_semantic
+from open_guardrail.guards.reasoning_trace_leak import reasoning_trace_leak
+from open_guardrail.guards.hallucination_url import hallucination_url
+from open_guardrail.guards.persona_consistency import persona_consistency
+from open_guardrail.guards.instruction_hierarchy import instruction_hierarchy
+from open_guardrail.guards.context_window_abuse import context_window_abuse
+from open_guardrail.guards.confidence_score import confidence_score
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -254,4 +260,7 @@ __all__ = [
     "model_denial", "privacy_policy", "output_filter_bypass",
     "pci_dss_detect", "sox_compliance", "ferpa_detect",
     "content_watermark", "supply_chain_detect", "rate_limit_semantic",
+    "reasoning_trace_leak", "hallucination_url",
+    "persona_consistency", "instruction_hierarchy",
+    "context_window_abuse", "confidence_score",
 ]

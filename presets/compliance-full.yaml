@@ -1,0 +1,78 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: indirect-injection
+        action: block
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn]
+      - type: pii-kr
+        action: mask
+        config:
+          entities: [passport, resident-id, phone, driver-license]
+      - type: gdpr-compliance
+        action: warn
+      - type: eu-ai-act
+        action: warn
+        config:
+          riskLevel: high
+      - type: ai-basic-act-kr
+        action: warn
+        config:
+          highImpact: true
+      - type: isms-p
+        action: warn
+      - type: pipa
+        action: warn
+      - type: hipaa-detect
+        action: block
+      - type: pci-dss-detect
+        action: block
+        config:
+          maskCards: true
+      - type: ferpa-detect
+        action: warn
+      - type: privacy-policy
+        action: warn
+        config:
+          checkCoppa: true
+          checkCcpa: true
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn]
+      - type: data-leakage
+        action: block
+      - type: api-key-detect
+        action: block
+      - type: secret-pattern
+        action: block
+      - type: sox-compliance
+        action: warn
+      - type: gdpr-compliance
+        action: warn
+      - type: data-minimization
+        action: warn
+      - type: consent-withdrawal
+        action: warn
+      - type: ai-disclosure
+        action: warn
+      - type: disclaimer-require
+        action: warn
+      - type: content-watermark
+        action: allow
+        config:
+          watermarkId: og
+      - type: compliance-audit-log
+        action: allow
