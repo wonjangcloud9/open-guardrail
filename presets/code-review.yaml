@@ -1,0 +1,35 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: indirect-injection
+        action: block
+      - type: code-review-safety
+        action: block
+      - type: supply-chain-detect
+        action: block
+      - type: copyright-code
+        action: warn
+      - type: code-safety
+        action: warn
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: api-key-detect
+        action: block
+      - type: secret-pattern
+        action: block
+      - type: code-safety
+        action: warn
+      - type: copyright-code
+        action: warn
+      - type: data-leakage
+        action: block
+      - type: reasoning-trace-leak
+        action: warn

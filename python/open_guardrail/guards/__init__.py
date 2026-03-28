@@ -227,6 +227,16 @@ from open_guardrail.guards.encoding_normalize import encoding_normalize
 from open_guardrail.guards.copyright_code import copyright_code
 from open_guardrail.guards.bias_gender import bias_gender
 from open_guardrail.guards.bias_age import bias_age
+from open_guardrail.guards.profanity_vi import profanity_vi
+from open_guardrail.guards.profanity_id import profanity_id
+from open_guardrail.guards.profanity_th import profanity_th
+from open_guardrail.guards.fact_check_signal import fact_check_signal
+from open_guardrail.guards.tone_professional import tone_professional
+from open_guardrail.guards.data_classification import data_classification
+from open_guardrail.guards.response_length_limit import response_length_limit
+from open_guardrail.guards.link_safety import link_safety
+from open_guardrail.guards.audit_trail import audit_trail
+from open_guardrail.guards.sensitive_topic import sensitive_topic
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -303,4 +313,8 @@ __all__ = [
     "content_policy", "output_consistency",
     "input_length_anomaly", "encoding_normalize",
     "copyright_code", "bias_gender", "bias_age",
+    "profanity_vi", "profanity_id", "profanity_th",
+    "fact_check_signal", "tone_professional",
+    "data_classification", "response_length_limit",
+    "link_safety", "audit_trail", "sensitive_topic",
 ]

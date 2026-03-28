@@ -70,6 +70,9 @@ from open_guardrail.guards import (
     profanity_tr, profanity_nl, profanity_pl, content_policy,
     output_consistency, input_length_anomaly, encoding_normalize,
     copyright_code, bias_gender, bias_age,
+    profanity_vi, profanity_id, profanity_th,
+    fact_check_signal, tone_professional, data_classification,
+    response_length_limit, link_safety, audit_trail, sensitive_topic,
 )
 
 
@@ -2738,4 +2741,124 @@ class TestBiasAge:
     def test_clean(self):
         g = bias_age(action="warn")
         r = g.check("Candidates of all experience levels are welcome")
+        assert r.passed
+
+
+class TestProfanityVi:
+    def test_detects(self):
+        g = profanity_vi(action="block")
+        r = g.check("đồ ngu ngốc")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_vi(action="block")
+        r = g.check("Xin chào, bạn khỏe không?")
+        assert r.passed
+
+
+class TestProfanityId:
+    def test_detects(self):
+        g = profanity_id(action="block")
+        r = g.check("Dasar anjing kamu")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_id(action="block")
+        r = g.check("Selamat pagi, apa kabar?")
+        assert r.passed
+
+
+class TestProfanityTh:
+    def test_detects(self):
+        g = profanity_th(action="block")
+        r = g.check("ไอ้บ้า ไปไหนมา")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_th(action="block")
+        r = g.check("สวัสดีครับ สบายดีไหม")
+        assert r.passed
+
+
+class TestFactCheckSignal:
+    def test_detects_unverified(self):
+        g = fact_check_signal(action="warn", max_unverified_claims=1)
+        r = g.check("Studies show that 95% of users prefer this")
+        assert not r.passed
+
+    def test_clean(self):
+        g = fact_check_signal(action="warn")
+        r = g.check("Here is a summary of the document")
+        assert r.passed
+
+
+class TestToneProfessional:
+    def test_detects_slang(self):
+        g = tone_professional(action="warn")
+        r = g.check("lol this is so cool tbh omg")
+        assert not r.passed
+
+    def test_clean(self):
+        g = tone_professional(action="warn")
+        r = g.check("Thank you for your inquiry. We will respond shortly.")
+        assert r.passed
+
+
+class TestDataClassification:
+    def test_detects_confidential(self):
+        g = data_classification(action="block")
+        r = g.check("This document is classified as top secret")
+        assert not r.passed
+
+    def test_clean(self):
+        g = data_classification(action="block")
+        r = g.check("This is a public announcement")
+        assert r.passed
+
+
+class TestResponseLengthLimit:
+    def test_detects_too_short(self):
+        g = response_length_limit(action="warn", min_words=5)
+        r = g.check("OK", stage="output")
+        assert not r.passed
+
+    def test_clean(self):
+        g = response_length_limit(action="warn")
+        r = g.check("The report shows quarterly growth of 15%.", stage="output")
+        assert r.passed
+
+
+class TestLinkSafety:
+    def test_detects_shortened(self):
+        g = link_safety(action="block")
+        r = g.check("Visit http://bit.ly/abc123 for details")
+        assert not r.passed
+
+    def test_clean(self):
+        g = link_safety(action="block")
+        r = g.check("Visit https://example.com for details")
+        assert r.passed
+
+
+class TestAuditTrail:
+    def test_always_passes(self):
+        g = audit_trail()
+        r = g.check("Any response text", stage="output")
+        assert r.passed
+
+    def test_has_details(self):
+        g = audit_trail(include_timestamp=True)
+        r = g.check("Some text", stage="output")
+        assert r.details is not None
+
+
+class TestSensitiveTopic:
+    def test_detects_sensitive(self):
+        g = sensitive_topic(action="warn")
+        r = g.check("The election results and partisan debate in congress")
+        assert not r.passed
+
+    def test_clean(self):
+        g = sensitive_topic(action="warn")
+        r = g.check("The weather is nice today")
         assert r.passed

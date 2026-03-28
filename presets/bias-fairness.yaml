@@ -1,0 +1,35 @@
+version: "1"
+pipelines:
+  input:
+    mode: run-all
+    onError: warn
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+  output:
+    mode: run-all
+    onError: warn
+    guards:
+      - type: bias
+        action: warn
+      - type: bias-gender
+        action: warn
+      - type: bias-age
+        action: warn
+      - type: stereotype-detect
+        action: warn
+      - type: geographic-bias
+        action: warn
+      - type: cultural-sensitivity
+        action: warn
+      - type: hate-speech
+        action: block
+      - type: emotional-manipulation
+        action: warn
+      - type: persona-consistency
+        action: warn
+      - type: tone-check
+        action: warn
+        config:
+          allowedTones: ["professional", "neutral", "friendly"]

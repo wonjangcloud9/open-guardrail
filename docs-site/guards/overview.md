@@ -1,6 +1,6 @@
 # Guards Overview
 
-open-guardrail ships with **38 built-in guards** across 8 categories.
+open-guardrail ships with **270 built-in guards** across 10 categories — the most comprehensive guardrail library available.
 
 Every guard follows the same pattern:
 
@@ -13,14 +13,16 @@ const result = await guard.check(text, context);
 
 | Category | Guards | Description |
 |----------|-------:|-------------|
-| [Security](/guards/security) | 8 | Injection, keywords, regex, data leakage, code safety, encoding attack, markdown sanitize, API key detect |
-| [Privacy](/guards/privacy) | 1 | PII detection and masking |
-| [Content](/guards/content) | 9 | Toxicity, bias, language, sentiment, copyright, URL, repetition, response quality, language consistency |
-| [Format](/guards/format) | 2 | Word count, JSON schema validation |
-| [AI Delegation](/guards/ai-delegation) | 4 | LLM-based judging, hallucination, relevance, groundedness |
-| [Operational](/guards/operational) | 4 | Cost, rate limit, data leakage, sentiment |
-| [Agent Safety](/guards/agent-safety) | 2 | Tool call validation, code safety |
-| [Korean / ISMS-P](/guards/korean) | 6 | Korean PII, profanity, resident ID, credit info, ISMS-P, PIPA |
+| [Security](/guards/security) | 41 | Prompt injection, indirect injection, SQL/XSS/SSRF, token smuggling, semantic firewall, supply chain, model DoS |
+| [Privacy](/guards/privacy) | 35 | 26 PII regions + medical PII, financial PII, data leakage, contact info |
+| [Content](/guards/content) | 38 | Profanity in 13 languages, toxicity, bias (gender/age), hate speech, copyright |
+| Compliance | 27 | GDPR, EU AI Act, Korean AI Basic Act, ISMS-P, PIPA, PCI DSS, SOX, FERPA, HIPAA, COPPA |
+| [Format](/guards/format) | 17 | JSON schema, word count, token limit, markdown, date/number format |
+| [AI Delegation](/guards/ai-delegation) | 10 | Hallucination, reasoning trace leak, persona consistency, confidence score, content watermark |
+| [Agent Safety](/guards/agent-safety) | 12 | Agent loop, tool abuse, permission, recursion, RAG poisoning, multi-agent |
+| Detection | 13 | Spam, deepfake, propaganda, misinformation, child safety |
+| [Operational](/guards/operational) | 15 | Cost guard, rate limit, response quality, API rate guard |
+| [Korean / ISMS-P](/guards/korean) | 8+ | Korean PII, profanity, resident ID, credit info, ISMS-P, PIPA, AI Basic Act |
 
 ## Common Options
 

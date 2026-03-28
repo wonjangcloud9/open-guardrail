@@ -1,0 +1,53 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: indirect-injection
+        action: block
+      - type: jailbreak-pattern
+        action: block
+      - type: token-smuggling
+        action: block
+      - type: toxicity
+        action: block
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn]
+      - type: input-length-anomaly
+        action: warn
+        config:
+          maxLength: 10000
+      - type: model-denial
+        action: block
+  output:
+    mode: run-all
+    onError: warn
+    guards:
+      - type: pii
+        action: mask
+        config:
+          entities: [email, phone, credit-card, ssn]
+      - type: hallucination-url
+        action: warn
+      - type: persona-consistency
+        action: warn
+      - type: reasoning-trace-leak
+        action: block
+      - type: confidence-score
+        action: warn
+        config:
+          maxHedging: 5
+      - type: profanity-en
+        action: block
+      - type: medical-advice
+        action: warn
+      - type: financial-advice
+        action: warn
+      - type: legal-advice
+        action: warn
