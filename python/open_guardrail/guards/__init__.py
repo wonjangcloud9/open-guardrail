@@ -327,6 +327,16 @@ from open_guardrail.guards.bullet_consistency import bullet_consistency
 from open_guardrail.guards.spelling_common import spelling_common
 from open_guardrail.guards.sentence_length_check import sentence_length_check
 from open_guardrail.guards.paragraph_structure import paragraph_structure
+from open_guardrail.guards.chatbot_identity import chatbot_identity
+from open_guardrail.guards.answer_citation_needed import answer_citation_needed
+from open_guardrail.guards.refusal_quality import refusal_quality
+from open_guardrail.guards.code_injection_output import code_injection_output
+from open_guardrail.guards.prompt_echo import prompt_echo
+from open_guardrail.guards.date_accuracy import date_accuracy
+from open_guardrail.guards.number_precision import number_precision
+from open_guardrail.guards.legal_disclaimer_check import legal_disclaimer_check
+from open_guardrail.guards.response_language_diversity import response_language_diversity
+from open_guardrail.guards.idempotent_response import idempotent_response
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -468,4 +478,14 @@ __all__ = [
     "spelling_common",
     "sentence_length_check",
     "paragraph_structure",
+    "chatbot_identity",
+    "answer_citation_needed",
+    "refusal_quality",
+    "code_injection_output",
+    "prompt_echo",
+    "date_accuracy",
+    "number_precision",
+    "legal_disclaimer_check",
+    "response_language_diversity",
+    "idempotent_response",
 ]
