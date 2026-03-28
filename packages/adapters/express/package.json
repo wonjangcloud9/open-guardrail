@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail-express",
   "version": "1.6.2",
-  "description": "Express middleware adapter for open-guardrail — guard HTTP request/response with pipelines",
+  "description": "Express middleware adapter for open-guardrail — 215+ guards for HTTP request/response, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -41,6 +41,6 @@
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "express", "middleware", "llm", "safety", "input-validation"],
+  "keywords": ["guardrail", "open-guardrail", "express", "expressjs", "middleware", "llm", "ai-safety", "content-filter", "moderation", "prompt-injection", "pii", "pii-detection", "toxicity", "input-validation", "output-validation", "safety", "ai-guardrail", "http-middleware", "api-security"],
   "license": "MIT"
 }

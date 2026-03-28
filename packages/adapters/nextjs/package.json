@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail-nextjs",
   "version": "1.6.2",
-  "description": "Next.js App Router adapter for open-guardrail — guard API routes with pipelines",
+  "description": "Next.js App Router adapter for open-guardrail — 215+ guards for API routes, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -41,6 +41,6 @@
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "nextjs", "next", "app-router", "middleware", "llm", "safety"],
+  "keywords": ["guardrail", "open-guardrail", "nextjs", "next", "next-js", "app-router", "react", "server-actions", "middleware", "llm", "ai-safety", "content-filter", "moderation", "prompt-injection", "pii", "pii-detection", "toxicity", "input-validation", "output-validation", "safety", "ai-guardrail"],
   "license": "MIT"
 }

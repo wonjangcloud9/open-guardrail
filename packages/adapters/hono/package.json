@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail-hono",
   "version": "1.6.2",
-  "description": "Hono middleware adapter for open-guardrail — guard HTTP request/response on edge runtimes",
+  "description": "Hono middleware adapter for open-guardrail — 215+ guards for edge runtimes, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -41,6 +41,6 @@
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "hono", "edge", "cloudflare-workers", "llm", "middleware", "safety"],
+  "keywords": ["guardrail", "open-guardrail", "hono", "edge", "edge-runtime", "cloudflare-workers", "deno", "bun", "llm", "ai-safety", "content-filter", "moderation", "prompt-injection", "pii", "pii-detection", "toxicity", "middleware", "input-validation", "output-validation", "safety", "ai-guardrail"],
   "license": "MIT"
 }

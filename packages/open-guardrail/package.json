@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail",
   "version": "1.6.2",
-  "description": "Open-source guardrail engine for LLM apps — 38 guards, 7 adapters, streaming pipeline, risk routing, plugin system",
+  "description": "Open-source guardrail engine for LLM apps — 215+ guards, 26 PII regions, 8 SDK adapters, zero API calls, <0.1ms latency, agent safety, GDPR/ISMS-P/PIPA compliance",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -35,6 +35,6 @@
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "llm", "ai", "safety", "moderation", "pii", "prompt-injection", "content-filter", "compliance", "isms-p", "openai", "anthropic", "claude", "korean"],
+  "keywords": ["guardrail", "llm", "ai", "safety", "moderation", "pii", "prompt-injection", "content-filter", "compliance", "isms-p", "pipa", "gdpr", "eu-ai-act", "openai", "anthropic", "claude", "korean", "agent-safety", "hallucination", "toxicity", "bias", "edge", "serverless", "vercel", "nextjs", "langchain", "zero-api", "content-safety"],
   "license": "MIT"
 }

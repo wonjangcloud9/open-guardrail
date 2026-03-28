@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail-anthropic",
   "version": "1.6.2",
-  "description": "Anthropic SDK adapter for open-guardrail — guard messages input and output",
+  "description": "Anthropic SDK adapter for open-guardrail — 215+ guards for messages input/output, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -41,6 +41,6 @@
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "anthropic", "claude", "llm", "middleware", "safety"],
+  "keywords": ["guardrail", "open-guardrail", "anthropic", "claude", "claude-api", "llm", "ai-safety", "content-filter", "moderation", "prompt-injection", "pii", "pii-detection", "toxicity", "middleware", "input-validation", "output-validation", "safety", "ai-guardrail", "text-moderation"],
   "license": "MIT"
 }

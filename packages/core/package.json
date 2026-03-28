@@ -39,6 +39,6 @@
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "llm", "pipeline", "guard", "event-bus", "config", "middleware"],
+  "keywords": ["guardrail", "llm", "pipeline", "guard", "event-bus", "config", "middleware", "ai-safety", "content-filter", "moderation", "zero-api", "edge", "serverless"],
   "license": "MIT"
 }

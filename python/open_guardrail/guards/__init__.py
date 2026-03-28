@@ -172,6 +172,14 @@ from open_guardrail.guards.response_caching_safe import response_caching_safe
 from open_guardrail.guards.config_leak_detect import config_leak_detect
 from open_guardrail.guards.intent_classification import intent_classification
 from open_guardrail.guards.output_length_guard import output_length_guard
+from open_guardrail.guards.indirect_injection import indirect_injection
+from open_guardrail.guards.gdpr_compliance import gdpr_compliance
+from open_guardrail.guards.eu_ai_act import eu_ai_act
+from open_guardrail.guards.ai_basic_act_kr import ai_basic_act_kr
+from open_guardrail.guards.data_exfiltration import data_exfiltration
+from open_guardrail.guards.semantic_firewall import semantic_firewall
+from open_guardrail.guards.multimodal_safety import multimodal_safety
+from open_guardrail.guards.rag_safety import rag_safety
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -226,4 +234,8 @@ __all__ = [
     "embedding_inject", "rate_adaptive", "compliance_audit_log",
     "semantic_dedup", "response_caching_safe", "config_leak_detect",
     "intent_classification", "output_length_guard",
+    "indirect_injection", "gdpr_compliance",
+    "eu_ai_act", "ai_basic_act_kr",
+    "data_exfiltration", "semantic_firewall",
+    "multimodal_safety", "rag_safety",
 ]

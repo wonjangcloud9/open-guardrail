@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail-langchain",
   "version": "1.6.2",
-  "description": "LangChain.js integration for open-guardrail — guard LLM chains and agents",
+  "description": "LangChain.js integration for open-guardrail — 215+ guards for LLM chains and agents, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -41,6 +41,6 @@
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "langchain", "llm", "middleware", "safety", "agent"],
+  "keywords": ["guardrail", "open-guardrail", "langchain", "langchainjs", "langchain-js", "llm", "ai-agent", "agent", "rag", "middleware", "ai-safety", "content-filter", "moderation", "prompt-injection", "pii", "pii-detection", "toxicity", "input-validation", "output-validation", "safety", "ai-guardrail"],
   "license": "MIT"
 }

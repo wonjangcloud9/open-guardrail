@@ -1,7 +1,7 @@
 {
   "name": "open-guardrail-guards",
   "version": "1.6.2",
-  "description": "38 built-in guards for LLM safety: PII, prompt injection, toxicity, bias, API key detection, encoding attack, Korean ISMS-P/PIPA, EU AI Act",
+  "description": "215+ built-in guards for LLM safety: 26 PII regions, prompt injection, toxicity, bias, agent safety, hallucination, content safety, compliance, format validation, Korean ISMS-P/PIPA, GDPR, EU AI Act",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -37,6 +37,6 @@
   "bugs": "https://github.com/wonjangcloud9/open-guardrail/issues",
   "homepage": "https://github.com/wonjangcloud9/open-guardrail#readme",
   "engines": { "node": ">=18" },
-  "keywords": ["guardrail", "pii", "toxicity", "bias", "prompt-injection", "isms-p", "pipa", "hallucination"],
+  "keywords": ["guardrail", "pii", "toxicity", "bias", "prompt-injection", "isms-p", "pipa", "gdpr", "eu-ai-act", "hallucination", "agent-safety", "content-filter", "llm", "ai-safety", "moderation", "zero-api", "edge", "compliance"],
   "license": "MIT"
 }

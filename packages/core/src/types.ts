@@ -2,7 +2,7 @@ export type GuardAction = 'allow' | 'block' | 'warn' | 'override';
 
 export type GuardCategory =
   | 'security' | 'privacy' | 'content'
-  | 'format' | 'ai' | 'locale' | 'custom';
+  | 'format' | 'ai' | 'locale' | 'compliance' | 'custom';
 
 export type PipelineStage = 'input' | 'output';
 
