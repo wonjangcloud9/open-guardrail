@@ -61,6 +61,9 @@ from open_guardrail.guards import (
     content_watermark, supply_chain_detect, rate_limit_semantic,
     reasoning_trace_leak, hallucination_url, persona_consistency,
     instruction_hierarchy, context_window_abuse, confidence_score,
+    profanity_es, profanity_de, profanity_fr, profanity_pt,
+    medical_pii, financial_pii, code_review_safety,
+    meeting_safety, api_rate_guard,
 )
 
 
@@ -2390,3 +2393,113 @@ class TestConfidenceScore:
         g = confidence_score(action="warn", max_hedging=3)
         r = g.check("I think the answer is 42.")
         assert r.passed
+
+
+class TestProfanityEs:
+    def test_detects_spanish(self):
+        g = profanity_es(action="block")
+        r = g.check("Eso es una mierda total")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = profanity_es(action="block")
+        r = g.check("Buenos días, ¿cómo estás?")
+        assert r.passed
+
+
+class TestProfanityDe:
+    def test_detects_german(self):
+        g = profanity_de(action="block")
+        r = g.check("Du bist ein Arschloch")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = profanity_de(action="block")
+        r = g.check("Guten Morgen, wie geht es Ihnen?")
+        assert r.passed
+
+
+class TestProfanityFr:
+    def test_detects_french(self):
+        g = profanity_fr(action="block")
+        r = g.check("C'est de la merde")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = profanity_fr(action="block")
+        r = g.check("Bonjour, comment allez-vous?")
+        assert r.passed
+
+
+class TestProfanityPt:
+    def test_detects_portuguese(self):
+        g = profanity_pt(action="block")
+        r = g.check("Isso é uma merda")
+        assert not r.passed
+
+    def test_allows_clean(self):
+        g = profanity_pt(action="block")
+        r = g.check("Bom dia, como vai você?")
+        assert r.passed
+
+
+class TestMedicalPii:
+    def test_detects_icd10(self):
+        g = medical_pii(action="block")
+        r = g.check("Patient diagnosed with J45.20")
+        assert not r.passed
+
+    def test_allows_normal(self):
+        g = medical_pii(action="block")
+        r = g.check("The patient feels better today")
+        assert r.passed
+
+
+class TestFinancialPii:
+    def test_detects_iban(self):
+        g = financial_pii(action="block")
+        r = g.check("Transfer to IBAN DE89370400440532013000")
+        assert not r.passed
+
+    def test_allows_normal(self):
+        g = financial_pii(action="block")
+        r = g.check("The transaction was completed successfully")
+        assert r.passed
+
+
+class TestCodeReviewSafety:
+    def test_detects_hardcoded_secret(self):
+        g = code_review_safety(action="block")
+        r = g.check('password = "s3cr3tP@ss!"')
+        assert not r.passed
+
+    def test_allows_clean_code(self):
+        g = code_review_safety(action="block")
+        r = g.check("def add(a, b): return a + b")
+        assert r.passed
+
+
+class TestMeetingSafety:
+    def test_detects_nda(self):
+        g = meeting_safety(action="block")
+        r = g.check("This information is under NDA, do not share")
+        assert not r.passed
+
+    def test_allows_normal(self):
+        g = meeting_safety(action="block")
+        r = g.check("Let's schedule the next team meeting for Friday")
+        assert r.passed
+
+
+class TestApiRateGuard:
+    def test_allows_initial(self):
+        g = api_rate_guard(action="block", max_tokens=3)
+        r = g.check("Request 1")
+        assert r.passed
+
+    def test_blocks_when_exhausted(self):
+        g = api_rate_guard(action="block", max_tokens=2, refill_rate=0)
+        g.check("r1")
+        g.check("r2")
+        r = g.check("r3")
+        assert not r.passed

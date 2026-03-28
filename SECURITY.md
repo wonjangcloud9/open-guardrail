@@ -22,5 +22,5 @@ Please report security vulnerabilities through [GitHub Security Advisories](http
 
 | Version | Supported |
 |---------|-----------|
-| >= 0.5.x | Yes |
-| < 0.5.0 | No |
+| >= 1.0.0 | Yes |
+| < 1.0.0 | No |

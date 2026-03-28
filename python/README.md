@@ -1,10 +1,11 @@
 # open-guardrail (Python)
 
-Open-source guardrail engine for LLM applications. Zero dependencies. Pure Python.
+**200 guards. Zero dependencies. Pure Python. <0.1ms latency.**
 
 [![PyPI](https://img.shields.io/pypi/v/open-guardrail)](https://pypi.org/project/open-guardrail/)
 [![Python](https://img.shields.io/pypi/pyversions/open-guardrail)](https://pypi.org/project/open-guardrail/)
 [![License](https://img.shields.io/github/license/wonjangcloud9/open-guardrail)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-394_passing-green)](https://github.com/wonjangcloud9/open-guardrail)
 
 ## Install
 
@@ -29,34 +30,27 @@ if not result.passed:
 # result.output contains masked text when PII is detected
 ```
 
-## 24 Built-in Guards
+## 200 Built-in Guards
 
-| Guard | Description |
-|-------|-------------|
-| `prompt_injection` | Jailbreak and prompt injection detection |
-| `sql_injection` | SQL injection (3 sensitivity levels) |
-| `xss_guard` | Cross-site scripting detection + sanitize |
-| `secret_pattern` | Credentials, API keys, connection strings |
-| `invisible_text` | Zero-width/bidi unicode detection |
-| `canary_token` | System prompt leakage detection |
-| `pii` | Email, phone, SSN, passport, ITIN, Medicare |
-| `pii_kr` | Korean PII (주민등록번호, 여권, 면허 등) |
-| `pii_jp` | Japanese PII (マイナンバー, パスポート 등) |
-| `pii_cn` | Chinese PII (身份证, 护照, 手机号 등) |
-| `keyword` | Deny/allow keyword lists |
-| `toxicity` | Profanity, hate, threats, harassment |
-| `profanity_kr` | Korean profanity (초성 + 변형) |
-| `profanity_jp` | Japanese profanity (ひらがな/カタカナ/漢字) |
-| `profanity_cn` | Chinese profanity (pinyin abbreviations) |
-| `gibberish_detect` | Nonsensical input detection |
-| `no_refusal` | LLM refusal response detection |
-| `ban_code` | Code block detection (7 languages) |
-| `ban_substring` | Substring blocking |
-| `valid_range` | Number range validation |
-| `valid_choice` | Valid choice validation |
-| `readability` | Flesch Reading Ease score |
-| `reading_time` | Reading time estimation |
-| `word_count` | Word/character limits |
+### Security
+`prompt_injection` `indirect_injection` `sql_injection` `xss_guard` `secret_pattern` `invisible_text` `canary_token` `encoding_attack` `data_leakage` `data_exfiltration` `path_traversal` `command_injection` `ssrf_detect` `jailbreak_pattern` `api_key_detect` `social_engineering` `unicode_confusable` `ascii_art` `data_poisoning` `prompt_leak` `semantic_firewall` `multimodal_safety` `rag_safety` `token_smuggling` `prompt_chaining` `output_filter_bypass` `model_denial` `agent_permission` `supply_chain_detect` `instruction_hierarchy` `context_window_abuse`
+
+### Privacy — 26 PII Regions
+`pii` `pii_kr` `pii_jp` `pii_cn` `pii_th` `pii_ar` `pii_in` `pii_eu` `pii_de` `pii_fr` `pii_br` `pii_au` `pii_ca` `pii_mx` `pii_sg` `pii_id` `pii_ru` `pii_pl` `pii_es` `pii_it` `pii_tr` `pii_vn` `pii_ng` `pii_za` `pii_ke` `pii_eg`
+
+### Compliance
+`gdpr_compliance` `eu_ai_act` `ai_basic_act_kr` `isms_p` `pipa` `appi` `pipl` `hipaa_detect` `pci_dss_detect` `sox_compliance` `ferpa_detect` `privacy_policy`
+
+### AI / LLM Safety
+`hallucination_url` `reasoning_trace_leak` `persona_consistency` `confidence_score` `content_watermark` `rate_limit_semantic`
+
+### Content Safety
+`toxicity` `bias` `hate_speech` `violence_detect` `sexual_content` `self_harm_detect` `profanity_en` `profanity_kr` `profanity_jp` `profanity_cn`
+
+### Agent Safety
+`agent_loop_detect` `tool_abuse` `escalation_detect` `rag_poisoning`
+
+[Full guard list →](https://github.com/wonjangcloud9/open-guardrail#241-built-in-guards)
 
 ## Guard Composition
 

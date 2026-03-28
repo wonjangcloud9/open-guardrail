@@ -198,6 +198,15 @@ from open_guardrail.guards.persona_consistency import persona_consistency
 from open_guardrail.guards.instruction_hierarchy import instruction_hierarchy
 from open_guardrail.guards.context_window_abuse import context_window_abuse
 from open_guardrail.guards.confidence_score import confidence_score
+from open_guardrail.guards.profanity_es import profanity_es
+from open_guardrail.guards.profanity_de import profanity_de
+from open_guardrail.guards.profanity_fr import profanity_fr
+from open_guardrail.guards.profanity_pt import profanity_pt
+from open_guardrail.guards.medical_pii import medical_pii
+from open_guardrail.guards.financial_pii import financial_pii
+from open_guardrail.guards.code_review_safety import code_review_safety
+from open_guardrail.guards.meeting_safety import meeting_safety
+from open_guardrail.guards.api_rate_guard import api_rate_guard
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -263,4 +272,7 @@ __all__ = [
     "reasoning_trace_leak", "hallucination_url",
     "persona_consistency", "instruction_hierarchy",
     "context_window_abuse", "confidence_score",
+    "profanity_es", "profanity_de", "profanity_fr", "profanity_pt",
+    "medical_pii", "financial_pii", "code_review_safety",
+    "meeting_safety", "api_rate_guard",
 ]

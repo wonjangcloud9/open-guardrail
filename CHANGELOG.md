@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added — Guards (241 TS + 200 Python)
+- **Security:** `indirectInjection` `dataExfiltration` `semanticFirewall` `multimodalSafety` `ragSafety` `tokenSmuggling` `promptChaining` `outputFilterBypass` `modelDenial` `agentPermission` `supplyChainDetect` `instructionHierarchy` `contextWindowAbuse`
+- **Compliance:** `gdprCompliance` `euAiAct` `aiBasicActKr` `privacyPolicy` `pciDssDetect` `soxCompliance` `ferpaDetect`
+- **AI/LLM:** `reasoningTraceLeak` `hallucinationUrl` `personaConsistency` `confidenceScore` `contentWatermark` `rateLimitSemantic`
+- Added `'compliance'` to `GuardCategory` type
+
+### Added — Presets
+- `compliance-full` — comprehensive compliance (GDPR + EU AI Act + Korean AI Basic Act + HIPAA + PCI DSS + FERPA + SOX)
+
+### Added — CI/CD
+- Python test job in CI (Python 3.9–3.12)
+- Guard Request issue template
+
+### Changed
+- Updated npm keywords for SEO across all 12 packages
+- Enhanced `agent-safety` and `rag-safety` presets with new guards
+- Updated README (EN + KO) with Agent Safety section, comparison table, badges
+
 ## [1.2.0] — 2026-03-26
 
 ### Added — Guards (38 total, +8)
