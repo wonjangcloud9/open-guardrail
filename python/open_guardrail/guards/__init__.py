@@ -277,6 +277,16 @@ from open_guardrail.guards.time_zone_safety import time_zone_safety
 from open_guardrail.guards.currency_format import currency_format
 from open_guardrail.guards.pii_context import pii_context
 from open_guardrail.guards.accessibility_text import accessibility_text
+from open_guardrail.guards.rate_limit_token import rate_limit_token
+from open_guardrail.guards.pii_mask_consistent import pii_mask_consistent
+from open_guardrail.guards.language_en import language_en
+from open_guardrail.guards.language_es import language_es
+from open_guardrail.guards.safe_search import safe_search
+from open_guardrail.guards.api_abuse_detect import api_abuse_detect
+from open_guardrail.guards.schema_version import schema_version
+from open_guardrail.guards.content_dedup import content_dedup
+from open_guardrail.guards.toxic_username import toxic_username
+from open_guardrail.guards.geographic_restrict import geographic_restrict
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -373,4 +383,9 @@ __all__ = [
     "log_injection", "response_structure",
     "time_zone_safety", "currency_format",
     "pii_context", "accessibility_text",
+    "rate_limit_token", "pii_mask_consistent",
+    "language_en", "language_es", "safe_search",
+    "api_abuse_detect", "schema_version",
+    "content_dedup", "toxic_username",
+    "geographic_restrict",
 ]

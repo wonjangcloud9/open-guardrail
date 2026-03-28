@@ -1,5 +1,7 @@
 """Embed and verify invisible watermarks using zero-width characters."""
 
+from __future__ import annotations
+
 import re
 import time
 

@@ -1,5 +1,7 @@
 """Block content matching known bad fingerprints."""
 
+from __future__ import annotations
+
 import hashlib
 import time
 from typing import List

@@ -1,5 +1,7 @@
 """Validate JSON against a simple schema."""
 
+from __future__ import annotations
+
 import json
 import time
 from typing import List

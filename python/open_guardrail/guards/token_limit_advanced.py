@@ -1,5 +1,7 @@
 """Per-model token limit guard."""
 
+from __future__ import annotations
+
 import time
 
 from open_guardrail.core import GuardResult

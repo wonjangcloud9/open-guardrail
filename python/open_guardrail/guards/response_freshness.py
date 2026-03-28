@@ -1,5 +1,7 @@
 """Detect potentially stale or outdated information."""
 
+from __future__ import annotations
+
 import re
 import time
 from datetime import datetime
