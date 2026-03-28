@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.7.0] — 2026-03-28
 
 ### Added — Guards (300 TS + 259 Python, +85 each)
 - **Security (20 new):** `indirectInjection` `dataExfiltration` `semanticFirewall` `multimodalSafety` `ragSafety` `tokenSmuggling` `promptChaining` `outputFilterBypass` `modelDenial` `agentPermission` `supplyChainDetect` `instructionHierarchy` `contextWindowAbuse` `xmlInjection` `ldapInjection` `nosqlInjection` `templateInjection` `regexBomb` `authTokenDetect` `envVarLeak` `unicodeSafety` `cveDetect` `linkSafety` `promptComplexity` `codeReviewSafety` `sessionContextGuard`

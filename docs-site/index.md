@@ -3,7 +3,7 @@ layout: home
 hero:
   name: open-guardrail
   text: LLM Guardrail Engine
-  tagline: 300 guards, 26 PII regions, 8 adapters, <0.1ms latency. Guard LLM input/output in one line of code.
+  tagline: 310 guards, 26 PII regions, 8 adapters, <0.1ms latency. Guard LLM input/output in one line of code.
   actions:
     - theme: brand
       text: Get Started
@@ -14,7 +14,7 @@ hero:
 
 features:
   - icon: 🛡️
-    title: 300 Built-in Guards
+    title: 310 Built-in Guards
     details: Security, privacy (26 PII regions), compliance (12 regulations), content safety (13 profanity languages), agent safety — ready out of the box.
   - icon: ⚡
     title: Blazing Fast

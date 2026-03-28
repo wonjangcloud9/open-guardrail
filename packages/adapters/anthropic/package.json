@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-anthropic",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Anthropic SDK adapter for open-guardrail — 215+ guards for messages input/output, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",

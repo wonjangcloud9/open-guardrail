@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-hono",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Hono middleware adapter for open-guardrail — 215+ guards for edge runtimes, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",

@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-vercel-ai",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Vercel AI SDK middleware adapter for open-guardrail — 215+ guards for LLM inputs/outputs, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",
