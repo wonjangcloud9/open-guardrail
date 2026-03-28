@@ -67,6 +67,9 @@ from open_guardrail.guards import (
     profanity_it, profanity_ru, profanity_ar, profanity_hi,
     webhook_validate, api_key_rotation, semantic_similarity_check,
     response_language_match, session_context_guard, compliance_timestamp,
+    profanity_tr, profanity_nl, profanity_pl, content_policy,
+    output_consistency, input_length_anomaly, encoding_normalize,
+    copyright_code, bias_gender, bias_age,
 )
 
 
@@ -2616,3 +2619,123 @@ class TestComplianceTimestamp:
         g = compliance_timestamp(action="warn")
         r = g.check("Report generated on 2099-01-01")
         assert not r.passed
+
+
+class TestProfanityTr:
+    def test_detects(self):
+        g = profanity_tr(action="block")
+        r = g.check("siktir git buradan")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_tr(action="block")
+        r = g.check("Merhaba, nasılsınız?")
+        assert r.passed
+
+
+class TestProfanityNl:
+    def test_detects(self):
+        g = profanity_nl(action="block")
+        r = g.check("Je bent een klootzak")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_nl(action="block")
+        r = g.check("Goedemorgen, hoe gaat het?")
+        assert r.passed
+
+
+class TestProfanityPl:
+    def test_detects(self):
+        g = profanity_pl(action="block")
+        r = g.check("Ty kurwa idioto")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_pl(action="block")
+        r = g.check("Dzień dobry, jak się masz?")
+        assert r.passed
+
+
+class TestContentPolicy:
+    def test_detects_guarantee(self):
+        g = content_policy(action="warn")
+        r = g.check("This product is guaranteed to cure all diseases")
+        assert not r.passed
+
+    def test_clean(self):
+        g = content_policy(action="warn")
+        r = g.check("Please consult a professional for advice")
+        assert r.passed
+
+
+class TestOutputConsistency:
+    def test_detects_repetition(self):
+        g = output_consistency(action="warn", max_repetitions=2)
+        r = g.check("The answer is 42. The answer is 42. The answer is 42.")
+        assert not r.passed
+
+    def test_clean(self):
+        g = output_consistency(action="warn")
+        r = g.check("The weather is sunny today and the temperature is 25 degrees.")
+        assert r.passed
+
+
+class TestInputLengthAnomaly:
+    def test_detects_too_short(self):
+        g = input_length_anomaly(action="warn", min_length=5)
+        r = g.check("Hi")
+        assert not r.passed
+
+    def test_clean(self):
+        g = input_length_anomaly(action="warn")
+        r = g.check("What is the weather forecast for tomorrow?")
+        assert r.passed
+
+
+class TestEncodingNormalize:
+    def test_detects_fullwidth(self):
+        g = encoding_normalize(action="block")
+        r = g.check("Ｈｅｌｌｏ ｗｏｒｌｄ")
+        assert not r.passed
+
+    def test_clean(self):
+        g = encoding_normalize(action="block")
+        r = g.check("Hello world")
+        assert r.passed
+
+
+class TestCopyrightCode:
+    def test_detects_gpl(self):
+        g = copyright_code(action="warn")
+        r = g.check("Licensed under the GNU General Public License")
+        assert not r.passed
+
+    def test_clean(self):
+        g = copyright_code(action="warn")
+        r = g.check("def add(a, b): return a + b")
+        assert r.passed
+
+
+class TestBiasGender:
+    def test_detects_stereotype(self):
+        g = bias_gender(action="warn")
+        r = g.check("Women should stay home and cook")
+        assert not r.passed
+
+    def test_clean(self):
+        g = bias_gender(action="warn")
+        r = g.check("All employees receive equal training opportunities")
+        assert r.passed
+
+
+class TestBiasAge:
+    def test_detects_ageism(self):
+        g = bias_age(action="warn")
+        r = g.check("He's too old to learn new technology")
+        assert not r.passed
+
+    def test_clean(self):
+        g = bias_age(action="warn")
+        r = g.check("Candidates of all experience levels are welcome")
+        assert r.passed

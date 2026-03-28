@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">open-guardrail</h1>
-  <p align="center"><strong>Guardrail engine for LLM apps. 260 guards. Zero API calls. <0.1ms.</strong></p>
+  <p align="center"><strong>Guardrail engine for LLM apps. 270 guards. Zero API calls. <0.1ms.</strong></p>
 </p>
 
 <p align="center">
@@ -10,7 +10,7 @@
   <a href="https://github.com/wonjangcloud9/open-guardrail/stargazers"><img src="https://img.shields.io/github/stars/wonjangcloud9/open-guardrail?style=social" alt="GitHub stars"></a>
   <a href="https://github.com/wonjangcloud9/open-guardrail/actions"><img src="https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/wonjangcloud9/open-guardrail" alt="License"></a>
-  <img src="https://img.shields.io/badge/guards-260-blue" alt="guards">
+  <img src="https://img.shields.io/badge/guards-270-blue" alt="guards">
   <img src="https://img.shields.io/badge/PII_regions-26-orange" alt="PII">
 </p>
 
@@ -50,18 +50,19 @@ pip install open-guardrail    # Python
 
 |  | open-guardrail | Guardrails AI | NeMo Guardrails | LLM Guard |
 |--|:-:|:-:|:-:|:-:|
-| **Built-in guards** | **260** | 50+ | 10+ | 30+ |
+| **Built-in guards** | **270** | 50+ | 10+ | 30+ |
 | **PII regions** | **26** (EN/KO/JA/ZH/TH/AR/HI/EU + 18 more) | 1 | 1 | 1 |
 | **Language** | **TS/JS + Python** | Python | Python | Python |
 | **Latency** | **<0.1ms** | 100ms+ | 100ms+ | 50ms+ |
 | **External API** | Not needed | Required | Required | Partial |
 | **Edge/browser** | Yes | No | No | No |
-| **Presets** | 14 | - | - | - |
+| **Profanity filters** | **10 languages** (EN/KO/JA/ZH/ES/DE/FR/PT/IT/RU/AR/HI) | 1 | 1 | 1 |
+| **Presets** | 20 | - | - | - |
 | **SDK adapters** | 8 | 1 | 1 | 1 |
 | **Guard composition** | `compose` `when` `not` `retry` `fallback` `parallel` | - | - | - |
 | **Circuit breaker** | Yes | No | No | No |
 | **Custom guard builder** | 3 factory functions | No | No | No |
-| **Compliance** | GDPR, EU AI Act, 🇰🇷 AI Basic Act, ISMS-P, PIPA, APPI, PIPL | - | - | - |
+| **Compliance** | GDPR, EU AI Act, 🇰🇷 AI Basic Act, ISMS-P, PIPA, APPI, PIPL, PCI DSS, SOX, FERPA, HIPAA, COPPA | - | - | - |
 | **License** | MIT | Apache 2.0 | Apache 2.0 | MIT |
 
 ## Quick Start
@@ -123,13 +124,13 @@ pipelines:
 
 `pii` (EN) `piiKr` (KO) `piiJp` (JA) `piiCn` (ZH) `piiTh` (TH) `piiAr` (AR) `piiIn` (HI) `piiEu` (EU) `piiDe` (DE) `piiFr` (FR) `piiBr` (BR) `piiAu` (AU) `piiCa` (CA) `piiMx` (MX) `piiSg` (SG) `piiId` (ID) `piiRu` (RU) `piiPl` (PL) `piiEs` (ES) `piiIt` (IT) `piiTr` (TR) `piiVn` (VN) `piiNg` (NG) `piiZa` (ZA) `piiKe` (KE) `piiEg` (EG) `residentId` `creditInfo` `phoneFormat` `deanonymize` `contactInfo` `cryptoAddress` `consentDetect`
 
-### Content Safety (30)
+### Content Safety (38) — Profanity in 10 Languages
 
-`toxicity` `profanityEn` `profanityKr` `profanityJp` `profanityCn` `bias` `sentiment` `noRefusal` `banCode` `banSubstring` `competitorMention` `gibberishDetect` `readability` `readingTime` `duplicateDetect` `citationCheck` `toneCheck` `personalOpinion` `topicDeny` `topicAllow` `hateSpeech` `violenceDetect` `sexualContent` `selfHarmDetect` `emotionalManipulation` `stereotypeDetect` `brandSafety` `religiousContent` `culturalSensitivity` `sourceAttribution`
+`toxicity` `profanityEn` `profanityKr` `profanityJp` `profanityCn` `profanityEs` `profanityDe` `profanityFr` `profanityPt` `profanityIt` `profanityRu` `profanityAr` `profanityHi` `bias` `sentiment` `noRefusal` `banCode` `banSubstring` `competitorMention` `gibberishDetect` `readability` `readingTime` `duplicateDetect` `citationCheck` `toneCheck` `personalOpinion` `topicDeny` `topicAllow` `hateSpeech` `violenceDetect` `sexualContent` `selfHarmDetect` `emotionalManipulation` `stereotypeDetect` `brandSafety` `religiousContent` `culturalSensitivity` `sourceAttribution`
 
-### Compliance (23)
+### Compliance (27)
 
-`gdprCompliance` (GDPR) `euAiAct` (EU AI Act) `aiBasicActKr` (🇰🇷 AI Basic Act) `ismsP` (ISMS-P) `pipa` (PIPA) `appi` (APPI) `pipl` (PIPL) `privacyPolicy` (COPPA/CCPA) `language` `languageConsistency` `languageDetect` `languageMix` `languageQuality` `disclaimerRequire` `dataRetention` `aiDisclosure` `warrantyDisclaimer` `academicIntegrity` `medicalAdvice` `financialAdvice` `legalAdvice` `accessibilityCheck` `ageGate`
+`gdprCompliance` (GDPR) `euAiAct` (EU AI Act) `aiBasicActKr` (🇰🇷 AI Basic Act) `ismsP` (ISMS-P) `pipa` (PIPA) `appi` (APPI) `pipl` (PIPL) `pciDssDetect` (PCI DSS) `soxCompliance` (SOX) `ferpaDetect` (FERPA) `privacyPolicy` (COPPA/CCPA) `complianceTimestamp` `language` `languageConsistency` `languageDetect` `languageMix` `languageQuality` `disclaimerRequire` `dataRetention` `aiDisclosure` `warrantyDisclaimer` `academicIntegrity` `medicalAdvice` `financialAdvice` `legalAdvice` `accessibilityCheck` `ageGate`
 
 ### Detection (13)
 

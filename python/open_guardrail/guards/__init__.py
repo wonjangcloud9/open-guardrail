@@ -217,6 +217,16 @@ from open_guardrail.guards.semantic_similarity_check import semantic_similarity_
 from open_guardrail.guards.response_language_match import response_language_match
 from open_guardrail.guards.session_context_guard import session_context_guard
 from open_guardrail.guards.compliance_timestamp import compliance_timestamp
+from open_guardrail.guards.profanity_tr import profanity_tr
+from open_guardrail.guards.profanity_nl import profanity_nl
+from open_guardrail.guards.profanity_pl import profanity_pl
+from open_guardrail.guards.content_policy import content_policy
+from open_guardrail.guards.output_consistency import output_consistency
+from open_guardrail.guards.input_length_anomaly import input_length_anomaly
+from open_guardrail.guards.encoding_normalize import encoding_normalize
+from open_guardrail.guards.copyright_code import copyright_code
+from open_guardrail.guards.bias_gender import bias_gender
+from open_guardrail.guards.bias_age import bias_age
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -289,4 +299,8 @@ __all__ = [
     "webhook_validate", "api_key_rotation",
     "semantic_similarity_check", "response_language_match",
     "session_context_guard", "compliance_timestamp",
+    "profanity_tr", "profanity_nl", "profanity_pl",
+    "content_policy", "output_consistency",
+    "input_length_anomaly", "encoding_normalize",
+    "copyright_code", "bias_gender", "bias_age",
 ]
