@@ -4,23 +4,32 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-### Added — Guards (241 TS + 200 Python)
-- **Security:** `indirectInjection` `dataExfiltration` `semanticFirewall` `multimodalSafety` `ragSafety` `tokenSmuggling` `promptChaining` `outputFilterBypass` `modelDenial` `agentPermission` `supplyChainDetect` `instructionHierarchy` `contextWindowAbuse`
-- **Compliance:** `gdprCompliance` `euAiAct` `aiBasicActKr` `privacyPolicy` `pciDssDetect` `soxCompliance` `ferpaDetect`
-- **AI/LLM:** `reasoningTraceLeak` `hallucinationUrl` `personaConsistency` `confidenceScore` `contentWatermark` `rateLimitSemantic`
+### Added — Guards (300 TS + 259 Python, +85 each)
+- **Security (20 new):** `indirectInjection` `dataExfiltration` `semanticFirewall` `multimodalSafety` `ragSafety` `tokenSmuggling` `promptChaining` `outputFilterBypass` `modelDenial` `agentPermission` `supplyChainDetect` `instructionHierarchy` `contextWindowAbuse` `xmlInjection` `ldapInjection` `nosqlInjection` `templateInjection` `regexBomb` `authTokenDetect` `envVarLeak` `unicodeSafety` `cveDetect` `linkSafety` `promptComplexity` `codeReviewSafety` `sessionContextGuard`
+- **Compliance (12 new):** `gdprCompliance` `euAiAct` `aiBasicActKr` `privacyPolicy` `pciDssDetect` `soxCompliance` `ferpaDetect` `complianceTimestamp` `dataClassification` `contentPolicy` `auditTrail` `contentWatermark`
+- **AI/LLM (10 new):** `reasoningTraceLeak` `hallucinationUrl` `personaConsistency` `confidenceScore` `rateLimitSemantic` `semanticSimilarityCheck` `outputConsistency` `outputTruncation` `citationVerify` `factCheckSignal` `responseFreshness` `mathSafety`
+- **Content (8 new):** `biasGender` `biasAge` `copyrightCode` `meetingSafety` `sensitiveTopic` `toneProfessional` `encodingNormalize` `responseLengthLimit`
+- **Privacy (2 new):** `medicalPii` `financialPii`
+- **Profanity (15 new, 19 languages total):** ES, DE, FR, PT, IT, RU, AR, HI, TR, NL, PL, VI, ID, TH, SV, DA, FI
+- **Language detection (4 new):** `languageKo` `languageJa` `languageZh` `responseLanguageMatch`
+- **Operational (2 new):** `apiRateGuard` `webhookValidate` `apiKeyRotation` `inputLengthAnomaly`
 - Added `'compliance'` to `GuardCategory` type
 
-### Added — Presets
-- `compliance-full` — comprehensive compliance (GDPR + EU AI Act + Korean AI Basic Act + HIPAA + PCI DSS + FERPA + SOX)
+### Added — Presets (+9, 23 total)
+- `compliance-full` `code-review` `bias-fairness` `chatbot`
 
-### Added — CI/CD
+### Added — CI/CD & DX
 - Python test job in CI (Python 3.9–3.12)
 - Guard Request issue template
+- `py.typed` marker for IDE type support
+- `with-compliance` and `with-multimodal-safety` examples
 
 ### Changed
 - Updated npm keywords for SEO across all 12 packages
+- PyPI metadata optimized (22 keywords, expanded classifiers)
 - Enhanced `agent-safety` and `rag-safety` presets with new guards
-- Updated README (EN + KO) with Agent Safety section, comparison table, badges
+- Updated README (EN + KO), docs-site, Python README
+- SECURITY.md updated to >= 1.0.0
 
 ## [1.2.0] — 2026-03-26
 

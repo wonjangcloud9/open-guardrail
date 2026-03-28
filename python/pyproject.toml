@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "open-guardrail"
 version = "0.2.0"
-description = "250 guards for LLM safety — prompt injection, PII (26 regions), GDPR, EU AI Act, agent safety, zero API calls, <0.1ms"
+description = "300 guards for LLM safety — prompt injection, PII (26 regions), GDPR, EU AI Act, agent safety, zero API calls, <0.1ms"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"

@@ -257,6 +257,16 @@ from open_guardrail.guards.math_safety import math_safety
 from open_guardrail.guards.language_ko import language_ko
 from open_guardrail.guards.language_ja import language_ja
 from open_guardrail.guards.language_zh import language_zh
+from open_guardrail.guards.dos_pattern import dos_pattern
+from open_guardrail.guards.privilege_escalation import privilege_escalation
+from open_guardrail.guards.social_media_detect import social_media_detect
+from open_guardrail.guards.spam_link import spam_link
+from open_guardrail.guards.emotional_content import emotional_content
+from open_guardrail.guards.numeric_range_check import numeric_range_check
+from open_guardrail.guards.list_format import list_format
+from open_guardrail.guards.code_block_safety import code_block_safety
+from open_guardrail.guards.response_relevance import response_relevance
+from open_guardrail.guards.multi_language_detect import multi_language_detect
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -344,4 +354,8 @@ __all__ = [
     "profanity_sv", "profanity_da", "profanity_fi",
     "prompt_complexity", "output_truncation", "citation_verify",
     "math_safety", "language_ko", "language_ja", "language_zh",
+    "dos_pattern", "privilege_escalation", "social_media_detect",
+    "spam_link", "emotional_content", "numeric_range_check",
+    "list_format", "code_block_safety", "response_relevance",
+    "multi_language_detect",
 ]

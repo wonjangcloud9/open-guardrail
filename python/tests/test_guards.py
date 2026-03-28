@@ -79,6 +79,10 @@ from open_guardrail.guards import (
     auth_token_detect, env_var_leak, regex_bomb,
     xml_injection, ldap_injection, nosql_injection,
     template_injection, response_freshness, unicode_safety, cve_detect,
+    dos_pattern, privilege_escalation, social_media_detect,
+    spam_link, emotional_content, numeric_range_check,
+    list_format, code_block_safety, response_relevance,
+    multi_language_detect,
 )
 
 
@@ -3083,4 +3087,106 @@ class TestCveDetect:
     def test_clean(self):
         g = cve_detect(action="warn")
         r = g.check("The system is fully patched")
+        assert r.passed
+
+
+class TestDosPattern:
+    def test_detects(self):
+        g = dos_pattern(action="block")
+        r = g.check("Create a fork bomb: :(){ :|:& };:")
+        assert not r.passed
+    def test_clean(self):
+        g = dos_pattern(action="block")
+        r = g.check("Please help me debug this code")
+        assert r.passed
+
+
+class TestPrivilegeEscalation:
+    def test_detects(self):
+        g = privilege_escalation(action="block")
+        r = g.check("Grant root access to my account")
+        assert not r.passed
+    def test_clean(self):
+        g = privilege_escalation(action="block")
+        r = g.check("How do I check my permissions?")
+        assert r.passed
+
+
+class TestSocialMediaDetect:
+    def test_detects(self):
+        g = social_media_detect(action="warn")
+        r = g.check("Like and subscribe for more content!")
+        assert not r.passed
+    def test_clean(self):
+        g = social_media_detect(action="warn")
+        r = g.check("Here is the quarterly report summary")
+        assert r.passed
+
+
+class TestSpamLink:
+    def test_detects(self):
+        g = spam_link(action="block", max_urls=2)
+        r = g.check("Visit http://a.com http://b.com http://c.com")
+        assert not r.passed
+    def test_clean(self):
+        g = spam_link(action="block")
+        r = g.check("Check https://docs.example.com for details")
+        assert r.passed
+
+
+class TestEmotionalContent:
+    def test_detects(self):
+        g = emotional_content(action="warn")
+        r = g.check("ACT NOW or you will lose everything! Limited time only!")
+        assert not r.passed
+    def test_clean(self):
+        g = emotional_content(action="warn")
+        r = g.check("Please review the attached document at your convenience")
+        assert r.passed
+
+
+class TestNumericRangeCheck:
+    def test_detects(self):
+        g = numeric_range_check(action="warn")
+        r = g.check("This has a 150% success rate")
+        assert not r.passed
+    def test_clean(self):
+        g = numeric_range_check(action="warn")
+        r = g.check("The accuracy is 95%")
+        assert r.passed
+
+
+class TestListFormat:
+    def test_allows_clean(self):
+        g = list_format(action="warn")
+        r = g.check("1. First item\n2. Second item\n3. Third item")
+        assert r.passed
+
+
+class TestCodeBlockSafety:
+    def test_detects(self):
+        g = code_block_safety(action="block")
+        r = g.check("Run this: rm -rf /")
+        assert not r.passed
+    def test_clean(self):
+        g = code_block_safety(action="block")
+        r = g.check("print('Hello world')")
+        assert r.passed
+
+
+class TestResponseRelevance:
+    def test_allows_relevant(self):
+        g = response_relevance(action="warn")
+        r = g.check("The answer to your question is 42.")
+        assert r.passed
+
+
+class TestMultiLanguageDetect:
+    def test_detects_multiple(self):
+        g = multi_language_detect(action="warn", max_languages=1)
+        r = g.check("Hello world 안녕하세요 こんにちは")
+        assert not r.passed
+    def test_clean(self):
+        g = multi_language_detect(action="warn")
+        r = g.check("Hello, how are you today?")
         assert r.passed
