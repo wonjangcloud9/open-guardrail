@@ -180,6 +180,12 @@ from open_guardrail.guards.data_exfiltration import data_exfiltration
 from open_guardrail.guards.semantic_firewall import semantic_firewall
 from open_guardrail.guards.multimodal_safety import multimodal_safety
 from open_guardrail.guards.rag_safety import rag_safety
+from open_guardrail.guards.token_smuggling import token_smuggling
+from open_guardrail.guards.prompt_chaining import prompt_chaining
+from open_guardrail.guards.agent_permission import agent_permission
+from open_guardrail.guards.model_denial import model_denial
+from open_guardrail.guards.privacy_policy import privacy_policy
+from open_guardrail.guards.output_filter_bypass import output_filter_bypass
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -238,4 +244,6 @@ __all__ = [
     "eu_ai_act", "ai_basic_act_kr",
     "data_exfiltration", "semantic_firewall",
     "multimodal_safety", "rag_safety",
+    "token_smuggling", "prompt_chaining", "agent_permission",
+    "model_denial", "privacy_policy", "output_filter_bypass",
 ]
