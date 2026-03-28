@@ -87,6 +87,10 @@ from open_guardrail.guards import (
     prototype_pollution, log_injection, response_structure,
     time_zone_safety, currency_format, pii_context,
     accessibility_text,
+    phone_format_intl, credit_card_luhn, iban_detect,
+    ssn_detect, passport_detect, driver_license_detect,
+    ip_address_detect, mac_address_detect, coordinate_detect,
+    vehicle_id_detect,
 )
 
 
@@ -3266,4 +3270,114 @@ class TestAccessibilityText:
     def test_clean(self):
         g = accessibility_text(action="warn")
         r = g.check("This is normal, accessible text.")
+        assert r.passed
+
+
+class TestPhoneFormatIntl:
+    def test_detects(self):
+        g = phone_format_intl(action="block")
+        r = g.check("Call me at +1-555-123-4567")
+        assert not r.passed
+    def test_clean(self):
+        g = phone_format_intl(action="block")
+        r = g.check("The total is 12345")
+        assert r.passed
+
+
+class TestCreditCardLuhn:
+    def test_detects_visa(self):
+        g = credit_card_luhn(action="block")
+        r = g.check("Card: 4111111111111111")
+        assert not r.passed
+    def test_clean(self):
+        g = credit_card_luhn(action="block")
+        r = g.check("Order #12345 confirmed")
+        assert r.passed
+
+
+class TestIbanDetect:
+    def test_detects(self):
+        g = iban_detect(action="block")
+        r = g.check("Transfer to DE89370400440532013000")
+        assert not r.passed
+    def test_clean(self):
+        g = iban_detect(action="block")
+        r = g.check("Payment completed successfully")
+        assert r.passed
+
+
+class TestSsnDetect:
+    def test_detects(self):
+        g = ssn_detect(action="block")
+        r = g.check("SSN: 123-45-6789")
+        assert not r.passed
+    def test_clean(self):
+        g = ssn_detect(action="block")
+        r = g.check("Employee ID: ABC123")
+        assert r.passed
+
+
+class TestPassportDetect:
+    def test_detects(self):
+        g = passport_detect(action="block")
+        r = g.check("Passport number: M12345678")
+        assert not r.passed
+    def test_clean(self):
+        g = passport_detect(action="block")
+        r = g.check("Please bring valid ID")
+        assert r.passed
+
+
+class TestDriverLicenseDetect:
+    def test_detects(self):
+        g = driver_license_detect(action="block")
+        r = g.check("Driver license: D1234567")
+        assert not r.passed
+    def test_clean(self):
+        g = driver_license_detect(action="block")
+        r = g.check("Please show identification")
+        assert r.passed
+
+
+class TestIpAddressDetect:
+    def test_detects_public(self):
+        g = ip_address_detect(action="block")
+        r = g.check("Server at 203.0.113.42")
+        assert not r.passed
+    def test_clean(self):
+        g = ip_address_detect(action="block")
+        r = g.check("The server is running normally")
+        assert r.passed
+
+
+class TestMacAddressDetect:
+    def test_detects(self):
+        g = mac_address_detect(action="block")
+        r = g.check("Device MAC: AA:BB:CC:DD:EE:FF")
+        assert not r.passed
+    def test_clean(self):
+        g = mac_address_detect(action="block")
+        r = g.check("Device is connected")
+        assert r.passed
+
+
+class TestCoordinateDetect:
+    def test_detects(self):
+        g = coordinate_detect(action="block")
+        r = g.check("Location: 37.7749, -122.4194")
+        assert not r.passed
+    def test_clean(self):
+        g = coordinate_detect(action="block")
+        r = g.check("The office is downtown")
+        assert r.passed
+
+
+class TestVehicleIdDetect:
+    def test_detects_vin(self):
+        g = vehicle_id_detect(action="block")
+        r = g.check("VIN: 1HGBH41JXMN109186")
+        assert not r.passed
+    def test_clean(self):
+        g = vehicle_id_detect(action="block")
+        r = g.check("The car is parked outside")
         assert r.passed

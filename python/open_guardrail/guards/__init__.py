@@ -287,6 +287,16 @@ from open_guardrail.guards.schema_version import schema_version
 from open_guardrail.guards.content_dedup import content_dedup
 from open_guardrail.guards.toxic_username import toxic_username
 from open_guardrail.guards.geographic_restrict import geographic_restrict
+from open_guardrail.guards.phone_format_intl import phone_format_intl
+from open_guardrail.guards.credit_card_luhn import credit_card_luhn
+from open_guardrail.guards.iban_detect import iban_detect
+from open_guardrail.guards.ssn_detect import ssn_detect
+from open_guardrail.guards.passport_detect import passport_detect
+from open_guardrail.guards.driver_license_detect import driver_license_detect
+from open_guardrail.guards.ip_address_detect import ip_address_detect
+from open_guardrail.guards.mac_address_detect import mac_address_detect
+from open_guardrail.guards.coordinate_detect import coordinate_detect
+from open_guardrail.guards.vehicle_id_detect import vehicle_id_detect
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -388,4 +398,14 @@ __all__ = [
     "api_abuse_detect", "schema_version",
     "content_dedup", "toxic_username",
     "geographic_restrict",
+    "phone_format_intl",
+    "credit_card_luhn",
+    "iban_detect",
+    "ssn_detect",
+    "passport_detect",
+    "driver_license_detect",
+    "ip_address_detect",
+    "mac_address_detect",
+    "coordinate_detect",
+    "vehicle_id_detect",
 ]
