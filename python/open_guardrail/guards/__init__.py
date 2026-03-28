@@ -186,6 +186,12 @@ from open_guardrail.guards.agent_permission import agent_permission
 from open_guardrail.guards.model_denial import model_denial
 from open_guardrail.guards.privacy_policy import privacy_policy
 from open_guardrail.guards.output_filter_bypass import output_filter_bypass
+from open_guardrail.guards.pci_dss_detect import pci_dss_detect
+from open_guardrail.guards.sox_compliance import sox_compliance
+from open_guardrail.guards.ferpa_detect import ferpa_detect
+from open_guardrail.guards.content_watermark import content_watermark
+from open_guardrail.guards.supply_chain_detect import supply_chain_detect
+from open_guardrail.guards.rate_limit_semantic import rate_limit_semantic
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -246,4 +252,6 @@ __all__ = [
     "multimodal_safety", "rag_safety",
     "token_smuggling", "prompt_chaining", "agent_permission",
     "model_denial", "privacy_policy", "output_filter_bypass",
+    "pci_dss_detect", "sox_compliance", "ferpa_detect",
+    "content_watermark", "supply_chain_detect", "rate_limit_semantic",
 ]

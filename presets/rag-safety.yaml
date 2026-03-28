@@ -20,6 +20,12 @@ pipelines:
         action: block
       - type: data-poisoning
         action: block
+      - type: indirect-injection
+        action: block
+      - type: rag-safety
+        action: block
+      - type: token-smuggling
+        action: block
   output:
     mode: run-all
     onError: block

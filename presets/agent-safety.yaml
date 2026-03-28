@@ -20,6 +20,18 @@ pipelines:
         action: block
       - type: social-engineering
         action: warn
+      - type: indirect-injection
+        action: block
+      - type: token-smuggling
+        action: block
+      - type: prompt-chaining
+        action: warn
+        config:
+          maxChainLength: 3
+      - type: agent-permission
+        action: block
+        config:
+          deniedActions: ["sudo", "rm -rf", "DROP TABLE", "shutdown", "format disk"]
   output:
     mode: run-all
     onError: block
@@ -48,3 +60,12 @@ pipelines:
         action: block
       - type: code-safety
         action: warn
+      - type: model-denial
+        action: block
+        config:
+          maxInputLength: 100000
+          maxRepetitions: 100
+      - type: output-filter-bypass
+        action: block
+      - type: data-exfiltration
+        action: block
