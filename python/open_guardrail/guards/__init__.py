@@ -207,6 +207,16 @@ from open_guardrail.guards.financial_pii import financial_pii
 from open_guardrail.guards.code_review_safety import code_review_safety
 from open_guardrail.guards.meeting_safety import meeting_safety
 from open_guardrail.guards.api_rate_guard import api_rate_guard
+from open_guardrail.guards.profanity_it import profanity_it
+from open_guardrail.guards.profanity_ru import profanity_ru
+from open_guardrail.guards.profanity_ar import profanity_ar
+from open_guardrail.guards.profanity_hi import profanity_hi
+from open_guardrail.guards.webhook_validate import webhook_validate
+from open_guardrail.guards.api_key_rotation import api_key_rotation
+from open_guardrail.guards.semantic_similarity_check import semantic_similarity_check
+from open_guardrail.guards.response_language_match import response_language_match
+from open_guardrail.guards.session_context_guard import session_context_guard
+from open_guardrail.guards.compliance_timestamp import compliance_timestamp
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -275,4 +285,8 @@ __all__ = [
     "profanity_es", "profanity_de", "profanity_fr", "profanity_pt",
     "medical_pii", "financial_pii", "code_review_safety",
     "meeting_safety", "api_rate_guard",
+    "profanity_it", "profanity_ru", "profanity_ar", "profanity_hi",
+    "webhook_validate", "api_key_rotation",
+    "semantic_similarity_check", "response_language_match",
+    "session_context_guard", "compliance_timestamp",
 ]

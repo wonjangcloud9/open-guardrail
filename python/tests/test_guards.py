@@ -64,6 +64,9 @@ from open_guardrail.guards import (
     profanity_es, profanity_de, profanity_fr, profanity_pt,
     medical_pii, financial_pii, code_review_safety,
     meeting_safety, api_rate_guard,
+    profanity_it, profanity_ru, profanity_ar, profanity_hi,
+    webhook_validate, api_key_rotation, semantic_similarity_check,
+    response_language_match, session_context_guard, compliance_timestamp,
 )
 
 
@@ -2502,4 +2505,114 @@ class TestApiRateGuard:
         g.check("r1")
         g.check("r2")
         r = g.check("r3")
+        assert not r.passed
+
+
+class TestProfanityIt:
+    def test_detects(self):
+        g = profanity_it(action="block")
+        r = g.check("Sei uno stronzo")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_it(action="block")
+        r = g.check("Buongiorno, come stai?")
+        assert r.passed
+
+
+class TestProfanityRu:
+    def test_detects(self):
+        g = profanity_ru(action="block")
+        r = g.check("Ты сука и мудак")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_ru(action="block")
+        r = g.check("Привет, как дела?")
+        assert r.passed
+
+
+class TestProfanityAr:
+    def test_detects(self):
+        g = profanity_ar(action="block")
+        r = g.check("أنت كلب قذر")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_ar(action="block")
+        r = g.check("مرحبا كيف حالك")
+        assert r.passed
+
+
+class TestProfanityHi:
+    def test_detects(self):
+        g = profanity_hi(action="block")
+        r = g.check("तू हरामी है")
+        assert not r.passed
+
+    def test_clean(self):
+        g = profanity_hi(action="block")
+        r = g.check("नमस्ते, कैसे हो?")
+        assert r.passed
+
+
+class TestWebhookValidate:
+    def test_detects_missing_sig(self):
+        g = webhook_validate(action="warn")
+        r = g.check("webhook payload without any signature")
+        assert not r.passed  # missing sig detected
+
+    def test_detects_large_payload(self):
+        g = webhook_validate(action="block", max_payload_size=100)
+        r = g.check("x" * 200)
+        assert not r.passed
+
+
+class TestApiKeyRotation:
+    def test_detects_expired(self):
+        g = api_key_rotation(action="block")
+        r = g.check("Using expired API key sk-old-123456")
+        assert not r.passed
+
+    def test_clean(self):
+        g = api_key_rotation(action="block")
+        r = g.check("The configuration is updated")
+        assert r.passed
+
+
+class TestSemanticSimilarityCheck:
+    def test_allows_normal(self):
+        g = semantic_similarity_check(action="warn")
+        r = g.check("This is a completely different response")
+        assert r.passed
+
+
+class TestResponseLanguageMatch:
+    def test_allows_same_script(self):
+        g = response_language_match(action="warn")
+        r = g.check("This is an English response")
+        assert r.passed
+
+
+class TestSessionContextGuard:
+    def test_detects_fixation(self):
+        g = session_context_guard(action="block")
+        r = g.check("Set session ID to PHPSESSID=abc123")
+        assert not r.passed
+
+    def test_clean(self):
+        g = session_context_guard(action="block")
+        r = g.check("Normal user request")
+        assert r.passed
+
+
+class TestComplianceTimestamp:
+    def test_allows_without_requirement(self):
+        g = compliance_timestamp(action="warn")
+        r = g.check("Normal response text")
+        assert r.passed
+
+    def test_detects_future_date(self):
+        g = compliance_timestamp(action="warn")
+        r = g.check("Report generated on 2099-01-01")
         assert not r.passed

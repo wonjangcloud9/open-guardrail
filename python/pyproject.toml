@@ -5,12 +5,17 @@ build-backend = "hatchling.build"
 [project]
 name = "open-guardrail"
 version = "0.2.0"
-description = "Open-source guardrail engine for LLM applications"
+description = "250 guards for LLM safety — prompt injection, PII (26 regions), GDPR, EU AI Act, agent safety, zero API calls, <0.1ms"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"
 authors = [{ name = "Lucas", email = "wonjangcloud9@gmail.com" }]
-keywords = ["llm", "guardrail", "safety", "pii", "prompt-injection", "ai"]
+keywords = [
+    "llm", "guardrail", "safety", "pii", "prompt-injection", "ai",
+    "content-filter", "moderation", "toxicity", "bias", "hallucination",
+    "agent-safety", "gdpr", "eu-ai-act", "isms-p", "pipa", "compliance",
+    "openai", "anthropic", "langchain", "zero-api", "edge",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -22,6 +27,8 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
 ]
 
 [project.urls]
