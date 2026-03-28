@@ -267,6 +267,16 @@ from open_guardrail.guards.list_format import list_format
 from open_guardrail.guards.code_block_safety import code_block_safety
 from open_guardrail.guards.response_relevance import response_relevance
 from open_guardrail.guards.multi_language_detect import multi_language_detect
+from open_guardrail.guards.api_version_check import api_version_check
+from open_guardrail.guards.url_redirect_detect import url_redirect_detect
+from open_guardrail.guards.header_injection import header_injection
+from open_guardrail.guards.prototype_pollution import prototype_pollution
+from open_guardrail.guards.log_injection import log_injection
+from open_guardrail.guards.response_structure import response_structure
+from open_guardrail.guards.time_zone_safety import time_zone_safety
+from open_guardrail.guards.currency_format import currency_format
+from open_guardrail.guards.pii_context import pii_context
+from open_guardrail.guards.accessibility_text import accessibility_text
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -358,4 +368,9 @@ __all__ = [
     "spam_link", "emotional_content", "numeric_range_check",
     "list_format", "code_block_safety", "response_relevance",
     "multi_language_detect",
+    "api_version_check", "url_redirect_detect",
+    "header_injection", "prototype_pollution",
+    "log_injection", "response_structure",
+    "time_zone_safety", "currency_format",
+    "pii_context", "accessibility_text",
 ]

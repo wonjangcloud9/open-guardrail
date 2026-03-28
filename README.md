@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">open-guardrail</h1>
-  <p align="center"><strong>Guardrail engine for LLM apps. 310 guards. Zero API calls. <0.1ms.</strong></p>
+  <p align="center"><strong>Guardrail engine for LLM apps. 320 guards. Zero API calls. <0.1ms.</strong></p>
 </p>
 
 <p align="center">
@@ -10,7 +10,7 @@
   <a href="https://github.com/wonjangcloud9/open-guardrail/stargazers"><img src="https://img.shields.io/github/stars/wonjangcloud9/open-guardrail?style=social" alt="GitHub stars"></a>
   <a href="https://github.com/wonjangcloud9/open-guardrail/actions"><img src="https://github.com/wonjangcloud9/open-guardrail/actions/workflows/ci.yaml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/wonjangcloud9/open-guardrail" alt="License"></a>
-  <img src="https://img.shields.io/badge/guards-310-blue" alt="guards">
+  <img src="https://img.shields.io/badge/guards-320-blue" alt="guards">
   <img src="https://img.shields.io/badge/PII_regions-26-orange" alt="PII">
 </p>
 
@@ -50,7 +50,7 @@ pip install open-guardrail    # Python
 
 |  | open-guardrail | Guardrails AI | NeMo Guardrails | LLM Guard |
 |--|:-:|:-:|:-:|:-:|
-| **Built-in guards** | **310** | 50+ | 10+ | 30+ |
+| **Built-in guards** | **320** | 50+ | 10+ | 30+ |
 | **PII regions** | **26** (EN/KO/JA/ZH/TH/AR/HI/EU + 18 more) | 1 | 1 | 1 |
 | **Language** | **TS/JS + Python** | Python | Python | Python |
 | **Latency** | **<0.1ms** | 100ms+ | 100ms+ | 50ms+ |
@@ -219,10 +219,15 @@ npx open-guardrail-cli test              # test your config
 
 | Pipeline | ops/s | latency |
 |----------|------:|--------:|
-| 6-guard pipeline (short) | 48,000 | **0.021ms** |
-| 6-guard pipeline (long) | 14,000 | **0.071ms** |
-| Single `keyword` | 1,900,000 | <0.001ms |
-| Single `promptInjection` | 1,300,000 | 0.001ms |
+| 10-guard security pipeline (short) | 60,666 | **0.016ms** |
+| 10-guard security pipeline (long) | 21,102 | **0.047ms** |
+| 6-guard pipeline (short) | 48,350 | **0.021ms** |
+| 6-guard pipeline (long) | 13,724 | **0.073ms** |
+| Single `keyword` | 1,946,161 | <0.001ms |
+| Single `promptInjection` | 1,340,781 | 0.001ms |
+| Single `indirectInjection` | 1,516,682 | 0.001ms |
+| Single `gdprCompliance` | 1,359,002 | 0.001ms |
+| Single `semanticFirewall` | 893,323 | 0.001ms |
 
 ## Documentation
 

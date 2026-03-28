@@ -83,6 +83,10 @@ from open_guardrail.guards import (
     spam_link, emotional_content, numeric_range_check,
     list_format, code_block_safety, response_relevance,
     multi_language_detect,
+    api_version_check, url_redirect_detect, header_injection,
+    prototype_pollution, log_injection, response_structure,
+    time_zone_safety, currency_format, pii_context,
+    accessibility_text,
 )
 
 
@@ -3189,4 +3193,77 @@ class TestMultiLanguageDetect:
     def test_clean(self):
         g = multi_language_detect(action="warn")
         r = g.check("Hello, how are you today?")
+        assert r.passed
+
+
+class TestUrlRedirectDetect:
+    def test_detects(self):
+        g = url_redirect_detect(action="block")
+        r = g.check("Visit: https://evil.com/login?redirect=http://attacker.com")
+        assert not r.passed
+    def test_clean(self):
+        g = url_redirect_detect(action="block")
+        r = g.check("Check the documentation at docs.example.com")
+        assert r.passed
+
+
+class TestHeaderInjection:
+    def test_detects_crlf(self):
+        g = header_injection(action="block")
+        r = g.check("Header: value\r\nX-Injected: true")
+        assert not r.passed
+    def test_clean(self):
+        g = header_injection(action="block")
+        r = g.check("Set the content type to application/json")
+        assert r.passed
+
+
+class TestPrototypePollution:
+    def test_detects(self):
+        g = prototype_pollution(action="block")
+        r = g.check('{"__proto__": {"isAdmin": true}}')
+        assert not r.passed
+    def test_clean(self):
+        g = prototype_pollution(action="block")
+        r = g.check("Create a new user object")
+        assert r.passed
+
+
+class TestLogInjection:
+    def test_detects(self):
+        g = log_injection(action="block")
+        r = g.check("user=admin\n[INFO] Login successful")
+        assert not r.passed
+    def test_clean(self):
+        g = log_injection(action="block")
+        r = g.check("Check the application logs")
+        assert r.passed
+
+
+class TestResponseStructure:
+    def test_allows_valid(self):
+        g = response_structure(action="warn")
+        r = g.check("This is a well-formed response.")
+        assert r.passed
+
+
+class TestPiiContext:
+    def test_detects(self):
+        g = pii_context(action="warn")
+        r = g.check("Share user@example.com on social media")
+        assert not r.passed
+    def test_clean(self):
+        g = pii_context(action="warn")
+        r = g.check("The report is ready for review")
+        assert r.passed
+
+
+class TestAccessibilityText:
+    def test_detects_all_caps(self):
+        g = accessibility_text(action="warn")
+        r = g.check("THIS IS ALL CAPS FOR A VERY LONG TIME AND IT KEEPS GOING")
+        assert not r.passed
+    def test_clean(self):
+        g = accessibility_text(action="warn")
+        r = g.check("This is normal, accessible text.")
         assert r.passed
