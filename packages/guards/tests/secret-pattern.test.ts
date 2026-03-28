@@ -12,7 +12,7 @@ describe('secret-pattern guard', () => {
 
   it('detects connection strings', async () => {
     const guard = secretPattern({ action: 'block' });
-    const result = await guard.check('mongodb://user:pass@host:27017/db', ctx);
+    const result = await guard.check('mongodb://testuser:testpw@localhost:27017/testdb', ctx);
     expect(result.passed).toBe(false);
   });
 

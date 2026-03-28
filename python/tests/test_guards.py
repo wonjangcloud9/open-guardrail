@@ -206,7 +206,7 @@ class TestXss:
 class TestSecretPattern:
     def test_detects_connection_string(self):
         g = secret_pattern(action="block")
-        r = g.check("mongodb://user:pass@host:27017/db")
+        r = g.check("mongodb://testuser:testpw@localhost:27017/testdb")
         assert not r.passed
 
     def test_detects_private_key(self):

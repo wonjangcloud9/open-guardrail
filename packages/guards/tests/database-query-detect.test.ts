@@ -33,7 +33,7 @@ describe('databaseQueryDetect', () => {
   });
 
   it('detects MongoDB connection string', async () => {
-    const r = await guard.check('mongodb+srv://admin:pass@cluster.mongodb.net/db', ctx);
+    const r = await guard.check('mongodb+srv://testuser:testpw@localhost/testdb', ctx);
     expect(r.passed).toBe(false);
   });
 
