@@ -56,11 +56,11 @@ export function myGuard(options: MyOptions): Guard {
 ```
 packages/
   core/         — Pipeline, Guard interface, EventBus, Config Loader
-  guards/       — 300 built-in guards
+  guards/       — 350 built-in guards
   open-guardrail/ — Umbrella package (re-exports core + guards)
   cli/          — CLI tools (init, validate, list)
   adapters/     — 8 SDK adapters (OpenAI, Anthropic, Next.js, Express, ...)
-python/         — Python SDK (259 guards)
+python/         — Python SDK (309 guards)
 benchmarks/     — Performance benchmark suite
 playground/     — Interactive browser playground
 docs-site/      — VitePress documentation site

@@ -1,11 +1,11 @@
 # open-guardrail (Python)
 
-**259 guards. Zero dependencies. Pure Python. <0.1ms latency.**
+**309 guards. Zero dependencies. Pure Python. <0.1ms latency.**
 
 [![PyPI](https://img.shields.io/pypi/v/open-guardrail)](https://pypi.org/project/open-guardrail/)
 [![Python](https://img.shields.io/pypi/pyversions/open-guardrail)](https://pypi.org/project/open-guardrail/)
 [![License](https://img.shields.io/github/license/wonjangcloud9/open-guardrail)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-509_passing-green)](https://github.com/wonjangcloud9/open-guardrail)
+[![Tests](https://img.shields.io/badge/tests-560_passing-green)](https://github.com/wonjangcloud9/open-guardrail)
 
 ## Install
 
@@ -30,7 +30,7 @@ if not result.passed:
 # result.output contains masked text when PII is detected
 ```
 
-## 259 Built-in Guards
+## 309 Built-in Guards
 
 ### Security
 `prompt_injection` `indirect_injection` `sql_injection` `xss_guard` `secret_pattern` `invisible_text` `canary_token` `encoding_attack` `data_leakage` `data_exfiltration` `path_traversal` `command_injection` `ssrf_detect` `jailbreak_pattern` `api_key_detect` `social_engineering` `unicode_confusable` `ascii_art` `data_poisoning` `prompt_leak` `semantic_firewall` `multimodal_safety` `rag_safety` `token_smuggling` `prompt_chaining` `output_filter_bypass` `model_denial` `agent_permission` `supply_chain_detect` `instruction_hierarchy` `context_window_abuse`
