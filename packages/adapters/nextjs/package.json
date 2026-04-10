@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-nextjs",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Next.js App Router adapter for open-guardrail — 215+ guards for API routes, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",

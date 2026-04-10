@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-openai",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "OpenAI SDK adapter for open-guardrail — 215+ guards for chat completions input/output, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",

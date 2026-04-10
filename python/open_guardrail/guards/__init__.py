@@ -416,6 +416,26 @@ from open_guardrail.guards.system_prompt_extraction import system_prompt_extract
 from open_guardrail.guards.turn_budget import turn_budget
 from open_guardrail.guards.identity_consistency import identity_consistency
 from open_guardrail.guards.privilege_escalation_conv import privilege_escalation_conv
+from open_guardrail.guards.source_attribution_accuracy import source_attribution_accuracy
+from open_guardrail.guards.confidence_calibration import confidence_calibration
+from open_guardrail.guards.eu_ai_risk_classification import eu_ai_risk_classification
+from open_guardrail.guards.transparency_disclosure import transparency_disclosure
+from open_guardrail.guards.decision_explainability import decision_explainability
+from open_guardrail.guards.human_oversight_required import human_oversight_required
+from open_guardrail.guards.data_provenance import data_provenance
+from open_guardrail.guards.conformity_assessment import conformity_assessment
+from open_guardrail.guards.incident_report_trigger import incident_report_trigger
+from open_guardrail.guards.demographic_parity import demographic_parity
+from open_guardrail.guards.answer_faithfulness import answer_faithfulness
+from open_guardrail.guards.response_relevance_score import response_relevance_score
+from open_guardrail.guards.factual_consistency_check import factual_consistency_check
+from open_guardrail.guards.answer_completeness_score import answer_completeness_score
+from open_guardrail.guards.reasoning_chain_validity import reasoning_chain_validity
+from open_guardrail.guards.disparate_impact import disparate_impact
+from open_guardrail.guards.stereotype_association import stereotype_association
+from open_guardrail.guards.inclusive_language import inclusive_language
+from open_guardrail.guards.socioeconomic_bias import socioeconomic_bias
+from open_guardrail.guards.accessibility_output import accessibility_output
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -646,4 +666,24 @@ __all__ = [
     "turn_budget",
     "identity_consistency",
     "privilege_escalation_conv",
+    "source_attribution_accuracy",
+    "confidence_calibration",
+    "eu_ai_risk_classification",
+    "transparency_disclosure",
+    "decision_explainability",
+    "human_oversight_required",
+    "data_provenance",
+    "conformity_assessment",
+    "incident_report_trigger",
+    "demographic_parity",
+    "answer_faithfulness",
+    "response_relevance_score",
+    "factual_consistency_check",
+    "answer_completeness_score",
+    "reasoning_chain_validity",
+    "disparate_impact",
+    "stereotype_association",
+    "inclusive_language",
+    "socioeconomic_bias",
+    "accessibility_output",
 ]
