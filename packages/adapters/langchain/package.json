@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-langchain",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "LangChain.js integration for open-guardrail — 215+ guards for LLM chains and agents, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",

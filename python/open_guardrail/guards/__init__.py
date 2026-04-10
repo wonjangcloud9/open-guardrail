@@ -436,6 +436,26 @@ from open_guardrail.guards.stereotype_association import stereotype_association
 from open_guardrail.guards.inclusive_language import inclusive_language
 from open_guardrail.guards.socioeconomic_bias import socioeconomic_bias
 from open_guardrail.guards.accessibility_output import accessibility_output
+from open_guardrail.guards.investment_advice_disclaimer import investment_advice_disclaimer
+from open_guardrail.guards.aml_pattern_detect import aml_pattern_detect
+from open_guardrail.guards.market_manipulation import market_manipulation
+from open_guardrail.guards.kyc_data_minimization import kyc_data_minimization
+from open_guardrail.guards.credit_decision_explain import credit_decision_explain
+from open_guardrail.guards.clinical_advice_disclaimer import clinical_advice_disclaimer
+from open_guardrail.guards.drug_interaction_safety import drug_interaction_safety
+from open_guardrail.guards.clinical_trial_bias import clinical_trial_bias
+from open_guardrail.guards.medical_device_safety import medical_device_safety
+from open_guardrail.guards.mental_health_crisis import mental_health_crisis
+from open_guardrail.guards.model_drift_detect import model_drift_detect
+from open_guardrail.guards.latency_degradation import latency_degradation
+from open_guardrail.guards.output_distribution_anomaly import output_distribution_anomaly
+from open_guardrail.guards.legal_disclaimer_enforce import legal_disclaimer_enforce
+from open_guardrail.guards.attorney_client_privilege import attorney_client_privilege
+from open_guardrail.guards.contract_clause_risk import contract_clause_risk
+from open_guardrail.guards.json_schema_validate import json_schema_validate
+from open_guardrail.guards.sql_generation_safety import sql_generation_safety
+from open_guardrail.guards.api_response_contract import api_response_contract
+from open_guardrail.guards.hallucinated_url import hallucinated_url
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -686,4 +706,24 @@ __all__ = [
     "inclusive_language",
     "socioeconomic_bias",
     "accessibility_output",
+    "investment_advice_disclaimer",
+    "aml_pattern_detect",
+    "market_manipulation",
+    "kyc_data_minimization",
+    "credit_decision_explain",
+    "clinical_advice_disclaimer",
+    "drug_interaction_safety",
+    "clinical_trial_bias",
+    "medical_device_safety",
+    "mental_health_crisis",
+    "model_drift_detect",
+    "latency_degradation",
+    "output_distribution_anomaly",
+    "legal_disclaimer_enforce",
+    "attorney_client_privilege",
+    "contract_clause_risk",
+    "json_schema_validate",
+    "sql_generation_safety",
+    "api_response_contract",
+    "hallucinated_url",
 ]
