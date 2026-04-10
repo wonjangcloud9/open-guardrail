@@ -456,6 +456,26 @@ from open_guardrail.guards.json_schema_validate import json_schema_validate
 from open_guardrail.guards.sql_generation_safety import sql_generation_safety
 from open_guardrail.guards.api_response_contract import api_response_contract
 from open_guardrail.guards.hallucinated_url import hallucinated_url
+from open_guardrail.guards.purchase_authorization import purchase_authorization
+from open_guardrail.guards.price_manipulation_detect import price_manipulation_detect
+from open_guardrail.guards.product_claim_verify import product_claim_verify
+from open_guardrail.guards.review_authenticity import review_authenticity
+from open_guardrail.guards.refund_policy_guard import refund_policy_guard
+from open_guardrail.guards.voice_ai_disclosure import voice_ai_disclosure
+from open_guardrail.guards.tcpa_compliance import tcpa_compliance
+from open_guardrail.guards.voice_pii_guard import voice_pii_guard
+from open_guardrail.guards.voice_impersonation import voice_impersonation
+from open_guardrail.guards.coppa_compliance_guard import coppa_compliance_guard
+from open_guardrail.guards.student_record_guard import student_record_guard
+from open_guardrail.guards.academic_integrity_output import academic_integrity_output
+from open_guardrail.guards.age_appropriate_content import age_appropriate_content
+from open_guardrail.guards.fedramp_data_boundary import fedramp_data_boundary
+from open_guardrail.guards.classification_marking import classification_marking
+from open_guardrail.guards.foia_redaction import foia_redaction
+from open_guardrail.guards.explainability_trace import explainability_trace
+from open_guardrail.guards.guardrail_effectiveness import guardrail_effectiveness
+from open_guardrail.guards.multimodal_consistency import multimodal_consistency
+from open_guardrail.guards.sovereign_ai_compliance import sovereign_ai_compliance
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -726,4 +746,24 @@ __all__ = [
     "sql_generation_safety",
     "api_response_contract",
     "hallucinated_url",
+    "purchase_authorization",
+    "price_manipulation_detect",
+    "product_claim_verify",
+    "review_authenticity",
+    "refund_policy_guard",
+    "voice_ai_disclosure",
+    "tcpa_compliance",
+    "voice_pii_guard",
+    "voice_impersonation",
+    "coppa_compliance_guard",
+    "student_record_guard",
+    "academic_integrity_output",
+    "age_appropriate_content",
+    "fedramp_data_boundary",
+    "classification_marking",
+    "foia_redaction",
+    "explainability_trace",
+    "guardrail_effectiveness",
+    "multimodal_consistency",
+    "sovereign_ai_compliance",
 ]
