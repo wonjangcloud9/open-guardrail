@@ -57,7 +57,7 @@ pip install open-guardrail    # Python
 | **External API** | Not needed | Required | Required | Partial |
 | **Edge/browser** | Yes | No | No | No |
 | **Profanity filters** | **19 languages** | 1 | 1 | 1 |
-| **Presets** | 20 | - | - | - |
+| **Presets** | 29 | - | - | - |
 | **SDK adapters** | 8 | 1 | 1 | 1 |
 | **Guard composition** | `compose` `when` `not` `retry` `fallback` `parallel` | - | - | - |
 | **Circuit breaker** | Yes | No | No | No |
@@ -198,9 +198,51 @@ const agentGuard = compose('agent-safety',
 );
 ```
 
-## 23 Presets
+## 29 Presets
 
-`default` `strict` `korean` `japanese` `chinese` `security` `full-security` `privacy-first` `content` `gdpr` `healthcare` `healthcare-kr` `finance` `enterprise` `ai-basic-act-kr` `eu-ai-act` `agent-safety` `rag-safety` `multi-agent` `compliance-full` `code-review` `bias-fairness` `chatbot`
+`default` `strict` `korean` `japanese` `chinese` `security` `full-security` `privacy-first` `content` `gdpr` `healthcare` `healthcare-kr` `finance` `enterprise` `ai-basic-act-kr` `eu-ai-act` `agent-safety` `rag-safety` `multi-agent` `compliance-full` `code-review` `bias-fairness` `chatbot` `agentic-commerce` `voice-ai` `education-k12` `government` `codegen-safety` `responsible-ai`
+
+## Industry Presets
+
+Ready-to-use configurations for regulated industries. One line to activate:
+
+```typescript
+import { createPipeline } from 'open-guardrail';
+const pipeline = await createPipeline({ preset: 'healthcare' });
+```
+
+| Preset | Guards | Compliance Coverage |
+|--------|--------|-------------------|
+| `healthcare` | 12 guards | HIPAA, FDA 21 CFR Part 11 |
+| `finance` | 14 guards | SEC, ECOA, FCRA, AML/BSA |
+| `education-k12` | 10 guards | COPPA, FERPA |
+| `government` | 10 guards | FedRAMP, FOIA, CUI |
+| `eu-ai-act` | 8 guards | EU AI Act Art. 10/14/16/50/62/86 |
+| `gdpr` | 7 guards | GDPR Art. 5/6/13/17/25/32 |
+| `korean` | 8 guards | ISMS-P, PIPA, AI Basic Act |
+| `agentic-commerce` | 10 guards | FTC Act, Consumer Protection |
+| `voice-ai` | 8 guards | TCPA, AI Disclosure Laws |
+| `codegen-safety` | 14 guards | CWE Top 25, OWASP |
+| `responsible-ai` | 13 guards | EU AI Act, Fairness |
+| `agent-safety` | 12 guards | OWASP LLM Top 10 |
+| `rag-safety` | 8 guards | RAG-specific attacks |
+
+## Guard Categories (520+ guards)
+
+| Category | Count | Examples |
+|----------|-------|----------|
+| Security | 60+ | Prompt injection, XSS, SQL injection, SSRF |
+| Privacy | 40+ | PII detection (26 regions), data leakage, consent |
+| Agent Safety | 30+ | Tool call, MCP, delegation, budget, scope |
+| Code Gen Safety | 14 | CWE-89, CWE-79, CWE-798, CWE-78, CWE-502... |
+| RAG Safety | 10 | Citation, chunk poisoning, retrieval relevance |
+| Content Safety | 50+ | Toxicity, profanity (19 langs), bias, hate speech |
+| LLM Evaluation | 7 | Faithfulness, relevance, completeness, reasoning |
+| Compliance | 30+ | EU AI Act, GDPR, HIPAA, FERPA, COPPA, FedRAMP |
+| Responsible AI | 6 | Fairness, inclusion, accessibility, stereotypes |
+| Industry | 18 | Finance, healthcare, legal, commerce, education |
+| Output Quality | 10 | Completeness, consistency, hedging, circular reasoning |
+| LLMOps | 3 | Drift detection, latency, anomaly |
 
 ## 8 SDK Adapters
 

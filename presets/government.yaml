@@ -1,0 +1,33 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: classification-marking
+        action: block
+      - type: system-prompt-extraction
+        action: block
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: fedramp-data-boundary
+        action: block
+      - type: foia-redaction
+        action: block
+      - type: pii
+        action: mask
+      - type: transparency-disclosure
+        action: warn
+      - type: human-oversight-required
+        action: warn
+      - type: data-provenance
+        action: warn
+      - type: conformity-assessment
+        action: warn
+      - type: explainability-trace
+        action: warn

@@ -1,0 +1,41 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: conversation-steering
+        action: block
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: bias
+        action: warn
+      - type: bias-gender
+        action: warn
+      - type: bias-age
+        action: warn
+      - type: demographic-parity
+        action: warn
+      - type: disparate-impact
+        action: warn
+      - type: stereotype-association
+        action: warn
+      - type: inclusive-language
+        action: warn
+      - type: socioeconomic-bias
+        action: warn
+      - type: accessibility-output
+        action: warn
+      - type: transparency-disclosure
+        action: warn
+      - type: eu-ai-risk-classification
+        action: warn
+      - type: decision-explainability
+        action: warn
+      - type: explainability-trace
+        action: warn

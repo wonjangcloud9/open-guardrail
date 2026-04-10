@@ -1,0 +1,41 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: codegen-sql-injection
+        action: block
+      - type: codegen-xss
+        action: block
+      - type: codegen-hardcoded-secret
+        action: block
+      - type: codegen-command-injection
+        action: block
+      - type: codegen-insecure-deser
+        action: block
+      - type: codegen-crypto-misuse
+        action: warn
+      - type: codegen-error-leak
+        action: warn
+      - type: codegen-unsafe-regex
+        action: warn
+      - type: codegen-path-traversal
+        action: block
+      - type: codegen-buffer-overflow
+        action: warn
+      - type: codegen-input-validation
+        action: warn
+      - type: codegen-race-condition
+        action: warn
+      - type: codegen-dependency-risk
+        action: warn
+      - type: codegen-license-conflict
+        action: warn

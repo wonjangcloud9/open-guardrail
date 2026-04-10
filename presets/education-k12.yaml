@@ -1,0 +1,35 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: age-appropriate-content
+        action: block
+        config:
+          maxGradeLevel: 8
+      - type: academic-integrity-output
+        action: warn
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: coppa-compliance-guard
+        action: block
+      - type: student-record-guard
+        action: block
+      - type: toxicity
+        action: block
+      - type: profanity-en
+        action: block
+      - type: bias
+        action: warn
+      - type: inclusive-language
+        action: warn
+      - type: mental-health-crisis
+        action: block
+      - type: pii
+        action: mask

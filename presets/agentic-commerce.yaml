@@ -1,0 +1,33 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: conversation-steering
+        action: block
+      - type: identity-consistency
+        action: block
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: purchase-authorization
+        action: block
+        config:
+          maxAmount: 500
+      - type: price-manipulation-detect
+        action: block
+      - type: product-claim-verify
+        action: warn
+      - type: review-authenticity
+        action: warn
+      - type: refund-policy-guard
+        action: warn
+      - type: pii
+        action: mask
+      - type: investment-advice-disclaimer
+        action: warn

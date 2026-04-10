@@ -1,0 +1,29 @@
+version: "1"
+pipelines:
+  input:
+    mode: fail-fast
+    onError: block
+    timeoutMs: 3000
+    guards:
+      - type: prompt-injection
+        action: block
+      - type: voice-impersonation
+        action: block
+      - type: system-prompt-extraction
+        action: block
+  output:
+    mode: run-all
+    onError: block
+    guards:
+      - type: voice-ai-disclosure
+        action: warn
+      - type: tcpa-compliance
+        action: block
+      - type: voice-pii-guard
+        action: block
+      - type: pii
+        action: mask
+      - type: mental-health-crisis
+        action: block
+      - type: toxicity
+        action: block

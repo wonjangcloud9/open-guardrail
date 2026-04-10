@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-guards",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "350 built-in guards for LLM safety: 26 PII regions, prompt injection, toxicity, bias, agent safety, hallucination, content safety, compliance, format validation, Korean ISMS-P/PIPA, GDPR, EU AI Act",
   "type": "module",
   "main": "./dist/index.cjs",
