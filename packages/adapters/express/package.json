@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail-express",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Express middleware adapter for open-guardrail — 215+ guards for HTTP request/response, prompt injection, PII, toxicity & more",
   "type": "module",
   "main": "./dist/index.cjs",

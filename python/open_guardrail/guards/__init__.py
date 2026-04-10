@@ -377,6 +377,25 @@ from open_guardrail.guards.agent_scope_guard import agent_scope_guard
 from open_guardrail.guards.command_hierarchy import command_hierarchy
 from open_guardrail.guards.autonomy_level import autonomy_level
 from open_guardrail.guards.agent_state_guard import agent_state_guard
+from open_guardrail.guards.citation_presence import citation_presence
+from open_guardrail.guards.chunk_boundary_leak import chunk_boundary_leak
+from open_guardrail.guards.empty_retrieval import empty_retrieval
+from open_guardrail.guards.stale_source import stale_source
+from open_guardrail.guards.chunk_poison_pattern import chunk_poison_pattern
+from open_guardrail.guards.duplicate_chunk import duplicate_chunk
+from open_guardrail.guards.source_url_validation import source_url_validation
+from open_guardrail.guards.retrieval_relevance_threshold import retrieval_relevance_threshold
+from open_guardrail.guards.response_completeness import response_completeness
+from open_guardrail.guards.logical_consistency import logical_consistency
+from open_guardrail.guards.numeric_consistency import numeric_consistency
+from open_guardrail.guards.list_consistency import list_consistency
+from open_guardrail.guards.hedging_overuse import hedging_overuse
+from open_guardrail.guards.circular_reasoning import circular_reasoning
+from open_guardrail.guards.image_alt_quality import image_alt_quality
+from open_guardrail.guards.audio_transcript_safety import audio_transcript_safety
+from open_guardrail.guards.modality_mismatch import modality_mismatch
+from open_guardrail.guards.source_attribution_guard import source_attribution_guard
+from open_guardrail.guards.context_window_utilization import context_window_utilization
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -568,4 +587,23 @@ __all__ = [
     "command_hierarchy",
     "autonomy_level",
     "agent_state_guard",
+    "citation_presence",
+    "chunk_boundary_leak",
+    "empty_retrieval",
+    "stale_source",
+    "chunk_poison_pattern",
+    "duplicate_chunk",
+    "source_url_validation",
+    "retrieval_relevance_threshold",
+    "response_completeness",
+    "logical_consistency",
+    "numeric_consistency",
+    "list_consistency",
+    "hedging_overuse",
+    "circular_reasoning",
+    "image_alt_quality",
+    "audio_transcript_safety",
+    "modality_mismatch",
+    "source_attribution_guard",
+    "context_window_utilization",
 ]
