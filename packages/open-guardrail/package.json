@@ -1,6 +1,6 @@
 {
   "name": "open-guardrail",
-  "version": "1.9.0",
+  "version": "2.0.0",
   "description": "Open-source guardrail engine for LLM apps — 350 guards, 26 PII regions, 8 SDK adapters, zero API calls, <0.1ms latency, agent safety, GDPR/ISMS-P/PIPA compliance",
   "type": "module",
   "main": "./dist/index.cjs",

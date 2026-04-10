@@ -396,6 +396,26 @@ from open_guardrail.guards.audio_transcript_safety import audio_transcript_safet
 from open_guardrail.guards.modality_mismatch import modality_mismatch
 from open_guardrail.guards.source_attribution_guard import source_attribution_guard
 from open_guardrail.guards.context_window_utilization import context_window_utilization
+from open_guardrail.guards.codegen_sql_injection import codegen_sql_injection
+from open_guardrail.guards.codegen_xss import codegen_xss
+from open_guardrail.guards.codegen_hardcoded_secret import codegen_hardcoded_secret
+from open_guardrail.guards.codegen_command_injection import codegen_command_injection
+from open_guardrail.guards.codegen_insecure_deser import codegen_insecure_deser
+from open_guardrail.guards.codegen_crypto_misuse import codegen_crypto_misuse
+from open_guardrail.guards.codegen_error_leak import codegen_error_leak
+from open_guardrail.guards.codegen_unsafe_regex import codegen_unsafe_regex
+from open_guardrail.guards.codegen_dependency_risk import codegen_dependency_risk
+from open_guardrail.guards.codegen_license_conflict import codegen_license_conflict
+from open_guardrail.guards.codegen_input_validation import codegen_input_validation
+from open_guardrail.guards.codegen_race_condition import codegen_race_condition
+from open_guardrail.guards.codegen_path_traversal import codegen_path_traversal
+from open_guardrail.guards.codegen_buffer_overflow import codegen_buffer_overflow
+from open_guardrail.guards.context_poisoning import context_poisoning
+from open_guardrail.guards.conversation_steering import conversation_steering
+from open_guardrail.guards.system_prompt_extraction import system_prompt_extraction
+from open_guardrail.guards.turn_budget import turn_budget
+from open_guardrail.guards.identity_consistency import identity_consistency
+from open_guardrail.guards.privilege_escalation_conv import privilege_escalation_conv
 
 __all__ = [
     "prompt_injection", "pii", "pii_kr", "pii_jp", "pii_cn",
@@ -606,4 +626,24 @@ __all__ = [
     "modality_mismatch",
     "source_attribution_guard",
     "context_window_utilization",
+    "codegen_sql_injection",
+    "codegen_xss",
+    "codegen_hardcoded_secret",
+    "codegen_command_injection",
+    "codegen_insecure_deser",
+    "codegen_crypto_misuse",
+    "codegen_error_leak",
+    "codegen_unsafe_regex",
+    "codegen_dependency_risk",
+    "codegen_license_conflict",
+    "codegen_input_validation",
+    "codegen_race_condition",
+    "codegen_path_traversal",
+    "codegen_buffer_overflow",
+    "context_poisoning",
+    "conversation_steering",
+    "system_prompt_extraction",
+    "turn_budget",
+    "identity_consistency",
+    "privilege_escalation_conv",
 ]
