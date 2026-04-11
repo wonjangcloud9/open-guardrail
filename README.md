@@ -244,9 +244,39 @@ const pipeline = await createPipeline({ preset: 'healthcare' });
 | Output Quality | 10 | Completeness, consistency, hedging, circular reasoning |
 | LLMOps | 3 | Drift detection, latency, anomaly |
 
-## 8 SDK Adapters
+## SDK Adapters
+
+### TypeScript/JavaScript (8 adapters)
 
 `open-guardrail-openai` `open-guardrail-anthropic` `open-guardrail-express` `open-guardrail-fastify` `open-guardrail-hono` `open-guardrail-nextjs` `open-guardrail-vercel-ai` `open-guardrail-langchain`
+
+### Python (6 adapters)
+
+```python
+# FastAPI middleware
+from open_guardrail.adapters.fastapi import GuardrailMiddleware
+app.add_middleware(GuardrailMiddleware, guards=[prompt_injection(action="block"), pii(action="mask")])
+
+# OpenAI wrapper
+from open_guardrail.adapters.openai_adapter import guardrailed_chat
+response = guardrailed_chat(client, [prompt_injection(action="block")], messages=[...])
+
+# Anthropic wrapper
+from open_guardrail.adapters.anthropic_adapter import guardrailed_message
+response = guardrailed_message(client, [prompt_injection(action="block")], messages=[...])
+
+# LangChain Runnable (LCEL pipe)
+from open_guardrail.adapters.langchain_adapter import GuardrailRunnable
+chain = GuardrailRunnable(guards) | llm | GuardrailRunnable(guards, stage="output")
+
+# Flask
+from open_guardrail.adapters.flask_adapter import FlaskGuardrail
+FlaskGuardrail(app, guards=[prompt_injection(action="block")])
+
+# Django
+from open_guardrail.adapters.django_adapter import GuardrailMiddleware
+GuardrailMiddleware.configure(guards=[prompt_injection(action="block")])
+```
 
 ## CLI
 
