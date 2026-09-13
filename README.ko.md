@@ -1,6 +1,6 @@
 # open-guardrail
 
-**400개 가드. 26개 지역 PII. <0.1ms 지연. 벤더 종속 없음.**
+**520개 가드. 26개 지역 PII. <0.1ms 지연. 벤더 종속 없음.**
 
 LLM 애플리케이션을 위한 가장 포괄적인 오픈소스 가드레일 엔진. 프롬프트 인젝션 차단, 26개 지역 PII 마스킹, 4개 언어 비속어 감지 — 외부 API 호출 없이 모두 가능합니다.
 
@@ -17,7 +17,7 @@ LLM 애플리케이션을 위한 가장 포괄적인 오픈소스 가드레일 �
 
 ## 왜 open-guardrail?
 
-- **400개 가드** — 프롬프트 인젝션부터 GDPR/EU AI Act/한국 AI 기본법까지, 모두 패턴 기반 (ML 모델 불필요)
+- **520개 가드** — 프롬프트 인젝션부터 GDPR/EU AI Act/한국 AI 기본법까지, 모두 패턴 기반 (ML 모델 불필요)
 - **26개 지역 PII** — 한국, 일본, 중국, 영어, 태국, 아랍, 인도, EU + 18개 추가 지역
 - **<0.1ms** — 6가드 파이프라인 0.1ms 미만. API 기반 대비 50,000배 저렴
 - **JS + Python** — 동일한 가드, 동일한 API, 동일한 커버리지
@@ -111,10 +111,10 @@ const result = await engine.run(text);
 ```bash
 npx open-guardrail-cli init          # guardrail.yaml 생성
 npx open-guardrail-cli validate      # 설정 파일 검증
-npx open-guardrail-cli list          # 215개 가드 조회
+npx open-guardrail-cli list          # 520개 가드 조회
 ```
 
-## 내장 가드 (215개)
+## 내장 가드 (520개)
 
 ### 보안 (28)
 
@@ -233,7 +233,7 @@ const chain = createGuardrailChain({
 
 | 패키지 | 설명 |
 |--------|------|
-| `open-guardrail` | 올인원 (코어 + 215개 가드) |
+| `open-guardrail` | 올인원 (코어 + 520개 가드) |
 | `open-guardrail-core` | 코어 엔진 (Pipeline, StreamingPipeline, Router, AuditLogger) |
 | `open-guardrail-guards` | 내장 가드 모음 |
 | `open-guardrail-cli` | CLI 도구 |
